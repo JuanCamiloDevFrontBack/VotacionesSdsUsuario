@@ -1,0 +1,14 @@
+<div class="login-shell">
+  <div class="login-card">
+    <img src="/logo.svg" alt="SDS logo" class="logo" />
+    <h2 class="title">Sistema de Elecciones<br/>Provincial SDS</h2>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="login-form" novalidate>
+      <input pInputText type="email" formControlName="email" placeholder="Correo electrónico" aria-label="Correo electrónico" />
+
+      <p-password formControlName="password" [toggleMask]="true" placeholder="Contraseña" inputId="password" aria-label="Contraseña"></p-password>
+
+      <button pButton type="submit" [disabled]="form.invalid" class="p-button p-component p-button-primary btn-submit">Ingresar</button>
+    </form>
+  </div>
+</div>

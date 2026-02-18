@@ -9,5 +9,5 @@ export const routes: Routes = [
 	{ path: 'sacerdotes', loadComponent: () => import('./features/sacerdotes/+page.component').then(m => m.SacerdotesPageComponent) },
 	{ path: 'administradores', loadComponent: () => import('./features/administradores/+page.component').then(m => m.AdministradoresPageComponent) },
 	{ path: 'nombramientos', loadComponent: () => import('./features/nombramientos/+page.component').then(m => m.NombramientosPageComponent) },
-	{ path: '**', redirectTo: 'dashboard' }
+	{ path: '**', redirectTo: 'auth' }
 ];
