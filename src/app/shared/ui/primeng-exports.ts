@@ -4,4 +4,10 @@ import { TableModule } from 'primeng/table';
 import { PasswordModule } from 'primeng/password';
 import { CardModule } from 'primeng/card';
 
-export const PRIMENG_MODULES = [ButtonModule, InputTextModule, TableModule, PasswordModule, CardModule];
+export const PRIMENG_MODULES = [
+  ButtonModule,
+  InputTextModule,
+  TableModule,
+  PasswordModule,
+  CardModule,
+];
