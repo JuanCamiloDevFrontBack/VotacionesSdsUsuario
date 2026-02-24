@@ -1,0 +1,26 @@
+<aside class="sidebar">
+  <!-- Logo Section -->
+  <div class="logo-section">
+    <img src="/logosdssinfondo.jpeg" alt="Logo SDS" class="logo" />
+  </div>
+
+  <!-- Menu Items -->
+  <nav class="menu">
+    <ul class="menu-list">
+      <li *ngFor="let item of menuItems" class="menu-item">
+        <button class="menu-button" (click)="onNavigate(item.route)">
+          <i [class]="item.icon"></i>
+          <span>{{ item.label }}</span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Logout Section -->
+  <div class="logout-section">
+    <button class="logout-button" (click)="onLogout()">
+      <i class="pi pi-sign-out"></i>
+      <span>Cerrar Sesión</span>
+    </button>
+  </div>
+</aside>
