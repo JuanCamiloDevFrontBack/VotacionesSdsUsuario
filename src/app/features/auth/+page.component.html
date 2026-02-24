@@ -1,0 +1,33 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <!-- Logo -->
+    <div class="logo-container">
+      <img src="/logosdssinfondo.png" alt="Logo SDS" class="logo" />
+    </div>
+
+    <!-- Title -->
+    <h1 class="title">Sistema de Elecciones<br />Provincial SDS</h1>
+
+    <!-- Form -->
+    <form [formGroup]="form" (ngSubmit)="submit()" class="auth-form">
+      <!-- Email Input -->
+      <input
+        type="email"
+        formControlName="email"
+        placeholder="Correo electrónico"
+        class="form-input"
+      />
+
+      <!-- Password Input -->
+      <input
+        type="password"
+        formControlName="password"
+        placeholder="Contraseña"
+        class="form-input"
+      />
+
+      <!-- Submit Button -->
+      <button type="submit" [disabled]="form.invalid" class="submit-btn">Ingresar</button>
+    </form>
+  </div>
+</div>

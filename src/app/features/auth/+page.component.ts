@@ -9,7 +9,8 @@ import { AuthService } from '../../core/auth/auth.service';
   selector: 'app-auth-page',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, ...PRIMENG_MODULES],
-  template: ``,
+  templateUrl: './+page.component.html',
+  styleUrl: './+page.component.scss',
 })
 export class AuthPageComponent implements OnInit {
   form: FormGroup = new FormGroup({});
