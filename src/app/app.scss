@@ -1,0 +1,25 @@
+// Main content layout with responsive spacing for sidebar
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.main-content {
+  margin-left: 280px;
+  transition: margin-left 0.3s ease;
+  padding: 20px;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+
+  // En tablet: sidebar colapsado por defecto
+  @media (min-width: 480px) and (max-width: 1023px) {
+    margin-left: 80px;
+  }
+
+  // En mobile: sidebar es drawer, sin margin
+  @media (max-width: 479px) {
+    margin-left: 0;
+    padding: 16px;
+  }
+}

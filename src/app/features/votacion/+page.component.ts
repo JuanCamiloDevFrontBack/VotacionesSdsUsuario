@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { SidebarComponent } from '../../shared/components/sidebar';
 import { AuthService } from '../../core/auth/auth.service';
 
 @Component({
   selector: 'app-votacion-page',
   standalone: true,
-  imports: [CommonModule, SidebarComponent],
+  imports: [CommonModule],
   templateUrl: './+page.component.html',
   styleUrl: './+page.component.scss',
 })

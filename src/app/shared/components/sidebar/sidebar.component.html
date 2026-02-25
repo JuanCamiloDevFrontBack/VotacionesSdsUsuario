@@ -1,4 +1,26 @@
-<aside class="sidebar">
+<!-- Overlay para mobile drawer -->
+<div
+  class="sidebar-overlay"
+  [class.show]="isDrawerOpen()"
+  (click)="closeDrawer()"
+  *ngIf="isMobile()"
+></div>
+
+<aside
+  class="sidebar"
+  [class.collapsed]="isCollapsed()"
+  [class.drawer]="isMobile()"
+  [class.drawer-open]="isDrawerOpen()"
+>
+  <!-- Toggle Button -->
+  <button
+    class="toggle-btn"
+    (click)="toggleCollapse()"
+    [title]="isCollapsed() ? 'Expandir' : 'Colapsar'"
+  >
+    <i [class]="isCollapsed() ? 'pi pi-chevron-right' : 'pi pi-chevron-left'"></i>
+  </button>
+
   <!-- Logo Section -->
   <div class="logo-section">
     <img src="/logosdssinfondo.png" alt="Logo SDS" class="logo" />
@@ -8,7 +30,12 @@
   <nav class="menu">
     <ul class="menu-list">
       <li *ngFor="let item of menuItems" class="menu-item">
-        <button class="menu-button" (click)="onNavigate(item.route)">
+        <button
+          class="menu-button"
+          (click)="onNavigate(item.route)"
+          [title]="isCollapsed() && !isMobile() ? item.label : ''"
+          [ngClass]="{ 'with-tooltip': isCollapsed() && !isMobile() }"
+        >
           <i [class]="item.icon"></i>
           <span>{{ item.label }}</span>
         </button>
@@ -18,7 +45,12 @@
 
   <!-- Logout Section -->
   <div class="logout-section">
-    <button class="logout-button" (click)="onLogout()">
+    <button
+      class="logout-button"
+      (click)="onLogout()"
+      [title]="isCollapsed() && !isMobile() ? 'Cerrar Sesión' : ''"
+      [ngClass]="{ 'with-tooltip': isCollapsed() && !isMobile() }"
+    >
       <i class="pi pi-sign-out"></i>
       <span>Cerrar Sesión</span>
     </button>

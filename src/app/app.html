@@ -1,1 +1,5 @@
-<router-outlet><router-outlet />
+<app-sidebar (navigate)="onNavigate($event)" (logout)="onLogout()"></app-sidebar>
+
+<main class="main-content">
+    <router-outlet></router-outlet>
+</main>
