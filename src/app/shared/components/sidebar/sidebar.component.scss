@@ -18,8 +18,9 @@
   // Toggle Button
   .toggle-btn {
     position: absolute;
-    top: 20px;
+    top: 50%;
     right: -15px;
+    transform: translateY(-50%);
     width: 32px;
     height: 32px;
     background-color: #3a4a58;
@@ -309,9 +310,10 @@
     }
 
     .toggle-btn {
-      top: 16px;
+      top: 50%;
       right: auto;
       left: 16px;
+      transform: translateY(-50%);
     }
   }
 }
