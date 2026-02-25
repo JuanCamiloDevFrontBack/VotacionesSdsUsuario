@@ -7,8 +7,8 @@ import { AuthService } from '../../core/auth/auth.service';
   selector: 'app-votacion-page',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './+page.component.html',
-  styleUrl: './+page.component.scss',
+  templateUrl: './votacion.component.html',
+  styleUrl: './votacion.component.scss',
 })
 export class VotacionPageComponent {
   totalSacerdotes = 102;

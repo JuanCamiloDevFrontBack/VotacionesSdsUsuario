@@ -5,37 +5,37 @@ export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'auth' },
   {
     path: 'auth',
-    loadComponent: () => import('./features/auth/+page.component').then((m) => m.AuthPageComponent),
+    loadComponent: () => import('./features/auth/auth.component').then((m) => m.AuthPageComponent),
   },
   {
     path: 'dashboard',
     canActivate: [AuthGuard],
     loadComponent: () =>
-      import('./features/dashboard/+page.component').then((m) => m.DashboardPageComponent),
+      import('./features/dashboard/dashboard.component').then((m) => m.DashboardPageComponent),
   },
   {
     path: 'votacion',
     canActivate: [AuthGuard],
     loadComponent: () =>
-      import('./features/votacion/+page.component').then((m) => m.VotacionPageComponent),
+      import('./features/votacion/votacion.component').then((m) => m.VotacionPageComponent),
   },
   {
     path: 'reportes',
     canActivate: [AuthGuard],
     loadComponent: () =>
-      import('./features/reportes/+page.component').then((m) => m.ReportesPageComponent),
+      import('./features/reportes/reportes.component').then((m) => m.ReportesPageComponent),
   },
   {
     path: 'sacerdotes',
     canActivate: [AuthGuard],
     loadComponent: () =>
-      import('./features/sacerdotes/+page.component').then((m) => m.SacerdotesPageComponent),
+      import('./features/sacerdotes/sacerdotes.component').then((m) => m.SacerdotesPageComponent),
   },
   {
     path: 'administradores',
     canActivate: [AuthGuard],
     loadComponent: () =>
-      import('./features/administradores/+page.component').then(
+      import('./features/administradores/administradores.component').then(
         (m) => m.AdministradoresPageComponent,
       ),
   },
@@ -43,7 +43,7 @@ export const routes: Routes = [
     path: 'nombramientos',
     canActivate: [AuthGuard],
     loadComponent: () =>
-      import('./features/nombramientos/+page.component').then((m) => m.NombramientosPageComponent),
+      import('./features/nombramientos/nombramientos.component').then((m) => m.NombramientosPageComponent),
   },
   { path: '**', redirectTo: 'auth' },
 ];
