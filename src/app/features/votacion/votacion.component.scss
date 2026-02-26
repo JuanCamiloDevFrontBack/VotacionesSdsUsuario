@@ -1,11 +1,12 @@
 .votacion-layout {
   display: flex;
   min-height: 100vh;
+  gap: 24;
 }
 
 .votacion-content {
   flex: 1;
-  margin-left: 280px;
+  /*margin-left: 280px;*/
   background-color: #f9fafb;
   overflow-y: auto;
 }
@@ -173,9 +174,9 @@
 
 // Responsive
 @media (max-width: 1024px) {
-  .votacion-content {
+  /*.votacion-content {
     margin-left: 240px;
-  }
+  }*/
 
   .content-container {
     padding: 24px;

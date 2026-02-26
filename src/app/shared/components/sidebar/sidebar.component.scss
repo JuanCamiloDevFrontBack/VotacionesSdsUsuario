@@ -7,17 +7,22 @@
   color: #e5e7eb;
   padding: 24px 16px;
   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
-  position: fixed;
+  /*position: fixed;
   left: 0;
   top: 0;
-  z-index: 1000;
+  z-index: 1000;*/
+  position: relative;
+  z-index: 1;
   transition:
     width 0.3s ease,
     transform 0.3s ease;
 
   // Toggle Button
   .toggle-btn {
-    position: absolute;
+    /*position: absolute;*/
+    position: relative;
+    width: 32px;
+    height: 32px;
     top: 50%;
     right: -15px;
     transform: translateY(-50%);
@@ -310,10 +315,17 @@
     }
 
     .toggle-btn {
-      top: 50%;
+      /*top: 50%;
       right: auto;
       left: 16px;
+      transform: translateY(-50%);*/
+      position: absolute;
+      top: 50%;
+      left: 16px;
+      right: auto;
       transform: translateY(-50%);
+      margin-top: 0;
+      align-self: auto;
     }
   }
 }
