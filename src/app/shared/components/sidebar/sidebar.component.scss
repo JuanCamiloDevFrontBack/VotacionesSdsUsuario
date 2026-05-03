@@ -420,7 +420,9 @@
 
       .toggle-btn {
         top: 16px;
-        left: 160px;
+        /*left: 160px;*/
+        left: 50%;
+        transform: translateX(-50%);
       }
 
       .logo-section {

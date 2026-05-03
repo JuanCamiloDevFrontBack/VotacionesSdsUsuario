@@ -57,7 +57,7 @@ export class SidebarComponent {
   private checkScreenSize() {
     const width = window.innerWidth;
     const wasMobile = this.isMobile();
-
+    console.log('Screen width:', width, 'Was mobile:', wasMobile);
     this.isMobile.set(width < 480);
 
     // Si cambia a móvil, cerrar drawer
