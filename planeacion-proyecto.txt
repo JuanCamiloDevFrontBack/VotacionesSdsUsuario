@@ -1,0 +1,3431 @@
+Generame el código en html, css, javascript de la siguiente pantalla:
+
+Ten encuenta que el desarrollo de esta pantalla se hará utilizando angular v17 como framework de trabajo.
+
+Y porfa que sea responsive, par toso los navegadores web
+
+Perfecto 👍
+Te voy a generar una pantalla de login fiel a la imagen, pensada específicamente para Angular v17, responsive, y compatible con todos los navegadores modernos.
+
+Te entregaré:
+
+    Estructura del componente Angular
+
+    HTML
+
+    CSS (responsive)
+
+    TypeScript (lógica básica)
+
+    Buenas prácticas para Angular 17
+
+📁 Estructura sugerida
+
+login/
+ ├── login.component.ts
+ ├── login.component.html
+ ├── login.component.css
+
+🧩 login.component.ts
+
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
+})
+export class LoginComponent {
+
+  loginForm: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
+  }
+
+  onSubmit(): void {
+    if (this.loginForm.valid) {
+      console.log('Datos enviados:', this.loginForm.value);
+      // Aquí iría la llamada al backend
+    } else {
+      this.loginForm.markAllAsTouched();
+    }
+  }
+}
+
+🧱 login.component.html
+
+<div class="login-container">
+  <div class="login-card">
+
+    <img
+      src="assets/logo-sds.png"
+      alt="Logo SDS"
+      class="logo"
+    />
+
+    <h1>Sistema de Elecciones<br />Provincial SDS</h1>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <input
+          type="email"
+          placeholder="Correo electrónico"
+          formControlName="email"
+        />
+      </div>
+
+      <div class="form-group">
+        <input
+          type="password"
+          placeholder="Contraseña"
+          formControlName="password"
+        />
+      </div>
+
+      <button type="submit" class="btn-login">
+        Ingresar
+      </button>
+
+    </form>
+
+  </div>
+</div>
+
+🎨 login.component.css (Responsive + moderno)
+
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+/* Contenedor principal */
+.login-container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f4f7f9, #eef2f5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+}
+
+/* Tarjeta */
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 32px 24px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+/* Logo */
+.logo {
+  width: 120px;
+  margin-bottom: 16px;
+}
+
+/* Título */
+.login-card h1 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #2f3b45;
+  margin-bottom: 32px;
+}
+
+/* Inputs */
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 2px solid #d0d7de;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+  border-color: #5b6b7a;
+}
+
+/* Botón */
+.btn-login {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 14px;
+  background: #2f3b45;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-login:hover {
+  background: #1f2a32;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .login-card {
+    padding: 24px 16px;
+  }
+
+  .login-card h1 {
+    font-size: 20px;
+  }
+}
+
+✅ Requisitos Angular 17
+
+Asegúrate de tener importado ReactiveFormsModule:
+
+import { ReactiveFormsModule } from '@angular/forms';
+
+@NgModule({
+  imports: [
+    ReactiveFormsModule
+  ]
+})
+export class AppModule {}
+
+O si usas standalone components (recomendado en Angular 17):
+
+@Component({
+  standalone: true,
+  imports: [ReactiveFormsModule],
+  ...
+})
+
+🌍 Compatibilidad de navegadores
+
+✔ Chrome
+✔ Firefox
+✔ Edge
+✔ Safari
+✔ Mobile browsers
+
+(Usa solo CSS estándar, sin hacks)
+🚀 ¿Quieres el siguiente paso?
+
+Puedo ayudarte a:
+
+    🔐 Conectar el login con backend (JWT)
+
+    🎨 Ajustar colores exactamente al logo SDS
+
+    🌙 Modo oscuro
+
+    🧩 Versión con Angular Material
+
+    📱 Animaciones suaves
+
+Dime cómo deseas continuar 💡
+
+oye se me paso un detalle eñ códig que generes porfa que sea para angular version 21.1.4
+
+Perfecto 👌
+Para Angular 21.1.4 (standalone por defecto, signals disponibles, arquitectura moderna), te lo estructuro correctamente según las mejores prácticas actuales.
+
+Angular 21 ya no recomienda NgModule tradicional para nuevos proyectos, así que lo haré como Standalone Component, que es lo correcto hoy.
+✅ Implementación correcta para Angular 21.1.4
+📁 Estructura
+
+src/app/login/
+ ├── login.component.ts
+ ├── login.component.html
+ ├── login.component.css
+
+🧠 login.component.ts (Angular 21 standalone)
+
+import { Component, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+
+@Component({
+  selector: 'app-login',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.css'
+})
+export class LoginComponent {
+
+  loading = signal(false);
+
+  loginForm = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required]]
+  });
+
+  constructor(private fb: FormBuilder) {}
+
+  onSubmit(): void {
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
+      return;
+    }
+
+    this.loading.set(true);
+
+    // Simulación llamada API
+    setTimeout(() => {
+      console.log('Login data:', this.loginForm.value);
+      this.loading.set(false);
+    }, 1000);
+  }
+}
+
+🧱 login.component.html
+
+<div class="login-container">
+  <div class="login-card">
+
+    <img
+      src="assets/logo-sds.png"
+      alt="Logo SDS"
+      class="logo"
+    />
+
+    <h1>Sistema de Elecciones<br>Provincial SDS</h1>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <input
+          type="email"
+          placeholder="Correo electrónico"
+          formControlName="email"
+        />
+      </div>
+
+      <div class="form-group">
+        <input
+          type="password"
+          placeholder="Contraseña"
+          formControlName="password"
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="btn-login"
+        [disabled]="loading()"
+      >
+        {{ loading() ? 'Ingresando...' : 'Ingresar' }}
+      </button>
+
+    </form>
+
+  </div>
+</div>
+
+🎨 login.component.css (Totalmente Responsive)
+
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+:host {
+  display: block;
+}
+
+.login-container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f2f5f7, #e9eef2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 28px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.logo {
+  width: 120px;
+  margin-bottom: 18px;
+}
+
+h1 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #2f3b45;
+  margin-bottom: 32px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 2px solid #d0d7de;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  border-color: #2f3b45;
+  box-shadow: 0 0 0 3px rgba(47, 59, 69, 0.1);
+}
+
+.btn-login {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 16px;
+  background: #2f3b45;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-login:hover:not(:disabled) {
+  background: #1f2a32;
+}
+
+.btn-login:disabled {
+  background: #9aa4ad;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .login-card {
+    padding: 28px 20px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  .logo {
+    width: 100px;
+  }
+}
+
+/* Animación */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+🔥 Cómo usarlo en Angular 21
+
+En tu app.routes.ts:
+
+import { Routes } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+
+export const routes: Routes = [
+  {
+    path: '',
+    component: LoginComponent
+  }
+];
+
+En main.ts:
+
+bootstrapApplication(AppComponent, {
+  providers: [provideRouter(routes)]
+});
+
+🧩 Compatibilidad
+
+✔ Angular 21.1.4
+✔ Standalone architecture
+✔ Signals
+✔ Chrome / Firefox / Edge / Safari
+✔ Mobile responsive
+✔ Accesible
+
+Si quieres, te lo puedo dejar ahora:
+
+    🔐 Con AuthService real con HttpClient
+
+    🛡 Guard para proteger rutas
+
+    🎨 Diseño aún más premium tipo sistema institucional
+
+    🌙 Modo oscuro automático
+
+    🧱 Arquitectura enterprise limpia (si vas a escalar el sistema de elecciones)
+
+Dime qué nivel quieres darle a este proyecto 😎
+
+Actúa como un Arquitecto de Software Senior especializado en Angular 21.1.4, PrimeNG, Java 17 (Spring Boot) y PostgreSQL, con experiencia en:
+
+Clean Architecture
+
+SOLID
+
+DDD (Domain Driven Design)
+
+Arquitectura Hexagonal
+
+Sistemas electorales seguros
+
+Seguridad y anonimato de voto
+
+Escalabilidad empresarial
+
+Optimización de rendimiento
+
+Voy a desarrollar un Sistema de Elecciones Provincial SDS, que debe ser:
+
+Seguro
+
+Escalable
+
+Auditable
+
+Con voto anónimo garantizado
+
+Preparado para soportar múltiples provincias
+
+Con UI profesional usando PrimeNG
+
+🔹 Stack Tecnológico Obligatorio
+Frontend
+
+Angular 21.1.4
+
+PrimeNG (debes recomendar versión compatible)
+
+PrimeIcons
+
+PrimeFlex (si aplica)
+
+RxJS
+
+TypeScript
+
+Backend
+
+Java 17
+
+Spring Boot
+
+Spring Security
+
+JWT
+
+Base de Datos
+
+Debes recomendar y justificar el motor ideal (ej: PostgreSQL)
+
+Explicar por qué es mejor opción para este sistema electoral
+
+🖥️ Requerimiento Especial – PrimeNG
+
+Necesito que:
+
+1️⃣ Recomiendes qué versión de PrimeNG es la más adecuada y estable para Angular 21.1.4
+2️⃣ Expliques:
+
+Compatibilidad de versiones Angular ↔ PrimeNG
+
+Si conviene usar la última major version
+
+Riesgos de usar versiones no alineadas
+3️⃣ Recomiendes:
+
+Tema (ej: Lara, Aura, Material, etc.)
+
+Si usar PrimeFlex o CSS propio
+
+Estrategia de diseño responsive
+
+Buenas prácticas para no acoplar la lógica a los componentes PrimeNG
+
+🔹 Funcionalidades del Sistema
+
+Login (Administrador / Votante)
+
+Dashboard con métricas en tiempo real
+
+Votación previa
+
+Votación final
+
+Reportes (PDF / Excel)
+
+CRUD Sacerdotes
+
+CRUD Administradores
+
+Gestión de Nombramientos y Traslados
+
+🗄️ Arquitectura de Base de Datos
+
+Debes explicar:
+
+Motor recomendado (justificado)
+
+Modelo conceptual y lógico
+
+Estrategia para anonimato del voto
+
+Separación entre emisión y conteo
+
+Manejo de concurrencia
+
+Índices estratégicos
+
+Estrategia de auditoría
+
+Estrategia para alto volumen de votos
+
+🎯 Entregables que necesito
+1️⃣ Arquitectura Frontend
+
+Estructura profesional por dominio
+
+Separación:
+
+Core
+
+Shared
+
+Features
+
+Domain
+
+Infrastructure
+
+Cómo integrar PrimeNG sin romper Clean Architecture
+
+Estrategia de estado (Signals vs NgRx)
+
+Guards por rol
+
+Interceptores
+
+Lazy loading
+
+Estrategia de testing
+
+Estrategia para manejo de formularios complejos con PrimeNG
+
+2️⃣ Arquitectura Backend
+
+Organización por capas:
+
+Domain
+
+Application
+
+Infrastructure
+
+Interfaces (REST)
+
+Separación dominio vs entidades JPA
+
+DTOs y mappers
+
+Seguridad JWT
+
+Manejo global de excepciones
+
+Estrategia transaccional
+
+Validaciones
+
+3️⃣ Explicación Arquitectónica
+
+Explica:
+
+Por qué eliges esa versión de PrimeNG
+
+Cómo se mantiene desacoplada la UI
+
+Cómo aplicas SOLID
+
+Cómo aplicas Clean Architecture
+
+Cómo escalarías horizontalmente
+
+Cómo soportarías multi-provincia
+
+Cómo garantizarías anonimato real
+
+Cómo evitarías fraude
+
+Cómo auditarías el sistema
+
+⚠️ Importante:
+No necesito código todavía.
+Necesito una propuesta arquitectónica completa, nivel documento técnico enterprise.
+
+Perfecto.
+Voy a responder como si estuviera diseñando este sistema para una implementación real, institucional, auditada y de alta responsabilidad.
+📌 SISTEMA DE ELECCIONES PROVINCIAL SDS
+
+Propuesta Arquitectónica Enterprise
+1️⃣ STACK Y DECISIONES ESTRATÉGICAS
+🔹 Base de Datos Recomendada: PostgreSQL
+
+Recomendación: PostgreSQL 16+
+¿Por qué PostgreSQL para un sistema electoral?
+
+    ACID real y robusto → crítico para integridad del voto.
+
+    Soporte avanzado de transacciones y locking fino → control de concurrencia preciso.
+
+    Row Level Security (RLS) → ideal para multi-provincia.
+
+    Soporte JSONB → auditoría flexible.
+
+    Índices avanzados (GIN, BRIN, partial indexes).
+
+    Extensiones criptográficas (pgcrypto).
+
+    Replicación nativa + alta disponibilidad.
+
+    Excelente rendimiento en escritura concurrente.
+
+📌 MySQL no ofrece el mismo nivel de sofisticación en RLS ni auditoría avanzada.
+📌 MongoDB no es adecuado para voto crítico por consistencia eventual.
+
+Conclusión: PostgreSQL es la opción institucional más sólida.
+2️⃣ PRIME NG Y ANGULAR 21
+🔹 Versión recomendada de PrimeNG
+
+Para Angular 21.1.4:
+
+👉 PrimeNG 19.x (última estable alineada con Angular 21)
+(PrimeNG mantiene alineación estricta con majors de Angular)
+Compatibilidad Angular ↔ PrimeNG
+Angular	PrimeNG
+19	17.x
+20	18.x
+21	19.x
+
+⚠ Riesgos de no alinear versiones:
+
+    Incompatibilidad con Signals
+
+    Problemas con standalone components
+
+    Conflictos con zoneless mode
+
+    Problemas de estilos
+
+📌 Siempre usar la major alineada.
+🔹 ¿Usar última major?
+
+Sí, porque:
+
+    Mejor soporte para Angular Signals
+
+    Mejor soporte standalone
+
+    Mejor rendimiento
+
+    Mejor accesibilidad
+
+🔹 Tema recomendado
+🎨 Recomendación: Lara (Lara Light Blue o Lara Dark Blue)
+
+Razones:
+
+    Profesional
+
+    Neutral
+
+    Empresarial
+
+    Accesible (AA)
+
+    Fácil personalización
+
+Evitar:
+
+    Temas tipo Material si no estás usando Angular Material
+
+🔹 ¿PrimeFlex o CSS propio?
+
+✔ Usar PrimeFlex para:
+
+    Layout
+
+    Grids
+
+    Responsive rápido
+
+✔ Usar CSS propio para:
+
+    Identidad institucional
+
+    Ajustes específicos
+
+    Componentes de dominio
+
+📌 Nunca depender 100% del sistema visual de PrimeNG.
+🔹 Estrategia Responsive
+
+    Mobile-first
+
+    PrimeFlex grid
+
+    Breakpoints definidos por diseño
+
+    Evitar inline styles
+
+3️⃣ ARQUITECTURA FRONTEND
+📁 Estructura Profesional
+
+src/app
+│
+├── core
+│   ├── auth
+│   ├── guards
+│   ├── interceptors
+│   ├── services
+│
+├── shared
+│   ├── ui
+│   ├── pipes
+│   ├── directives
+│
+├── domain
+│   ├── models
+│   ├── enums
+│   ├── value-objects
+│
+├── infrastructure
+│   ├── api
+│   ├── mappers
+│
+├── features
+│   ├── auth
+│   ├── dashboard
+│   ├── votacion
+│   ├── reportes
+│   ├── sacerdotes
+│   ├── administradores
+│   ├── nombramientos
+
+🔹 Clean Architecture en Frontend
+
+Regla:
+
+UI → UseCase → Service → API
+
+Nunca:
+
+UI → HttpClient directo
+🔹 Estado: Signals vs NgRx
+
+Recomendación:
+
+    Signals para estado local y feature-level
+
+    NgRx SOLO si hay estado global complejo
+
+Para este sistema:
+
+✔ Signals + services es suficiente
+No usar NgRx innecesariamente.
+🔹 Guards
+
+    AuthGuard
+
+    RoleGuard
+
+    ProvinceGuard (multi-provincia)
+
+🔹 Interceptors
+
+    JWT
+
+    Manejo global de errores
+
+    Logging
+
+🔹 Lazy Loading
+
+Cada feature module lazy:
+
+    votacion
+
+    dashboard
+
+    admin
+
+    reportes
+
+🔹 Formularios complejos
+
+    Reactive Forms
+
+    FormBuilder tipado
+
+    Validaciones separadas
+
+    Adaptadores PrimeNG
+
+No acoplar validación a p-inputText directamente.
+4️⃣ ARQUITECTURA BACKEND (Hexagonal)
+📁 Organización
+
+com.sds.elecciones
+│
+├── domain
+│   ├── model
+│   ├── repository (interfaces)
+│   ├── service
+│
+├── application
+│   ├── usecase
+│   ├── dto
+│   ├── mapper
+│
+├── infrastructure
+│   ├── persistence
+│   │   ├── jpa
+│   │   ├── repositoryImpl
+│   ├── security
+│   ├── config
+│
+├── interfaces
+│   ├── rest
+
+🔹 Separación dominio vs JPA
+
+Entidad dominio ≠ entidad JPA
+
+Dominio:
+
+    Sin anotaciones
+
+    Puro Java
+
+JPA:
+
+    Mapeo técnico
+
+🔹 Seguridad
+
+    JWT con expiración corta
+
+    Refresh tokens
+
+    Spring Security con filtros
+
+    BCrypt para contraseñas
+
+🔹 Manejo transaccional
+
+    @Transactional en Application Layer
+
+    Nunca en Controller
+
+🔹 Validaciones
+
+    Bean Validation
+
+    Validación de dominio interna
+
+5️⃣ ANONIMATO REAL DEL VOTO
+
+Este es el punto crítico.
+🔐 Estrategia
+
+Separar:
+Tabla 1: Emisión
+
+voter_id
+province_id
+voted (boolean)
+timestamp
+
+Tabla 2: Voto
+
+vote_id (UUID)
+candidate_id
+election_id
+hash_integrity
+
+⚠ NO hay relación entre voter_id y vote_id
+🔐 Flujo
+
+    Usuario autenticado
+
+    Se valida que no haya votado
+
+    Se genera token anónimo
+
+    Se guarda emisión
+
+    Se guarda voto sin referencia al votante
+
+🔐 Protección adicional
+
+    Hash SHA-256 del voto
+
+    Firma digital del servidor
+
+    Registro de IP en tabla aparte
+
+    Auditoría inmutable
+
+6️⃣ AUDITORÍA
+Estrategia
+
+Tabla audit_log:
+
+id
+user_id
+action
+entity
+timestamp
+metadata JSONB
+
+Usar:
+
+    Trigger DB
+
+    Spring AOP
+
+    JSONB para flexibilidad
+
+7️⃣ CONCURRENCIA Y ALTO VOLUMEN
+Estrategias
+
+✔ Índices por election_id
+✔ Índices por province_id
+✔ Índice parcial en votantes que no han votado
+✔ Connection pool optimizado (HikariCP)
+✔ Replicación lectura-escritura
+✔ Horizontal scaling backend (stateless con JWT)
+8️⃣ ESCALABILIDAD MULTI-PROVINCIA
+Opción recomendada
+
+Single database
+Multi-tenant lógico por province_id
+Row Level Security
+
+Si crece mucho:
+
+Sharding por provincia
+9️⃣ PREVENCIÓN DE FRAUDE
+
+    Control de sesión única
+
+    Registro de intentos
+
+    Detección de anomalías
+
+    Logs firmados
+
+    Verificación cruzada conteo
+
+    Sistema de checksum global
+
+🔟 SOLID Y CLEAN
+SOLID
+
+    SRP → Cada UseCase una responsabilidad
+
+    OCP → Nuevas elecciones sin modificar core
+
+    DIP → Dominio depende de interfaces
+
+Clean Architecture
+
+UI → Application → Domain
+Infrastructure implementa interfaces
+
+Dominio nunca depende de framework.
+11️⃣ ESCALAMIENTO HORIZONTAL
+
+    Backend stateless
+
+    JWT
+
+    Kubernetes
+
+    PostgreSQL replicado
+
+    Redis opcional para cache
+
+CONCLUSIÓN ARQUITECTÓNICA
+
+Este sistema debe diseñarse como:
+
+✔ Modular
+✔ Auditado
+✔ Desacoplado
+✔ Testeable
+✔ Multi-provincia
+✔ Criptográficamente seguro
+✔ Escalable
+
+Si quieres, en el siguiente mensaje puedo:
+
+    Diseñar el modelo de dominio completo
+
+    Diseñar el modelo ER
+
+    Diseñar el flujo exacto de voto seguro
+
+    Diseñar la arquitectura DevOps
+
+    Diseñar el plan de pruebas institucional
+
+Dime el siguiente nivel que quieres profundizar.
+
+Diseña el modelo de dominio completo, porfa
+
+Perfecto.
+Voy a diseñarte el Modelo de Dominio completo, siguiendo:
+
+    DDD (Domain Driven Design)
+
+    Clean Architecture
+
+    Principios SOLID
+
+    Pensado para anonimato real
+
+    Multi-provincia
+
+    Escalable
+
+    Auditable
+
+    Preparado para crecimiento institucional
+
+No incluiré código, solo diseño conceptual y estructural nivel enterprise.
+🧠 1️⃣ UBIQUITOUS LANGUAGE (Lenguaje del Dominio)
+
+Antes del modelo, definimos términos oficiales del sistema:
+Término	Significado en el dominio
+Provincia	Unidad organizativa autónoma
+Elección	Proceso electoral activo o cerrado
+Fase	Etapa de una elección (Previa / Final)
+Votante	Persona con derecho a votar
+Candidato	Persona elegible
+Emisión	Registro de que alguien votó
+Voto	Decisión anónima
+Escrutinio	Conteo de votos
+Nombramiento	Asignación formal
+Traslado	Cambio de provincia o rol
+Administrador	Usuario con privilegios de gestión
+🏛️ 2️⃣ BOUNDED CONTEXTS
+
+El sistema se divide en 7 contextos:
+
+    Identity & Access
+
+    Gestión Organizacional
+
+    Elecciones
+
+    Votación
+
+    Escrutinio
+
+    Reportes
+
+    Auditoría
+
+Cada contexto es independiente y comunica mediante contratos.
+🧩 3️⃣ AGREGADOS PRINCIPALES
+🟦 1. Provincia (Aggregate Root)
+
+Representa una jurisdicción autónoma.
+Atributos
+
+    ProvinceId
+
+    Nombre
+
+    Estado (ACTIVA / INACTIVA)
+
+    FechaCreación
+
+    ConfiguraciónElectoral
+
+Invariantes
+
+    No puede eliminarse si tiene elecciones activas.
+
+    No puede desactivarse con elecciones abiertas.
+
+🟦 2. Usuario (Aggregate Root)
+
+No es solo autenticación. Es identidad institucional.
+Atributos
+
+    UserId
+
+    NombreCompleto
+
+    Email
+
+    PasswordHash
+
+    Rol (ADMIN / VOTANTE / SUPERADMIN)
+
+    ProvinceId
+
+    Estado
+
+Invariantes
+
+    Email único.
+
+    Un usuario pertenece a una provincia.
+
+🟦 3. Sacerdote (Aggregate Root)
+
+Entidad de dominio clave.
+Atributos
+
+    SacerdoteId
+
+    Nombre
+
+    DocumentoIdentidad
+
+    FechaOrdenación
+
+    EstadoCanónico
+
+    ProvinceId
+
+Invariantes
+
+    Documento único por provincia.
+
+    No puede eliminarse si participa en elecciones activas.
+
+🗳️ 4️⃣ CONTEXTO ELECCIONES
+🟦 4. Elección (Aggregate Root)
+
+Entidad central del sistema.
+Atributos
+
+    ElectionId
+
+    Nombre
+
+    Tipo (PREVIA / FINAL)
+
+    ProvinceId
+
+    FechaInicio
+
+    FechaFin
+
+    Estado (PROGRAMADA / ABIERTA / CERRADA / AUDITADA)
+
+    FaseActual
+
+Invariantes
+
+    Solo puede haber una elección ABIERTA por provincia y tipo.
+
+    No puede cerrarse si hay votos pendientes de consolidar.
+
+🟦 5. Candidato (Entidad dentro de Elección)
+
+No es agregado raíz. Vive dentro de Elección.
+Atributos
+
+    CandidateId
+
+    SacerdoteId
+
+    Estado
+
+    NúmeroLista
+
+Regla
+
+    Un sacerdote no puede ser candidato dos veces en la misma elección.
+
+🗳️ 5️⃣ CONTEXTO VOTACIÓN
+🟦 6. RegistroEmisión (Aggregate Root)
+
+Controla que alguien votó.
+Atributos
+
+    EmissionId
+
+    ElectionId
+
+    VoterId
+
+    ProvinceId
+
+    FechaHora
+
+    TokenAnonimoGenerado
+
+Invariantes
+
+    Un votante solo puede emitir una vez por elección.
+
+    No almacena el voto.
+
+    Es transaccionalmente independiente del voto.
+
+🟦 7. Voto (Aggregate Root separado)
+
+Totalmente anónimo.
+Atributos
+
+    VoteId (UUID)
+
+    ElectionId
+
+    CandidateId
+
+    ProvinceId
+
+    HashIntegridad
+
+    Timestamp
+
+Invariantes
+
+    No referencia VoterId.
+
+    No se puede modificar.
+
+    Solo se puede crear.
+
+🧮 6️⃣ CONTEXTO ESCRUTINIO
+🟦 8. Conteo (Aggregate Root)
+
+Representa resultado consolidado.
+Atributos
+
+    ElectionId
+
+    TotalVotos
+
+    ResultadosPorCandidato
+
+    HashResultado
+
+    FechaCierre
+
+Invariantes
+
+    Solo puede generarse cuando elección está CERRADA.
+
+    Debe coincidir con total votos almacenados.
+
+📑 7️⃣ CONTEXTO NOMBRAMIENTOS
+🟦 9. Nombramiento (Aggregate Root)
+Atributos
+
+    NombramientoId
+
+    SacerdoteId
+
+    Cargo
+
+    ProvinceId
+
+    FechaInicio
+
+    FechaFin
+
+    Estado
+
+🟦 10. Traslado (Aggregate Root)
+Atributos
+
+    TrasladoId
+
+    SacerdoteId
+
+    ProvinciaOrigen
+
+    ProvinciaDestino
+
+    FechaEfectiva
+
+🔐 8️⃣ CONTEXTO AUDITORÍA
+🟦 11. RegistroAuditoría (Aggregate Root)
+Atributos
+
+    AuditId
+
+    UsuarioId
+
+    Acción
+
+    Entidad
+
+    Timestamp
+
+    Metadata
+
+    HashCadena
+
+Cadena hash encadenada tipo blockchain interno.
+🧱 9️⃣ VALUE OBJECTS
+ProvinceId
+ElectionId
+VoteId
+Email
+Password
+HashIntegridad
+FechaRango
+DocumentoIdentidad
+
+Inmutables.
+Sin identidad propia.
+🔁 10️⃣ DOMAIN SERVICES
+🟨 ServicioGeneradorTokenAnonimo
+
+Genera token único de emisión.
+🟨 ServicioValidaciónVoto
+
+Verifica:
+
+    Elección abierta
+
+    No haya votado
+
+    Usuario válido
+
+🟨 ServicioEscrutinio
+
+Calcula resultados con integridad criptográfica.
+🟨 ServicioAuditoría
+
+Registra evento con hash encadenado.
+📌 11️⃣ REGLAS CRÍTICAS DEL DOMINIO
+
+    Un votante solo puede votar una vez por elección.
+
+    No puede existir relación directa entre voto y votante.
+
+    Solo una elección activa por provincia y tipo.
+
+    No se puede eliminar historial electoral.
+
+    Los votos son inmutables.
+
+    El escrutinio debe ser reproducible.
+
+🏗️ 12️⃣ DIAGRAMA CONCEPTUAL RESUMIDO
+
+Provincia
+↳ Usuarios
+↳ Sacerdotes
+↳ Elecciones
+  ↳ Candidatos
+  ↳ Emisiones
+  ↳ Votos
+  ↳ Conteo
+
+Sacerdote
+↳ Nombramientos
+↳ Traslados
+🔐 13️⃣ ANONIMATO GARANTIZADO EN DOMINIO
+
+Separación fuerte:
+
+Aggregate A → Emisión
+Aggregate B → Voto
+
+No comparten referencia.
+
+El dominio impide estructuralmente unirlos.
+🧪 14️⃣ TESTABILIDAD
+
+Cada Aggregate:
+
+    Tiene invariantes claras
+
+    Puede testearse sin DB
+
+    No depende de infraestructura
+
+🚀 15️⃣ PREPARADO PARA ESCALAMIENTO
+
+    Multi-provincia
+
+    Eventos de dominio
+
+    Posible migración a arquitectura basada en eventos
+
+    Preparado para CQRS futuro
+
+📌 CONCLUSIÓN
+
+Este modelo:
+
+✔ Sigue DDD real
+✔ Separa contextos
+✔ Permite anonimato fuerte
+✔ Soporta auditoría
+✔ Es extensible
+✔ Es escalable
+✔ Es seguro
+
+Si quieres, siguiente nivel podemos diseñar:
+
+    Modelo ER físico optimizado PostgreSQL
+
+    Diagrama detallado de agregados
+
+    Eventos de dominio
+
+    Diseño de CQRS
+
+    Estrategia criptográfica avanzada del voto
+
+    Modelo anti-fraude profundo
+
+Dime qué nivel quieres ahora.
+
+Diseñar el modelo ER
+
+Perfecto.
+Ahora vamos a bajar el Modelo de Dominio (DDD) a un Modelo Entidad-Relación físico optimizado para PostgreSQL 16+, pensado para:
+
+    🔐 Anonimato real del voto
+
+    🏛 Multi-provincia
+
+    ⚖ Auditoría fuerte
+
+    🚀 Alta concurrencia
+
+    📊 Reportes eficientes
+
+    🧱 Escalabilidad horizontal
+
+📌 1️⃣ PRINCIPIOS DE DISEÑO DEL MODELO ER
+
+Antes de definir tablas:
+✔ Separación crítica
+
+    Emisión ≠ Voto
+
+    No debe existir FK entre votante y voto.
+
+✔ Integridad fuerte
+
+    Claves UUID
+
+    Constraints explícitos
+
+    Índices estratégicos
+
+    CHECK constraints
+
+✔ Inmutabilidad
+
+    Votos no se actualizan.
+
+    Auditoría append-only.
+
+✔ Multi-provincia
+
+    province_id en todas las entidades estratégicas.
+
+🧱 2️⃣ ENTIDADES PRINCIPALES
+🟦 A. CONTEXTO ORGANIZACIONAL
+1️⃣ province
+
+province
+---------
+id (UUID) PK
+name (varchar 150) UNIQUE NOT NULL
+status (varchar 20) CHECK (status IN ('ACTIVE','INACTIVE'))
+created_at (timestamp)
+
+📌 Índice:
+
+    UNIQUE(name)
+
+2️⃣ user_account
+
+user_account
+------------
+id (UUID) PK
+full_name (varchar 200)
+email (varchar 150) UNIQUE NOT NULL
+password_hash (varchar 255)
+role (varchar 30) CHECK (role IN ('ADMIN','VOTER','SUPERADMIN'))
+province_id (UUID) FK -> province(id)
+status (varchar 20)
+created_at (timestamp)
+
+📌 Índices:
+
+    UNIQUE(email)
+
+    INDEX(province_id)
+
+    INDEX(role)
+
+3️⃣ priest
+
+priest
+------
+id (UUID) PK
+full_name (varchar 200)
+document_number (varchar 50)
+ordination_date (date)
+canonical_status (varchar 50)
+province_id (UUID) FK -> province(id)
+status (varchar 20)
+created_at (timestamp)
+
+📌 Índices:
+
+    UNIQUE(document_number, province_id)
+
+    INDEX(province_id)
+
+🗳️ B. CONTEXTO ELECCIONES
+4️⃣ election
+
+election
+--------
+id (UUID) PK
+name (varchar 200)
+type (varchar 20) CHECK (type IN ('PREVIA','FINAL'))
+province_id (UUID) FK -> province(id)
+start_date (timestamp)
+end_date (timestamp)
+status (varchar 20)
+created_at (timestamp)
+
+📌 Índices:
+
+    INDEX(province_id)
+
+    INDEX(status)
+
+    INDEX(type, province_id)
+
+5️⃣ candidate
+
+candidate
+---------
+id (UUID) PK
+election_id (UUID) FK -> election(id)
+priest_id (UUID) FK -> priest(id)
+list_number (int)
+status (varchar 20)
+
+📌 Índices:
+
+    UNIQUE(election_id, priest_id)
+
+    INDEX(election_id)
+
+🗳️ C. CONTEXTO VOTACIÓN (ANONIMATO FUERTE)
+6️⃣ vote_emission 🔐 (CONTROL DE DOBLE VOTO)
+
+vote_emission
+-------------
+id (UUID) PK
+election_id (UUID) FK -> election(id)
+voter_id (UUID) FK -> user_account(id)
+province_id (UUID)
+emitted_at (timestamp)
+anonymous_token (varchar 255) UNIQUE
+
+📌 Restricciones:
+
+    UNIQUE(election_id, voter_id)
+
+📌 Índices:
+
+    INDEX(election_id)
+
+    INDEX(province_id)
+
+⚠ NO contiene candidate_id.
+7️⃣ vote 🔐 (TOTALMENTE ANÓNIMO)
+
+vote
+----
+id (UUID) PK
+election_id (UUID) FK -> election(id)
+candidate_id (UUID) FK -> candidate(id)
+province_id (UUID)
+integrity_hash (varchar 255)
+created_at (timestamp)
+
+📌 Índices críticos:
+
+    INDEX(election_id)
+
+    INDEX(candidate_id)
+
+    INDEX(province_id)
+
+⚠ NO contiene voter_id
+⚠ No existe FK con vote_emission
+🧮 D. CONTEXTO ESCRUTINIO
+8️⃣ election_result
+
+election_result
+---------------
+id (UUID) PK
+election_id (UUID) UNIQUE FK -> election(id)
+total_votes (int)
+result_hash (varchar 255)
+closed_at (timestamp)
+
+9️⃣ election_result_detail
+
+election_result_detail
+----------------------
+id (UUID) PK
+result_id (UUID) FK -> election_result(id)
+candidate_id (UUID) FK -> candidate(id)
+vote_count (int)
+
+📌 Índices:
+
+    INDEX(result_id)
+
+    INDEX(candidate_id)
+
+📑 E. CONTEXTO NOMBRAMIENTOS
+🔟 appointment
+
+appointment
+-----------
+id (UUID) PK
+priest_id (UUID) FK -> priest(id)
+province_id (UUID)
+position (varchar 150)
+start_date (date)
+end_date (date)
+status (varchar 20)
+
+1️⃣1️⃣ transfer
+
+transfer
+--------
+id (UUID) PK
+priest_id (UUID) FK -> priest(id)
+origin_province_id (UUID)
+destination_province_id (UUID)
+effective_date (date)
+
+🔐 F. AUDITORÍA
+1️⃣2️⃣ audit_log (APPEND ONLY)
+
+audit_log
+---------
+id (UUID) PK
+user_id (UUID)
+action (varchar 150)
+entity_name (varchar 150)
+entity_id (UUID)
+timestamp (timestamp)
+metadata (JSONB)
+hash_chain (varchar 255)
+previous_hash (varchar 255)
+
+📌 Índices:
+
+    INDEX(user_id)
+
+    INDEX(entity_name)
+
+    INDEX(timestamp)
+
+🧠 3️⃣ RELACIONES CLAVE
+
+Provincia
+↳ Users
+↳ Priests
+↳ Elections
+
+Election
+↳ Candidates
+↳ Vote_Emission
+↳ Votes
+↳ Election_Result
+
+Priest
+↳ Candidate
+↳ Appointment
+↳ Transfer
+🔐 4️⃣ ESTRATEGIA DE ANONIMATO EN EL MODELO ER
+
+Separación estructural:
+Tabla	Contiene votante	Contiene candidato
+vote_emission	✔	✘
+vote	✘	✔
+
+No existe join posible directo.
+
+Solo comparten election_id.
+
+Esto garantiza:
+
+✔ No se puede reconstruir voto individual
+✔ Incluso con acceso DB completo
+⚡ 5️⃣ MANEJO DE CONCURRENCIA
+Estrategias:
+
+    UNIQUE(election_id, voter_id)
+
+    Transacción SERIALIZABLE o REPEATABLE READ
+
+    Lock optimista
+
+    Índice parcial en votantes que no han votado
+
+📈 6️⃣ ÍNDICES ESTRATÉGICOS
+Para votación masiva:
+
+CREATE INDEX idx_vote_election_candidate 
+ON vote(election_id, candidate_id);
+
+Para emisión:
+
+CREATE UNIQUE INDEX idx_unique_vote_per_user
+ON vote_emission(election_id, voter_id);
+
+🏎️ 7️⃣ OPTIMIZACIÓN ALTO VOLUMEN
+
+Si hay > 1 millón de votos:
+
+✔ Particionar tabla vote por election_id
+✔ Particionar audit_log por fecha
+✔ Usar BRIN index para grandes volúmenes
+🏛️ 8️⃣ SOPORTE MULTI-PROVINCIA
+
+Estrategia:
+
+Single DB
+Filtrado por province_id
+Row Level Security opcional
+🔐 9️⃣ PROTECCIÓN ANTI-FRAUDE A NIVEL DB
+
+✔ Triggers que impidan UPDATE en vote
+✔ Restricción de DELETE deshabilitada
+✔ Auditoría automática
+✔ Hash encadenado
+🧱 🔟 MODELO ER RESUMIDO VISUAL
+
+Province
+ ├── User
+ ├── Priest
+ ├── Election
+        ├── Candidate
+        ├── Vote_Emission
+        ├── Vote
+        └── Election_Result
+
+🎯 RESULTADO
+
+Este modelo ER:
+
+✔ Implementa DDD real
+✔ Garantiza anonimato estructural
+✔ Es altamente concurrente
+✔ Escala horizontalmente
+✔ Soporta auditoría fuerte
+✔ Permite particionamiento
+✔ Está optimizado para PostgreSQL
+
+Si quieres, siguiente nivel podemos diseñar:
+
+    Diagrama físico PostgreSQL optimizado con particiones
+
+    Estrategia criptográfica detallada del voto
+
+    Estrategia completa anti-fraude
+
+    Modelo CQRS con read models
+
+    Script SQL completo listo para producción
+
+Dime cuál quieres profundizar.
+
+Diseña el flujo exacto de voto seguro
+
+Perfecto.
+Vamos a diseñar el flujo exacto de voto seguro, nivel sistema electoral institucional, garantizando:
+
+    🔐 Anonimato real
+
+    🛡 Prevención de fraude
+
+    ⚖ Auditabilidad completa
+
+    🚀 Escalabilidad
+
+    🧱 Separación Emisión vs Voto
+
+    📊 Conteo verificable
+
+    🏛 Multi-provincia
+
+Esto no es un flujo básico CRUD.
+Es un flujo diseñado para entornos críticos.
+🎯 OBJETIVOS DEL FLUJO
+
+    Un votante solo puede votar una vez.
+
+    El sistema no puede saber a quién votó cada persona.
+
+    El voto no puede modificarse.
+
+    El voto debe ser auditable.
+
+    El sistema debe resistir concurrencia alta.
+
+    Debe prevenir correlación entre votante y voto.
+
+🧭 VISIÓN GENERAL DEL FLUJO
+
+El proceso se divide en 6 fases:
+
+1️⃣ Autenticación
+2️⃣ Validación de elegibilidad
+3️⃣ Generación de token anónimo
+4️⃣ Emisión registrada
+5️⃣ Registro del voto anónimo
+6️⃣ Confirmación y auditoría
+🟦 FASE 1 — AUTENTICACIÓN SEGURA
+Objetivo:
+
+Validar identidad sin exponer información innecesaria.
+Flujo:
+
+    Usuario ingresa credenciales.
+
+    Spring Security valida.
+
+    Se genera JWT corto (ej: 10 minutos).
+
+    Se valida:
+
+        Usuario activo
+
+        Provincia correcta
+
+        Rol = VOTER
+
+🟦 FASE 2 — VALIDACIÓN DE ELEGIBILIDAD
+
+Antes de mostrar candidatos:
+
+Se ejecuta UseCase:
+
+ValidarElegibilidadVoto
+
+Verificaciones:
+
+    Elección está ABIERTA
+
+    Usuario pertenece a la provincia
+
+    No existe registro en vote_emission
+
+    Usuario activo
+
+Consulta crítica:
+
+SELECT 1
+FROM vote_emission
+WHERE election_id = ?
+AND voter_id = ?
+FOR UPDATE;
+
+🔒 Esto previene condiciones de carrera.
+🟦 FASE 3 — GENERACIÓN DE TOKEN ANÓNIMO
+
+Aquí ocurre la separación clave.
+
+Se genera:
+
+anonymous_token = SHA256(
+    voter_id +
+    election_id +
+    random_salt +
+    timestamp
+)
+
+Este token:
+
+    Se guarda en vote_emission
+
+    No se usa en tabla vote
+
+    Solo prueba que hubo emisión
+
+⚠ El token no debe permitir reconstrucción.
+🟦 FASE 4 — REGISTRO DE EMISIÓN (TRANSACCIÓN 1)
+
+Transacción A:
+
+BEGIN;
+
+INSERT INTO vote_emission
+(
+ id,
+ election_id,
+ voter_id,
+ province_id,
+ emitted_at,
+ anonymous_token
+);
+
+COMMIT;
+
+Constraint:
+UNIQUE(election_id, voter_id)
+
+Si falla → intento doble voto.
+
+⚠ Esta transacción no crea el voto.
+🟦 FASE 5 — REGISTRO DEL VOTO ANÓNIMO (TRANSACCIÓN 2)
+
+Aquí se ejecuta una segunda transacción independiente.
+
+Esto es CLAVE para anonimato.
+
+Transacción B:
+
+BEGIN;
+
+INSERT INTO vote
+(
+ id,
+ election_id,
+ candidate_id,
+ province_id,
+ integrity_hash,
+ created_at
+);
+
+COMMIT;
+
+Donde:
+
+integrity_hash = SHA256(
+    vote_id +
+    candidate_id +
+    election_id +
+    server_secret
+)
+
+⚠ No se guarda voter_id.
+⚠ No se guarda anonymous_token.
+⚠ No existe relación posible.
+🔐 ¿Por qué dos transacciones?
+
+Si se hiciera en una sola:
+
+Podría existir correlación temporal o en logs.
+
+Separarlas reduce posibilidad de análisis forense interno.
+🟦 FASE 6 — AUDITORÍA
+
+Se registra:
+
+audit_log
+
+Pero:
+
+    No incluye candidate_id.
+
+    Solo incluye acción "VOTE_EMITTED".
+
+    Hash encadenado.
+
+Ejemplo:
+
+hash_chain = SHA256(previous_hash + current_data)
+
+🔐 PROTECCIÓN ANTI-CORRELACIÓN
+
+Medidas adicionales:
+
+    Retraso aleatorio entre emisión y voto (ej 50-200ms)
+
+    Logs separados
+
+    Servicios desacoplados (opcional microservicio)
+
+    Pool de inserción para votos (batch async opcional)
+
+🧱 FLUJO COMPLETO PASO A PASO
+Paso 1
+
+Usuario autenticado
+
+↓
+Paso 2
+
+Validar elegibilidad
+
+↓
+Paso 3
+
+Crear registro vote_emission
+
+↓
+Paso 4
+
+Generar voto anónimo
+
+↓
+Paso 5
+
+Insertar voto
+
+↓
+Paso 6
+
+Confirmación al usuario
+
+↓
+Paso 7
+
+Registrar auditoría
+🛡 PROTECCIÓN CONTRA FRAUDE
+🔹 Doble voto
+
+Constraint único + SELECT FOR UPDATE.
+🔹 Manipulación de votos
+
+    Tabla vote sin UPDATE.
+
+    Trigger bloquea DELETE.
+
+    Solo INSERT permitido.
+
+🔹 Manipulación interna
+
+    Hash integridad
+
+    Hash encadenado
+
+    Comparación total votos vs emisiones
+
+🔹 Ataque de concurrencia masiva
+
+    Índices correctos
+
+    Pool Hikari optimizado
+
+    PostgreSQL en modo REPEATABLE READ
+
+🧮 FASE DE CIERRE Y ESCRUTINIO
+
+Cuando election.status = CERRADA:
+
+    Se bloquean inserts.
+
+    Se calcula:
+
+SELECT candidate_id, COUNT(*)
+FROM vote
+WHERE election_id = ?
+GROUP BY candidate_id;
+
+    Se genera hash global:
+
+result_hash = SHA256(
+   total_votes +
+   sorted_candidate_results +
+   server_secret
+)
+
+    Se guarda en election_result.
+
+📊 VERIFICACIÓN DE INTEGRIDAD
+
+Auditor puede:
+
+    Contar votos.
+
+    Verificar hash.
+
+    Verificar que total emisiones ≥ total votos.
+
+    Validar que no existan emisiones duplicadas.
+
+🚀 ESCALABILIDAD
+
+Para alto volumen:
+
+    Particionar vote por election_id.
+
+    Usar índices compuestos.
+
+    Backend stateless.
+
+    Replicación lectura-escritura.
+
+🧠 OPCIONAL NIVEL AVANZADO
+
+Para nivel máximo institucional:
+
+    Token anónimo firmado (RSA)
+
+    Blind signatures
+
+    Separar microservicio de votación
+
+    Encriptación de voto antes de persistir
+
+🎯 RESULTADO FINAL
+
+Este flujo:
+
+✔ Garantiza anonimato estructural
+✔ Previene doble voto
+✔ Es auditado
+✔ Es escalable
+✔ Es resistente a correlación
+✔ Es apto para entorno institucional
+
+Si quieres, ahora podemos diseñar:
+
+    🔐 Versión criptográficamente avanzada tipo blind signature
+
+    🏛 Arquitectura anti-fraude completa
+
+    📊 Sistema de verificación externa
+
+    🧱 Diseño con CQRS + Event Sourcing
+
+    🚀 Arquitectura de despliegue seguro (Kubernetes)
+
+Dime el siguiente nivel que quieres.
+
+Diseña la arquitectura DevOps
+
+Perfecto.
+Ahora vamos a diseñar la Arquitectura DevOps Enterprise para el Sistema de Elecciones Provincial SDS, pensada para:
+
+    🔐 Alta seguridad
+
+    🗳 Sistema electoral crítico
+
+    📈 Escalabilidad horizontal
+
+    🏛 Multi-provincia
+
+    ⚖ Auditoría institucional
+
+    🚀 Alta disponibilidad
+
+    🛡 Resistencia ante fallos y fraude
+
+No es un DevOps genérico. Es arquitectura para sistema sensible.
+🎯 OBJETIVOS DEVOPS
+
+    Cero downtime en votación
+
+    Entornos aislados y reproducibles
+
+    Seguridad en toda la cadena
+
+    Auditoría de infraestructura
+
+    Escalamiento automático
+
+    Backups consistentes
+
+    Observabilidad total
+
+    Trazabilidad de cada despliegue
+
+🧱 1️⃣ ARQUITECTURA GENERAL
+
+                    Internet
+                        │
+                ┌───────────────┐
+                │  WAF / CDN    │
+                └───────────────┘
+                        │
+                ┌───────────────┐
+                │  Load Balancer│
+                └───────────────┘
+                        │
+        ┌─────────────────────────────────┐
+        │         Kubernetes Cluster       │
+        │                                  │
+        │  ┌──────────┐   ┌──────────┐     │
+        │  │ Angular  │   │ Spring   │     │
+        │  │ Frontend │   │ Backend  │     │
+        │  └──────────┘   └──────────┘     │
+        │                                  │
+        │  ┌──────────┐   ┌──────────┐     │
+        │  │ Redis    │   │ AuditSvc │     │
+        │  └──────────┘   └──────────┘     │
+        └─────────────────────────────────┘
+                        │
+                ┌───────────────┐
+                │ PostgreSQL HA │
+                └───────────────┘
+
+🏗️ 2️⃣ ENTORNOS
+
+Separación obligatoria:
+Entorno	Propósito
+local	desarrollo
+dev	integración
+qa	pruebas funcionales
+staging	preproducción
+prod	votación real
+
+⚠ Producción nunca comparte infraestructura.
+🐳 3️⃣ CONTENERIZACIÓN
+Docker obligatorio
+
+Cada componente:
+
+    Frontend Angular (ng build → Nginx)
+
+    Backend Spring Boot (distroless image)
+
+    Servicio de auditoría
+
+    Redis
+
+Base image recomendada:
+
+    Backend → eclipse-temurin:17-jre-alpine
+
+    Frontend → nginx:alpine
+
+Principios:
+
+    No root user
+
+    Multi-stage builds
+
+    Imágenes escaneadas (Trivy)
+
+☸ 4️⃣ ORQUESTACIÓN — Kubernetes
+
+Recomendado:
+
+    Kubernetes (EKS, AKS, GKE o bare metal)
+
+    Helm para despliegue
+
+Configuración:
+
+    Deployment con replicas >= 3
+
+    HPA (Horizontal Pod Autoscaler)
+
+    Liveness y readiness probes
+
+    PodDisruptionBudget
+
+🔐 5️⃣ SEGURIDAD DE INFRAESTRUCTURA
+🔹 WAF
+
+    Protección contra DDoS
+
+    Rate limiting
+
+    Protección contra SQLi/XSS
+
+🔹 TLS obligatorio
+
+    Certificados gestionados (Let's Encrypt o ACM)
+
+    TLS 1.2+
+
+🔹 Secretos
+
+Nunca en código.
+
+Usar:
+
+    Kubernetes Secrets
+
+    Vault (HashiCorp recomendado)
+
+    Variables encriptadas en CI/CD
+
+🔄 6️⃣ CI/CD PIPELINE
+Recomendado:
+
+    GitHub Actions o GitLab CI
+
+Pipeline Backend
+
+    Build
+
+    Unit tests
+
+    Integration tests
+
+    SonarQube análisis
+
+    Build Docker
+
+    Scan imagen (Trivy)
+
+    Push a registry
+
+    Deploy via Helm
+
+Pipeline Frontend
+
+    Install deps
+
+    Build production
+
+    Test
+
+    Lint
+
+    Build Docker
+
+    Push
+
+    Deploy
+
+Estrategia de despliegue
+
+Blue-Green Deployment (obligatorio para votación)
+
+Nunca Rolling durante proceso electoral.
+🗄️ 7️⃣ POSTGRESQL ALTA DISPONIBILIDAD
+Arquitectura recomendada:
+
+Primary + 2 replicas
+
+    Patroni o Cloud managed
+
+    Replicación síncrona
+
+    Failover automático
+
+Backups
+
+    Backup diario full
+
+    WAL archiving
+
+    Snapshot antes de elección
+
+    Test de restauración mensual
+
+📊 8️⃣ OBSERVABILIDAD
+Logs
+
+    EFK stack (Elasticsearch, Fluentd, Kibana)
+
+    Logs estructurados JSON
+
+    Retención mínima 1 año
+
+Métricas
+
+    Prometheus
+
+    Grafana
+
+Monitorear:
+
+    Latencia voto
+
+    TPS (votos por segundo)
+
+    Errores 5xx
+
+    Conexiones DB
+
+    CPU
+
+    Memoria
+
+Alertas
+
+    Slack / Email
+
+    Alertas si:
+
+        Error rate > 1%
+
+        DB replica lag
+
+        CPU > 80%
+
+        Picos anormales de voto
+
+🔐 9️⃣ SEGURIDAD APLICATIVA
+
+    Spring Security
+
+    JWT expiración corta
+
+    Rate limit por IP
+
+    CSRF protection
+
+    Content Security Policy
+
+    CORS restringido
+
+🧪 🔟 PRUEBAS AUTOMATIZADAS
+Backend
+
+    Unit tests
+
+    Integration tests
+
+    Testcontainers para PostgreSQL
+
+    Pruebas de concurrencia
+
+Frontend
+
+    Unit tests (Jest)
+
+    E2E (Cypress)
+
+    Pruebas de carga (k6)
+
+📈 11️⃣ PRUEBAS DE CARGA PRE-ELECTORAL
+
+Simular:
+
+    5x el máximo esperado
+
+    10k votos concurrentes
+
+    Picos repentinos
+
+Medir:
+
+    Tiempo promedio de voto
+
+    Tasa de error
+
+    Comportamiento bajo presión
+
+🧠 12️⃣ ESTRATEGIA DE ESCALAMIENTO
+
+Durante votación:
+
+    HPA activo
+
+    Escalamiento automático backend
+
+    Escalamiento frontend
+
+    DB dimensionada previamente
+
+🔐 13️⃣ ESTRATEGIA ANTI-FRAUDE INFRAESTRUCTURA
+
+    Logs inmutables
+
+    Acceso a producción solo vía bastion
+
+    MFA obligatorio
+
+    Auditoría de acceso root
+
+    IAM restrictivo
+
+🏛 14️⃣ MULTI-PROVINCIA
+
+Opciones:
+
+A) Multi-tenant lógico (province_id)
+B) Namespace Kubernetes por provincia
+C) Cluster separado si es crítico
+
+Recomendación inicial:
+
+Multi-tenant lógico + RLS.
+🚨 15️⃣ PLAN DE CONTINGENCIA
+
+Si backend cae:
+
+    Failover automático
+
+    Health checks
+
+Si DB cae:
+
+    Replica promoted
+
+Si cluster cae:
+
+    Infraestructura replicada en otra región
+
+🧱 16️⃣ HARDENING FINAL
+
+✔ Deshabilitar endpoints innecesarios
+✔ Limitar puertos
+✔ Firewall interno
+✔ Auditoría de dependencias
+✔ SAST + DAST
+🎯 RESULTADO FINAL
+
+Esta arquitectura DevOps:
+
+✔ Es altamente disponible
+✔ Soporta alta concurrencia
+✔ Está blindada contra fallos
+✔ Es auditable
+✔ Es escalable horizontalmente
+✔ Es apta para sistema electoral institucional
+
+Si quieres, siguiente nivel podemos diseñar:
+
+    🔐 Arquitectura criptográfica avanzada
+
+    🏛 Sistema de verificación externa del voto
+
+    📊 Arquitectura CQRS + Event Sourcing
+
+    🚀 Estrategia multi-región activa-activa
+
+    🧱 Plan de gobierno TI institucional
+
+Dime cuál quieres profundizar.
+
+Diseña el plan de pruebas institucional
+
+Perfecto.
+Ahora diseñaremos el Plan de Pruebas Institucional para el Sistema de Elecciones Provincial SDS, nivel sistema crítico.
+
+Este documento está pensado para:
+
+    🗳 Sistemas electorales reales
+
+    🛡 Entornos auditables
+
+    🏛 Gobernanza institucional
+
+    ⚖ Cumplimiento normativo
+
+    🔐 Seguridad y anonimato
+
+    🚀 Alta concurrencia
+
+No es un plan de QA común. Es un plan de aseguramiento integral.
+📘 PLAN DE PRUEBAS INSTITUCIONAL
+
+Sistema de Elecciones Provincial SDS
+1️⃣ OBJETIVOS
+
+Garantizar que el sistema sea:
+
+    Funcionalmente correcto
+
+    Seguro
+
+    Escalable
+
+    Auditables
+
+    Resistente a fraude
+
+    Consistente bajo carga
+
+    Con anonimato verificable
+
+    Recuperable ante fallos
+
+2️⃣ ESTRATEGIA GENERAL
+
+Se aplicará un enfoque de testing por capas:
+
+Unit → Integration → Component → API → E2E → Performance → Security → Chaos → Auditoría
+
+Cada capa cubre riesgos distintos.
+3️⃣ NIVELES DE PRUEBA
+🧪 I. PRUEBAS UNITARIAS
+Objetivo:
+
+Validar reglas de dominio aisladas.
+Cobertura mínima:
+
+    85% backend
+
+    80% frontend
+
+Backend (Java 17)
+
+    Test de agregados
+
+    Invariantes de dominio
+
+    Servicios de aplicación
+
+    Validaciones
+
+    Casos de error
+
+Ejemplos críticos:
+
+    No permitir doble voto
+
+    No permitir elección duplicada abierta
+
+    No permitir eliminación con dependencias
+
+🔗 II. PRUEBAS DE INTEGRACIÓN
+Objetivo:
+
+Validar interacción real con PostgreSQL.
+
+Usar:
+
+    Testcontainers
+
+    Base real PostgreSQL 16
+
+Casos críticos:
+
+    Transacción de emisión
+
+    Inserción voto anónimo
+
+    Concurrencia simultánea
+
+    Restricciones UNIQUE
+
+🌐 III. PRUEBAS DE API (CONTRATO)
+Objetivo:
+
+Verificar estabilidad REST.
+
+Herramientas:
+
+    Postman/Newman
+
+    Spring REST Docs
+
+    Pact (si microservicios)
+
+Validaciones:
+
+    Códigos HTTP correctos
+
+    Manejo de errores
+
+    JWT expirado
+
+    Permisos por rol
+
+🖥 IV. PRUEBAS FRONTEND
+Unitarias
+
+    Signals
+
+    Servicios
+
+    Guards
+
+    Interceptors
+
+E2E (Cypress)
+
+Escenarios críticos:
+
+    Login votante
+
+    Proceso completo de voto
+
+    Intento de doble voto
+
+    Usuario sin permisos
+
+    Elección cerrada
+
+📈 V. PRUEBAS DE CARGA (CRÍTICAS)
+
+Herramienta:
+
+    k6 o Gatling
+
+Escenario base
+
+Simular:
+
+    5x carga esperada
+
+    10,000 votos concurrentes
+
+    Picos repentinos
+
+Medir:
+
+    Latencia promedio
+
+    Tasa de error
+
+    CPU
+
+    Uso DB
+
+    Tiempo de commit
+
+Escenario extremo
+
+Simular:
+
+    50,000 votos simultáneos
+
+    Durante 15 minutos
+
+Sistema no debe:
+
+    Perder votos
+
+    Generar inconsistencias
+
+    Permitir doble voto
+
+🔐 VI. PRUEBAS DE SEGURIDAD
+1️⃣ OWASP Top 10
+
+    SQL Injection
+
+    XSS
+
+    CSRF
+
+    Broken auth
+
+    Deserialization
+
+Herramientas:
+
+    OWASP ZAP
+
+    Burp Suite
+
+2️⃣ Pruebas de Autenticación
+
+    JWT manipulado
+
+    Token expirado
+
+    Token con rol alterado
+
+    Replay attack
+
+3️⃣ Prueba de Anonimato
+
+Equipo auditor debe intentar:
+
+    Correlacionar vote_emission y vote
+
+    Reconstruir voto individual
+
+    Analizar timestamps
+
+Debe ser imposible.
+🧠 VII. PRUEBAS DE CONCURRENCIA
+
+Simular:
+
+    Dos solicitudes simultáneas del mismo usuario
+
+Resultado esperado:
+
+    Solo una emisión exitosa
+
+    Segunda rechazada
+
+Validar que UNIQUE constraint funciona.
+🏛 VIII. PRUEBAS DE AUDITORÍA
+
+Verificar:
+
+    Cada acción crítica genera audit_log
+
+    Hash encadenado correcto
+
+    No se puede alterar sin romper cadena
+
+Intentar:
+
+    Modificar audit_log manualmente
+
+    Validar que hash falla
+
+🔄 IX. PRUEBAS DE RECUPERACIÓN
+1️⃣ Simular caída backend
+
+Debe:
+
+    Recuperarse automáticamente
+
+    No perder votos en transacción confirmada
+
+2️⃣ Simular caída DB
+
+    Failover replica
+
+    No inconsistencias
+
+3️⃣ Restauración backup
+
+Simular restauración completa.
+
+Validar:
+
+    Integridad de votos
+
+    Conteos coinciden
+
+    Auditoría intacta
+
+💥 X. CHAOS TESTING
+
+Durante entorno staging:
+
+    Apagar pods
+
+    Saturar CPU
+
+    Interrumpir red
+
+Sistema debe:
+
+    Mantener integridad
+
+    No perder datos
+
+📊 XI. PRUEBAS DE ESCRUTINIO
+
+Validar:
+
+    Conteo correcto
+
+    Hash resultado reproducible
+
+    Totales coinciden con votos
+
+    Emisiones ≥ votos
+
+🔍 XII. VALIDACIÓN CRIPTOGRÁFICA
+
+Recalcular:
+
+integrity_hash
+result_hash
+hash_chain auditoría
+
+Debe coincidir exactamente.
+🧱 XIII. MATRIZ DE TRAZABILIDAD
+
+Cada requisito funcional debe mapear a:
+
+    Caso de prueba
+
+    Resultado esperado
+
+    Evidencia
+
+Ejemplo:
+Requisito	Caso	Resultado
+Voto único	TC-SEC-01	Rechaza segundo voto
+🏛 XIV. PRUEBA PRE-ELECTORAL OFICIAL
+
+Antes de elección real:
+
+    Simulación completa
+
+    Validación de anonimato
+
+    Auditoría independiente
+
+    Certificación interna
+
+    Firma acta técnica
+
+📈 XV. MÉTRICAS DE CALIDAD
+
+    Cobertura código > 85%
+
+    Error rate < 0.5%
+
+    Latencia voto < 300ms
+
+    0 pérdida de datos
+
+    0 vulnerabilidades críticas
+
+🔐 XVI. PRUEBA DE FRAUDE INTERNO
+
+Simular:
+
+    DBA intentando modificar votos
+
+    Admin intentando acceder a datos sensibles
+
+    Manipulación directa SQL
+
+Debe:
+
+    Ser detectado
+
+    Generar alerta
+
+    Registrar auditoría
+
+🏁 XVII. CRITERIOS DE ACEPTACIÓN FINAL
+
+El sistema será aprobado solo si:
+
+✔ No permite doble voto
+✔ No permite correlación voto-votante
+✔ Soporta carga máxima
+✔ Auditoría intacta
+✔ Failover funcional
+✔ Seguridad validada
+✔ Conteo exacto
+🎯 CONCLUSIÓN
+
+Este plan:
+
+✔ Es institucional
+✔ Es auditable
+✔ Es defensivo
+✔ Es multicapa
+✔ Es verificable
+✔ Es repetible
+
+No depende solo de QA.
+Es parte de la gobernanza del sistema.
+
+Si quieres, el siguiente nivel puede ser:
+
+    📊 Plan de gobierno TI electoral
+
+    🔐 Arquitectura criptográfica avanzada
+
+    🏛 Modelo de certificación institucional
+
+    🚀 Estrategia multi-región activa-activa
+
+    🧱 Marco completo de cumplimiento normativo
+
+Dime cuál quieres diseñar ahora.
+
+oye dame el temario que debo recorrer si estoy utilizndo angular version 21.1.4 con primeng 21.1.1y java version 17.0.18 con spring y spring boot, porque realizare un pryecto con incio de sesión, pero ten presente que tambine pueda utilizar logeo mediante cuanta de google
+
+Perfecto 👌
+Te voy a dar un temario estructurado y estratégico, pensado para que desarrolles tu proyecto con:
+
+    Angular 21.1.4
+
+    PrimeNG 21.1.1
+
+    Java 17.0.18
+
+    Spring Boot
+
+    Login tradicional + Login con Google (OAuth2)
+
+    Enfoque profesional (Clean Architecture + seguridad)
+
+Esto no es solo una lista de temas.
+Es un roadmap técnico progresivo, en el orden correcto.
+🧭 ETAPA 1 — FUNDAMENTOS SÓLIDOS (BASE OBLIGATORIA)
+🔹 1. Angular 21 Moderno (Standalone + Signals)
+
+Debes dominar:
+Arquitectura
+
+    Standalone Components
+
+    provideRouter()
+
+    Lazy loading con loadComponent
+
+    Estructura Core / Shared / Features
+
+Estado
+
+    Signals
+
+    computed()
+
+    effect()
+
+    Servicios reactivos con RxJS
+
+    Diferencia Signals vs Observables
+
+Formularios
+
+    Reactive Forms tipados
+
+    Validaciones custom
+
+    Manejo de errores UX
+
+    Integración con PrimeNG inputs
+
+HTTP
+
+    HttpClient moderno
+
+    Interceptors
+
+    Manejo global de errores
+
+    Manejo de JWT
+
+🔹 2. PrimeNG 21.1.1 Profesional
+
+Debes dominar:
+Componentes clave
+
+    p-inputText
+
+    p-password
+
+    p-button
+
+    p-card
+
+    p-toast
+
+    p-dialog
+
+    p-table
+
+    p-dropdown
+
+    p-confirmDialog
+
+Temas
+
+    Lara (recomendado)
+
+    Configuración global
+
+    Theming
+
+Layout
+
+    PrimeFlex
+
+    Responsive design
+
+    Grid system
+
+Buenas prácticas
+
+    No meter lógica en componentes PrimeNG
+
+    Crear wrappers UI en shared/ui
+
+🧠 ETAPA 2 — BACKEND PROFESIONAL
+🔹 3. Java 17 Avanzado
+
+Debes dominar:
+
+    Records
+
+    Optional
+
+    Streams
+
+    Lambdas
+
+    Inmutabilidad
+
+    Buenas prácticas SOLID
+
+🔹 4. Spring Boot (Arquitectura correcta)
+Configuración base
+
+    Spring Initializr
+
+    application.yml
+
+    Profiles (dev, prod)
+
+Arquitectura limpia
+
+    Controller
+
+    Service
+
+    Domain
+
+    Repository
+
+    DTO
+
+    Mapper (MapStruct recomendado)
+
+Persistencia
+
+    JPA
+
+    Hibernate
+
+    Relaciones
+
+    Transacciones
+
+    @Transactional
+
+PostgreSQL
+
+    Índices
+
+    Constraints
+
+    Manejo de UUID
+
+    Optimización básica
+
+🔐 ETAPA 3 — SEGURIDAD PROFESIONAL
+
+Aquí está lo crítico para tu login.
+🔹 5. Spring Security (Fundamental)
+
+Debes dominar:
+
+    SecurityFilterChain
+
+    Configuración sin WebSecurityConfigurerAdapter
+
+    PasswordEncoder (BCrypt)
+
+    Roles y authorities
+
+    Custom UserDetailsService
+
+🔹 6. JWT (Login tradicional)
+
+Debes aprender:
+
+    Generación de token
+
+    Validación de token
+
+    Filtro JWT
+
+    Refresh token
+
+    Expiración corta
+
+    Manejo de excepciones
+
+Flujo:
+
+Login → Validar credenciales → Generar JWT → Enviar al frontend → Guardar en memory storage → Interceptor
+
+🌐 ETAPA 4 — LOGIN CON GOOGLE (OAuth2)
+
+Esta es la parte que requiere arquitectura correcta.
+🔹 7. OAuth2 + Google
+
+Conceptos que debes dominar:
+
+    OAuth2 Authorization Code Flow
+
+    OpenID Connect (OIDC)
+
+    ID Token
+
+    Access Token
+
+    Redirect URI
+
+    Client ID / Client Secret
+
+🔹 8. Implementación recomendada (segura)
+
+Arquitectura correcta:
+Opción profesional (recomendada):
+
+    Angular redirige a backend
+
+    Backend usa Spring Security OAuth2
+
+    Google autentica
+
+    Backend recibe callback
+
+    Backend genera JWT propio
+
+    Frontend recibe JWT del sistema
+
+Nunca confíes solo en el token del frontend.
+🔹 9. Spring Boot OAuth2
+
+Debes aprender:
+
+    spring-boot-starter-oauth2-client
+
+    Configuración Google provider
+
+    OAuth2Login
+
+    Custom OAuth2UserService
+
+    Convertir usuario Google en usuario interno
+
+    Manejo de nuevos usuarios
+
+🧱 ETAPA 5 — INTEGRACIÓN FRONTEND-BACKEND
+🔹 10. Flujo completo login tradicional
+
+Angular:
+
+    Formulario
+
+    Enviar credenciales
+
+    Guardar JWT
+
+    Interceptor
+
+    Guard por rol
+
+Backend:
+
+    Endpoint /auth/login
+
+    Generar token
+
+    Validar credenciales
+
+🔹 11. Flujo login Google
+
+Angular:
+
+    Botón "Login con Google"
+
+    Redirección al backend
+
+Backend:
+
+    OAuth2 success handler
+
+    Generar JWT propio
+
+    Redirigir con token
+
+🛡 ETAPA 6 — HARDENING
+
+Debes aprender:
+
+    CSRF (desactivado correctamente si usas JWT)
+
+    CORS correcto
+
+    HTTPS obligatorio
+
+    Rate limiting
+
+    Manejo de errores sin exponer stacktrace
+
+    Logging seguro
+
+🧪 ETAPA 7 — TESTING
+Backend
+
+    Unit tests
+
+    Integration tests
+
+    Testcontainers
+
+Frontend
+
+    Jest
+
+    Cypress
+
+🚀 ETAPA 8 — DEVOPS BÁSICO
+
+Debes conocer:
+
+    Docker
+
+    Docker Compose
+
+    Variables de entorno
+
+    Profiles
+
+    Build producción Angular
+
+📘 ORDEN RECOMENDADO DE APRENDIZAJE
+
+1️⃣ Angular 21 moderno
+2️⃣ PrimeNG correcto
+3️⃣ Java 17 limpio
+4️⃣ Spring Boot arquitectura
+5️⃣ JPA + PostgreSQL
+6️⃣ Spring Security básico
+7️⃣ JWT
+8️⃣ OAuth2 Google
+9️⃣ Integración completa
+🔟 Hardening
+🎯 RESULTADO ESPERADO
+
+Al terminar este temario podrás:
+
+✔ Implementar login tradicional seguro
+✔ Implementar login con Google correctamente
+✔ Manejar JWT profesional
+✔ Integrar Angular 21 con backend limpio
+✔ Aplicar buenas prácticas de arquitectura
+✔ Evitar errores comunes de seguridad
