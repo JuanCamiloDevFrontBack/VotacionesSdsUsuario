@@ -31,6 +31,6 @@ export class AuthPageComponent implements OnInit {
   submit() {
     if (this.form.invalid) return;
     this.auth.setToken('demo-token');
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/votacion']);
   }
 }
