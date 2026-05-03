@@ -8,12 +8,6 @@ export const routes: Routes = [
     loadComponent: () => import('./features/auth/auth.component').then((m) => m.AuthPageComponent),
   },
   {
-    path: 'dashboard',
-    canActivate: [AuthGuard],
-    loadComponent: () =>
-      import('./features/dashboard/dashboard.component').then((m) => m.DashboardPageComponent),
-  },
-  {
     path: 'votacion',
     canActivate: [AuthGuard],
     loadComponent: () =>
@@ -26,18 +20,10 @@ export const routes: Routes = [
       import('./features/reportes/reportes.component').then((m) => m.ReportesPageComponent),
   },
   {
-    path: 'sacerdotes',
+    path: 'salvatorianos',
     canActivate: [AuthGuard],
     loadComponent: () =>
-      import('./features/sacerdotes/sacerdotes.component').then((m) => m.SacerdotesPageComponent),
-  },
-  {
-    path: 'administradores',
-    canActivate: [AuthGuard],
-    loadComponent: () =>
-      import('./features/administradores/administradores.component').then(
-        (m) => m.AdministradoresPageComponent,
-      ),
+      import('./features/salvatorianos/salvatorianos.component').then((m) => m.SalvatorianosPageComponent),
   },
   {
     path: 'nombramientos',

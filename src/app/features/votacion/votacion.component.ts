@@ -12,8 +12,8 @@ import { SidebarComponent } from '../../shared/components';
   styleUrl: './votacion.component.scss',
 })
 export class VotacionPageComponent {
-  totalSacerdotes = 102;
-  sacerdotesVotados = 87;
+  totalSalvatorianos = 102;
+  salvatorianosVotados = 87;
   percentageVoted = Math.round((87 / 102) * 100);
 
   constructor(

@@ -29,14 +29,9 @@ export class SidebarComponent {
       route: 'votacion',
     },
     {
-      label: 'Gestión de Sacerdotes',
+      label: 'Gestión de Salvatorianos',
       icon: 'pi pi-users',
-      route: 'sacerdotes',
-    },
-    {
-      label: 'Gestión de Administradores',
-      icon: 'pi pi-cog',
-      route: 'administradores',
+      route: 'salvatorianos',
     },
     {
       label: 'Reportes',

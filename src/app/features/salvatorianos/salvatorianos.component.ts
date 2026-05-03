@@ -5,7 +5,7 @@ import { AuthService } from '../../core/auth/auth.service';
 import { SidebarComponent } from '../../shared/components/sidebar/sidebar.component';
 
 @Component({
-  selector: 'app-dashboard-page',
+  selector: 'app-salvatorianos-page',
   standalone: true,
   imports: [CommonModule, SidebarComponent],
   template: `
@@ -15,8 +15,8 @@ import { SidebarComponent } from '../../shared/components/sidebar/sidebar.compon
         (logout)="onLogout()"
       ></app-sidebar>
       <div class="page-content">
-        <h1>Dashboard</h1>
-        <p>Dashboard works</p>
+        <h1>Gestión de Sacerdotes</h1>
+        <p>Sacerdotes works</p>
       </div>
     </div>
   `,
@@ -31,7 +31,7 @@ import { SidebarComponent } from '../../shared/components/sidebar/sidebar.compon
     }
   `],
 })
-export class DashboardPageComponent {
+export class SalvatorianosPageComponent {
   constructor(
     private router: Router,
     private auth: AuthService,

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { PRIMENG_MODULES } from '../../shared/ui/primeng-exports';
+import { PRIMENG_MODULES } from '../../shared/primeng-exports';
 import { AuthService } from '../../core/auth/auth.service';
 
 @Component({

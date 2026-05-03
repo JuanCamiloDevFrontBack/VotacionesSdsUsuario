@@ -7,10 +7,6 @@
   color: #e5e7eb;
   padding: 24px 16px;
   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
-  /*position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 1000;*/
   position: relative;
   z-index: 1;
   transition:
@@ -19,8 +15,7 @@
 
   // Toggle Button
   .toggle-btn {
-    /*position: absolute;*/
-    position: relative;
+    position: absolute;
     width: 32px;
     height: 32px;
     top: 50%;
@@ -76,7 +71,7 @@
   // Menu Navigation
   .menu {
     flex: 1;
-    overflow-y: auto;
+    /*overflow-y: auto;*/
     padding-bottom: 20px;
     transition: all 0.3s ease;
 
@@ -315,10 +310,6 @@
     }
 
     .toggle-btn {
-      /*top: 50%;
-      right: auto;
-      left: 16px;
-      transform: translateY(-50%);*/
       position: absolute;
       top: 50%;
       left: 16px;
@@ -429,7 +420,7 @@
 
       .toggle-btn {
         top: 16px;
-        left: 16px;
+        left: 160px;
       }
 
       .logo-section {
