@@ -1,45 +1,69 @@
 <div class="votacion-layout">
   <!-- Sidebar -->
-   <app-sidebar (navigate)="onNavigate($event)" (logout)="onLogout()"></app-sidebar>
+  <app-sidebar (navigate)="onNavigate($event)" (logout)="onLogout()"></app-sidebar>
 
   <!-- Main Content -->
   <div class="votacion-content">
-    <!-- Header -->
-    <div class="header">
-      <h1>Sistema de Elecciones Provincial SDS</h1>
-    </div>
-
-    <!-- Content Container -->
-    <div class="content-container">
-      <!-- Estado Card -->
-      <div class="estado-card">
-        <p class="estado-label">ESTADO ACTUAL DE LA VOTACIÓN</p>
-        <span class="estado-indicator"></span>
+    <!-- Dashboard Initial View -->
+    <div class="dashboard-view" *ngIf="!isVotingActive()">
+      <!-- Header -->
+      <div class="header">
+        <h1>Sistema de Elecciones Provincial SDS</h1>
       </div>
 
-      <!-- Widget Container -->
-      <div class="widget-container">
-        <!-- Participation Widget -->
-        <div class="widget">
-          <h2 class="widget-title">Widget de participación</h2>
+      <!-- Dashboard Container -->
+      <div class="dashboard-container">
+        <div class="dashboard-card">
+          <h2 class="dashboard-title">No existen votaciones activas</h2>
+          <p class="dashboard-subtitle">Porfavor inicie una nueva votación</p>
+          <button class="init-button" (click)="initializeVoting()">Iniciar nueva votación</button>
+        </div>
+      </div>
+    </div>
 
-          <div class="participation-stats">
-            <h3 class="stats-title">{{ salvatorianosVotados }} de {{ totalSalvatorianos }} salvatorianos</h3>
-            <p class="stats-description">
-              {{ salvatorianosVotados }} de {{ totalSalvatorianos }} salvatorianos han votado
-            </p>
-          </div>
+    <!-- Voting Phase View -->
+    <div class="voting-view" *ngIf="isVotingActive()">
+      <!-- Header -->
+      <div class="header">
+        <h1>Sistema de Elecciones Provincial SDS</h1>
+      </div>
 
-          <!-- Progress Bar -->
-          <div class="progress-container">
-            <div class="progress-bar-wrapper">
-              <div class="progress-bar-fill" [style.width.%]="percentageVoted"></div>
+      <!-- Content Container -->
+      <div class="content-container">
+        <!-- Estado Card -->
+        <div class="estado-card">
+          <p class="estado-label">ESTADO ACTUAL DE LA VOTACIÓN</p>
+          <span class="estado-indicator"></span>
+        </div>
+
+        <!-- Widget Container -->
+        <div class="widget-container">
+          <!-- Participation Widget -->
+          <div class="widget">
+            <h2 class="widget-title">Widget de participación</h2>
+
+            <div class="participation-stats">
+              <h3 class="stats-title">
+                {{ salvatorianosVotados }} de {{ totalSalvatorianos }} salvatorianos
+              </h3>
+              <p class="stats-description">
+                {{ salvatorianosVotados }} de {{ totalSalvatorianos }} salvatorianos han votado
+              </p>
             </div>
-            <span class="progress-percentage">{{ percentageVoted }}%</span>
-          </div>
 
-          <!-- Close Button -->
-          <button class="close-button" (click)="closeVotingPhase()">Cerrar fase de votación</button>
+            <!-- Progress Bar -->
+            <div class="progress-container">
+              <div class="progress-bar-wrapper">
+                <div class="progress-bar-fill" [style.width.%]="percentageVoted"></div>
+              </div>
+              <span class="progress-percentage">{{ percentageVoted }}%</span>
+            </div>
+
+            <!-- Close Button -->
+            <button class="close-button" (click)="closeVotingPhase()">
+              Cerrar fase de votación
+            </button>
+          </div>
         </div>
       </div>
     </div>

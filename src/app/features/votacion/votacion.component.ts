@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/auth/auth.service';
@@ -12,6 +12,7 @@ import { SidebarComponent } from '../../shared/components';
   styleUrl: './votacion.component.scss',
 })
 export class VotacionPageComponent {
+  isVotingActive = signal(false);
   totalSalvatorianos = 102;
   salvatorianosVotados = 87;
   percentageVoted = Math.round((87 / 102) * 100);
@@ -28,6 +29,10 @@ export class VotacionPageComponent {
   onLogout() {
     this.auth.clear();
     this.router.navigate(['/auth']);
+  }
+
+  initializeVoting() {
+    this.isVotingActive.set(true);
   }
 
   closeVotingPhase() {
