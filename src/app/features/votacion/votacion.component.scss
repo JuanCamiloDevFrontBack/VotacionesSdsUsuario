@@ -1,12 +1,14 @@
 .votacion-layout {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
   min-height: 100vh;
-  gap: 24;
+  gap: 24px;
+  align-items: stretch;
 }
 
 .votacion-content {
-  flex: 1;
-  /*margin-left: 280px;*/
+  min-width: 0;
+  width: 100%;
   background-color: #f9fafb;
   overflow-y: auto;
 }
@@ -31,6 +33,73 @@
   padding: 32px;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .content-container {
+    padding: 24px;
+  }
+
+  .dashboard-container {
+    padding: 24px;
+  }
+
+  .dashboard-card {
+    padding: 32px 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .votacion-layout {
+    gap: 16px;
+  }
+
+  .content-container {
+    padding: 20px;
+  }
+
+  .dashboard-container {
+    padding: 16px;
+  }
+
+  .dashboard-card {
+    padding: 28px 24px;
+  }
+
+  .dashboard-title {
+    font-size: 24px;
+  }
+
+  .dashboard-subtitle {
+    font-size: 15px;
+    margin-bottom: 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  .dashboard-card {
+    padding: 24px 20px;
+  }
+
+  .dashboard-logo {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 24px;
+  }
+
+  .dashboard-title {
+    font-size: 20px;
+  }
+
+  .dashboard-subtitle {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  .init-button {
+    padding: 14px 20px;
+    font-size: 16px;
+  }
 }
 
 // Estado Card
