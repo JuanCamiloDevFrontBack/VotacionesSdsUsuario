@@ -57,15 +57,12 @@ export class SidebarComponent {
   private checkScreenSize() {
     const width = window.innerWidth;
     const wasMobile = this.isMobile();
-    console.log('Screen width:', width, 'Was mobile:', wasMobile);
     this.isMobile.set(width < 480);
 
-    // Si cambia a móvil, cerrar drawer
     if (this.isMobile() && !wasMobile) {
       this.isDrawerOpen.set(false);
     }
 
-    // En tablet (768px-1023px), iniciar colapsado
     if (width >= 480 && width < 768) {
       this.isCollapsed.set(true);
     } else if (width >= 768) {
@@ -76,6 +73,7 @@ export class SidebarComponent {
   toggleCollapse() {
     if (this.isMobile()) {
       this.isDrawerOpen.update((val) => !val);
+      this.isCollapsed.set(false);
     } else {
       this.isCollapsed.update((val) => !val);
     }

@@ -6,6 +6,15 @@
   *ngIf="isMobile()"
 ></div>
 
+<button
+  class="mobile-toggle-btn"
+  *ngIf="isMobile() && !isDrawerOpen()"
+  (click)="toggleCollapse()"
+  aria-label="Abrir menú"
+>
+  <i class="pi pi-chevron-right"></i>
+</button>
+
 <aside
   class="sidebar"
   [class.collapsed]="isCollapsed()"
@@ -18,7 +27,7 @@
     (click)="toggleCollapse()"
     [title]="isCollapsed() ? 'Expandir' : 'Colapsar'"
   >
-    <i [class]="isCollapsed() ? 'pi pi-chevron-right' : 'pi pi-chevron-left'"></i>
+    <i class="pi pi-chevron-right"></i>
   </button>
 
   <!-- Logo Section -->
