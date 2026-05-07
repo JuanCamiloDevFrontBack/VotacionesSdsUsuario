@@ -27,7 +27,11 @@
     (click)="toggleCollapse()"
     [title]="isCollapsed() ? 'Expandir' : 'Colapsar'"
   >
-    <i class="pi pi-chevron-right"></i>
+    <i
+      class="pi"
+      [class.pi-chevron-right]="isCollapsed()"
+      [class.pi-chevron-left]="!isCollapsed()"
+    ></i>
   </button>
 
   <!-- Logo Section -->
