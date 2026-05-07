@@ -1,19 +1,13 @@
 <!-- Overlay para mobile drawer -->
-<div
-  class="sidebar-overlay"
-  [class.show]="isDrawerOpen()"
-  (click)="closeDrawer()"
-  *ngIf="isMobile()"
-></div>
+@if (isMobile()) {
+  <div class="sidebar-overlay" [class.show]="isDrawerOpen()" (click)="closeDrawer()"></div>
+}
 
-<button
-  class="mobile-toggle-btn"
-  *ngIf="isMobile() && !isDrawerOpen()"
-  (click)="toggleCollapse()"
-  aria-label="Abrir menú"
->
-  <i class="pi pi-chevron-right"></i>
-</button>
+@if (isMobile() && !isDrawerOpen()) {
+  <button class="mobile-toggle-btn" (click)="toggleCollapse()" aria-label="Abrir menú">
+    <i class="pi pi-chevron-right"></i>
+  </button>
+}
 
 <aside
   class="sidebar"
@@ -42,17 +36,19 @@
   <!-- Menu Items -->
   <nav class="menu">
     <ul class="menu-list">
-      <li *ngFor="let item of menuItems" class="menu-item">
-        <button
-          class="menu-button"
-          (click)="onNavigate(item.route)"
-          [title]="isCollapsed() && !isMobile() ? item.label : ''"
-          [ngClass]="{ 'with-tooltip': isCollapsed() && !isMobile() }"
-        >
-          <i [class]="item.icon"></i>
-          <span>{{ item.label }}</span>
-        </button>
-      </li>
+      @for (item of menuItems; track item.route) {
+        <li class="menu-item">
+          <button
+            class="menu-button"
+            (click)="onNavigate(item.route)"
+            [title]="isCollapsed() && !isMobile() ? item.label : ''"
+            [ngClass]="{ 'with-tooltip': isCollapsed() && !isMobile() }"
+          >
+            <i [class]="item.icon"></i>
+            <span>{{ item.label }}</span>
+          </button>
+        </li>
+      }
     </ul>
   </nav>
 
