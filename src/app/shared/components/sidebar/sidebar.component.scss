@@ -104,28 +104,12 @@
           font-family: inherit;
           text-align: left;
           position: relative;
-
-          i {
-            font-size: 18px;
-            width: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            transition: all 0.3s ease;
-          }
-
-          span {
-            flex: 1;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            transition: opacity 0.3s ease;
-          }
+          overflow: visible;
 
           // Tooltip styling para collapsed
           &.with-tooltip {
             justify-content: center;
+            align-items: center;
 
             span {
               opacity: 0;
@@ -135,22 +119,24 @@
             }
 
             &::after {
-              content: attr(title);
+              content: attr(data-label);
               position: absolute;
               left: 100%;
               top: 50%;
               transform: translateY(-50%);
-              background: rgba(0, 0, 0, 0.8);
+              background: rgba(0, 0, 0, 0.9);
               color: #fff;
-              padding: 6px 8px;
+              padding: 8px 12px;
               border-radius: 4px;
-              font-size: 12px;
+              font-size: 13px;
               white-space: nowrap;
               margin-left: 12px;
               z-index: 2000;
               opacity: 0;
               pointer-events: none;
               transition: opacity 0.2s ease;
+              min-width: max-content;
+              font-weight: 500;
             }
 
             &:hover::after {
@@ -213,6 +199,7 @@
       // Tooltip styling para collapsed
       &.with-tooltip {
         justify-content: center;
+        align-items: center;
 
         span {
           opacity: 0;
@@ -222,22 +209,24 @@
         }
 
         &::after {
-          content: attr(title);
+          content: attr(data-label);
           position: absolute;
           left: 100%;
           top: 50%;
           transform: translateY(-50%);
-          background: rgba(0, 0, 0, 0.8);
+          background: rgba(0, 0, 0, 0.9);
           color: #fff;
-          padding: 6px 8px;
+          padding: 8px 12px;
           border-radius: 4px;
-          font-size: 12px;
+          font-size: 13px;
           white-space: nowrap;
           margin-left: 12px;
           z-index: 2000;
           opacity: 0;
           pointer-events: none;
           transition: opacity 0.2s ease;
+          min-width: max-content;
+          font-weight: 500;
         }
 
         &:hover::after {
@@ -263,13 +252,27 @@
     padding: 24px 8px;
 
     .menu {
-      overflow-y: hidden;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+      -webkit-overflow-scrolling: touch;
     }
 
     .menu::-webkit-scrollbar {
-      display: none;
+      width: 4px;
+    }
+
+    .menu::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .menu::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 2px;
+    }
+
+    .menu::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.25);
     }
 
     .logo-section {
@@ -286,9 +289,14 @@
       padding: 12px;
       gap: 0;
       justify-content: center;
+      align-items: center;
 
       i {
-        width: 100%;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         font-size: 20px;
       }
 
@@ -301,6 +309,16 @@
       padding: 12px;
       gap: 0;
       justify-content: center;
+      align-items: center;
+
+      i {
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+      }
 
       span {
         display: none;
@@ -438,8 +456,14 @@
         padding: 12px;
         gap: 0;
         justify-content: center;
+        align-items: center;
 
         i {
+          width: 24px;
+          height: 24px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           font-size: 18px;
         }
 
@@ -452,6 +476,15 @@
         padding: 12px;
         gap: 0;
         justify-content: center;
+        align-items: center;
+
+        i {
+          width: 24px;
+          height: 24px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
 
         span {
           display: none;

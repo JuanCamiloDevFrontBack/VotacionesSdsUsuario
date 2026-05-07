@@ -42,6 +42,7 @@
             class="menu-button"
             (click)="onNavigate(item.route)"
             [title]="isCollapsed() && !isMobile() ? item.label : ''"
+            [attr.data-label]="item.label"
             [ngClass]="{ 'with-tooltip': isCollapsed() && !isMobile() }"
           >
             <i [class]="item.icon"></i>
@@ -58,6 +59,7 @@
       class="logout-button"
       (click)="onLogout()"
       [title]="isCollapsed() && !isMobile() ? 'Cerrar Sesión' : ''"
+      [attr.data-label]="'Cerrar Sesión'"
       [ngClass]="{ 'with-tooltip': isCollapsed() && !isMobile() }"
     >
       <i class="pi pi-sign-out"></i>
