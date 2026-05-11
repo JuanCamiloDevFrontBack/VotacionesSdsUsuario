@@ -1,3 +1,10 @@
-<main>
+<div class="app-shell">
+  @if (showSidebar()) {
+    <app-sidebar (navigate)="onNavigate($event)" (logout)="onLogout()"></app-sidebar>
+  } @else {
+    <div></div>
+  }
+  <main class="app-main">
     <router-outlet></router-outlet>
-</main>
+  </main>
+</div>

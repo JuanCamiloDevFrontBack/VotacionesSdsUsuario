@@ -1,22 +1,41 @@
-import { Component, inject } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { Component, computed, inject, signal } from '@angular/core';
+import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { filter } from 'rxjs';
+import { AuthService } from './core/auth/auth.service';
+import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [RouterOutlet, CommonModule, SidebarComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
 export class App {
   private router = inject(Router);
+  private auth = inject(AuthService);
+
+  currentUrl = signal(this.router.url);
+
+  showSidebar = computed(
+    () => !this.currentUrl().startsWith('/auth') && this.auth.isAuthenticated(),
+  );
+
+  constructor() {
+    this.router.events
+      .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
+      .subscribe((event) => {
+        this.currentUrl.set(event.urlAfterRedirects);
+      });
+  }
 
   onNavigate(route: string) {
     this.router.navigate([route]);
   }
 
   onLogout() {
-    // TODO: Implementar lógica de logout
-    // Por ahora, redirigir a auth
+    this.auth.clear();
     this.router.navigate(['/auth']);
   }
 }

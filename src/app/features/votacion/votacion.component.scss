@@ -1,11 +1,3 @@
-.votacion-layout {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  min-height: 100vh;
-  gap: 24px;
-  align-items: stretch;
-}
-
 .votacion-content {
   min-width: 0;
   width: 100%;

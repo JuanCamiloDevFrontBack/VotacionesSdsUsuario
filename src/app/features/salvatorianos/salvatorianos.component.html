@@ -1,74 +1,70 @@
-<div class="salvatorianos-layout">
-  <app-sidebar (navigate)="onNavigate($event)" (logout)="onLogout()"></app-sidebar>
+<div class="salvatorianos-content">
+  <header class="page-header">
+    <div class="page-title">
+      <p class="eyebrow">Sistema de Elecciones Provincial SDS</p>
+      <h1>Gestión de Sacerdotes</h1>
+    </div>
+    <button type="button" class="primary-button">+ Nuevo Sacerdote</button>
+  </header>
 
-  <div class="salvatorianos-content">
-    <header class="page-header">
-      <div class="page-title">
-        <p class="eyebrow">Sistema de Elecciones Provincial SDS</p>
-        <h1>Gestión de Sacerdotes</h1>
-      </div>
-      <button type="button" class="primary-button">+ Nuevo Sacerdote</button>
-    </header>
+  <section class="list-card">
+    <div class="list-card-header">
+      <h2>Votación Actual</h2>
+    </div>
 
-    <section class="list-card">
-      <div class="list-card-header">
-        <h2>Votación Actual</h2>
-      </div>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Foto</th>
+            <th>Nombre</th>
+            <th>Cargo</th>
+            <th>Ciudad de Misión</th>
+            <th>Elegible</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="photo-cell">
+              <img src="https://i.pravatar.cc/48?img=32" alt="Foto sacerdote" />
+            </td>
+            <td>
+              <strong>P. Juan Perez</strong>
+              <span>Parroquia San Miguel</span>
+            </td>
+            <td>Párroco</td>
+            <td>Quito</td>
+            <td>
+              <span class="status-badge success">✔</span>
+            </td>
+            <td>
+              <button type="button" class="icon-button">Editar</button>
+              <button type="button" class="icon-button danger">Eliminar</button>
+            </td>
+          </tr>
+          <tr>
+            <td class="photo-cell">
+              <img src="https://i.pravatar.cc/48?img=12" alt="Foto sacerdote" />
+            </td>
+            <td>
+              <strong>P. Luis Gómez</strong>
+              <span>Capellán San José</span>
+            </td>
+            <td>Administrador</td>
+            <td>Cuenca</td>
+            <td>
+              <span class="status-badge success">✔</span>
+            </td>
+            <td>
+              <button type="button" class="icon-button">Editar</button>
+              <button type="button" class="icon-button danger">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-      <div class="table-scroll">
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Foto</th>
-              <th>Nombre</th>
-              <th>Cargo</th>
-              <th>Ciudad de Misión</th>
-              <th>Elegible</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="photo-cell">
-                <img src="https://i.pravatar.cc/48?img=32" alt="Foto sacerdote" />
-              </td>
-              <td>
-                <strong>P. Juan Perez</strong>
-                <span>Parroquia San Miguel</span>
-              </td>
-              <td>Párroco</td>
-              <td>Quito</td>
-              <td>
-                <span class="status-badge success">✔</span>
-              </td>
-              <td>
-                <button type="button" class="icon-button">Editar</button>
-                <button type="button" class="icon-button danger">Eliminar</button>
-              </td>
-            </tr>
-            <tr>
-              <td class="photo-cell">
-                <img src="https://i.pravatar.cc/48?img=12" alt="Foto sacerdote" />
-              </td>
-              <td>
-                <strong>P. Luis Gómez</strong>
-                <span>Capellán San José</span>
-              </td>
-              <td>Administrador</td>
-              <td>Cuenca</td>
-              <td>
-                <span class="status-badge success">✔</span>
-              </td>
-              <td>
-                <button type="button" class="icon-button">Editar</button>
-                <button type="button" class="icon-button danger">Eliminar</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <app-salvatorianos-modal class="hidden"></app-salvatorianos-modal>
-  </div>
+  <app-salvatorianos-modal class="hidden"></app-salvatorianos-modal>
 </div>
