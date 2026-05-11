@@ -1,0 +1,232 @@
+.provincial-page {
+  min-height: 100vh;
+  padding: 40px 24px;
+  background: radial-gradient(circle at top, rgba(248, 250, 252, 0.96), #f6f8fb 38%);
+}
+
+.provincial-shell {
+  max-width: 1160px;
+  margin: 0 auto;
+  display: grid;
+  gap: 32px;
+}
+
+.provincial-banner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 72px;
+  padding: 18px 24px;
+  border-radius: 18px;
+  background: linear-gradient(90deg, #0f7a34 0%, #0a6630 100%);
+  color: white;
+  box-shadow: 0 22px 60px rgba(15, 82, 43, 0.16);
+}
+
+.banner-icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  font-size: 1.2rem;
+}
+
+.provincial-banner p {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.provincial-panel {
+  padding: 36px;
+  border-radius: 32px;
+  background: white;
+  box-shadow: 0 28px 90px rgba(15, 23, 42, 0.08);
+}
+
+.provincial-title h1 {
+  margin: 0 0 28px;
+  font-size: 2rem;
+  color: #0f172a;
+}
+
+.provincial-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.candidate-card {
+  position: relative;
+  background: white;
+  border-radius: 26px;
+  padding: 28px 22px 24px;
+  display: grid;
+  gap: 18px;
+  align-items: center;
+  text-align: center;
+  border: 1px solid transparent;
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.08);
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.candidate-card:hover,
+.candidate-card.selected {
+  transform: translateY(-2px);
+  border-color: #fbbf24;
+  box-shadow: 0 24px 56px rgba(251, 191, 36, 0.14);
+}
+
+.selected .candidate-avatar {
+  box-shadow: 0 0 0 10px rgba(251, 191, 36, 0.14);
+}
+
+.candidate-avatar {
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 4px solid #f3f4f6;
+}
+
+.candidate-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.candidate-details {
+  display: grid;
+  gap: 6px;
+}
+
+.candidate-details strong {
+  font-size: 1.05rem;
+  color: #111827;
+}
+
+.candidate-details span {
+  font-size: 0.92rem;
+  color: #64748b;
+}
+
+.candidate-score {
+  display: grid;
+  gap: 4px;
+}
+
+.candidate-score strong {
+  font-size: 2.4rem;
+  color: #0f172a;
+}
+
+.candidate-score span {
+  font-size: 0.95rem;
+  color: #475569;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.selected-badge {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #f59e0b;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.provincial-note {
+  max-width: 760px;
+  padding: 20px 22px;
+  border-radius: 20px;
+  background: #fef3c7;
+  color: #92400e;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  box-shadow: 0 18px 34px rgba(249, 205, 74, 0.12);
+}
+
+.provincial-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.primary-button,
+.secondary-button {
+  border: none;
+  border-radius: 999px;
+  padding: 16px 26px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.primary-button {
+  background: #0f172a;
+  color: white;
+}
+
+.secondary-button {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.primary-button:hover,
+.secondary-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 28px rgba(15, 23, 42, 0.12);
+}
+
+@media (max-width: 1024px) {
+  .provincial-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .provincial-page {
+    padding: 24px 16px;
+  }
+
+  .provincial-panel {
+    padding: 26px;
+  }
+
+  .provincial-title h1 {
+    font-size: 1.75rem;
+  }
+
+  .provincial-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .provincial-actions {
+    flex-direction: column;
+  }
+
+  .primary-button,
+  .secondary-button {
+    width: 100%;
+  }
+}

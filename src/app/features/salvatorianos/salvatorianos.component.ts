@@ -3,33 +3,14 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/auth/auth.service';
 import { SidebarComponent } from '../../shared/components/sidebar/sidebar.component';
+import { SalvatorianosModalComponent } from './modal/salvatorianos-modal.component';
 
 @Component({
   selector: 'app-salvatorianos-page',
   standalone: true,
-  imports: [CommonModule, SidebarComponent],
-  template: `
-    <div class="page-layout">
-      <app-sidebar
-        (navigate)="onNavigate($event)"
-        (logout)="onLogout()"
-      ></app-sidebar>
-      <div class="page-content">
-        <h1>Gestión de Sacerdotes</h1>
-        <p>Sacerdotes works</p>
-      </div>
-    </div>
-  `,
-  styles: [`
-    .page-layout {
-      display: flex;
-      min-height: 100vh;
-    }
-    .page-content {
-      flex: 1;
-      padding: 2rem;
-    }
-  `],
+  imports: [CommonModule, SidebarComponent, SalvatorianosModalComponent],
+  templateUrl: './salvatorianos.component.html',
+  styleUrls: ['./salvatorianos.component.scss'],
 })
 export class SalvatorianosPageComponent {
   constructor(

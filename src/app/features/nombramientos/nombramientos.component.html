@@ -1,0 +1,125 @@
+<div class="nombramientos-layout">
+  <app-sidebar (navigate)="onNavigate($event)" (logout)="onLogout()"></app-sidebar>
+
+  <main class="nombramientos-content">
+    <header class="page-header">
+      <div class="page-title">
+        <p class="eyebrow">Nombramientos y Traslados</p>
+        <h1>Administra nuevos nombramientos y cambios de sede</h1>
+      </div>
+      <div class="page-actions">
+        <button class="secondary-button">Exportar</button>
+        <button class="primary-button">Nuevo nombramiento</button>
+      </div>
+    </header>
+
+    <section class="overview-card">
+      <div class="overview-copy">
+        <p class="overview-label">Resumen rápido</p>
+        <h2>5 nuevos nombramientos pendientes</h2>
+        <p>Revisa los cambios de sede y confirma los traslados antes de enviarlos.</p>
+      </div>
+      <div class="overview-stats">
+        <div>
+          <span>Nombramientos</span>
+          <strong>12</strong>
+        </div>
+        <div>
+          <span>Traslados</span>
+          <strong>8</strong>
+        </div>
+        <div>
+          <span>En revisión</span>
+          <strong>3</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="cards-grid">
+      <article class="info-card">
+        <h3>Nombramientos activos</h3>
+        <p>Visualiza sacerdotes que ya fueron designados este mes.</p>
+      </article>
+      <article class="info-card">
+        <h3>Traslados pendientes</h3>
+        <p>Confirma cambios de ciudad antes de notificar a cada misión.</p>
+      </article>
+      <article class="info-card">
+        <h3>Historial reciente</h3>
+        <p>Accede a los datos de nombramientos y traslados de los últimos 30 días.</p>
+      </article>
+    </section>
+
+    <section class="table-panel">
+      <div class="table-header">
+        <h2>Lista de movimientos</h2>
+        <span>Mostrando 6 registros recientes</span>
+      </div>
+
+      <div class="table-scroll">
+        <table class="movements-table">
+          <thead>
+            <tr>
+              <th>Foto</th>
+              <th>Nombre</th>
+              <th>Cargo</th>
+              <th>Ciudad actual</th>
+              <th>Destino</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><img src="https://i.pravatar.cc/40?img=32" alt="Foto" /></td>
+              <td>P. Juan Perez</td>
+              <td>Párroco</td>
+              <td>Quito</td>
+              <td>Guayaquil</td>
+              <td><span class="status success">Aprobado</span></td>
+            </tr>
+            <tr>
+              <td><img src="https://i.pravatar.cc/40?img=12" alt="Foto" /></td>
+              <td>P. Luis Gómez</td>
+              <td>Capellán</td>
+              <td>Cuenca</td>
+              <td>Ambato</td>
+              <td><span class="status warning">Pendiente</span></td>
+            </tr>
+            <tr>
+              <td><img src="https://i.pravatar.cc/40?img=24" alt="Foto" /></td>
+              <td>P. Carlos Torres</td>
+              <td>Administrador</td>
+              <td>Quito</td>
+              <td>Loja</td>
+              <td><span class="status success">Aprobado</span></td>
+            </tr>
+            <tr>
+              <td><img src="https://i.pravatar.cc/40?img=16" alt="Foto" /></td>
+              <td>P. Andrés Ruiz</td>
+              <td>Vicario</td>
+              <td>Ambato</td>
+              <td>Quito</td>
+              <td><span class="status danger">Rechazado</span></td>
+            </tr>
+            <tr>
+              <td><img src="https://i.pravatar.cc/40?img=18" alt="Foto" /></td>
+              <td>P. Felipe Suárez</td>
+              <td>Director</td>
+              <td>Cuenca</td>
+              <td>Quito</td>
+              <td><span class="status warning">Pendiente</span></td>
+            </tr>
+            <tr>
+              <td><img src="https://i.pravatar.cc/40?img=20" alt="Foto" /></td>
+              <td>P. Javier Medina</td>
+              <td>Sacerdote</td>
+              <td>Quito</td>
+              <td>Riobamba</td>
+              <td><span class="status success">Aprobado</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>

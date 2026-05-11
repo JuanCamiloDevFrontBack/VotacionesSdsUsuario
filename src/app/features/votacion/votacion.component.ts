@@ -9,7 +9,7 @@ import { SidebarComponent } from '../../shared/components';
   standalone: true,
   imports: [CommonModule, SidebarComponent],
   templateUrl: './votacion.component.html',
-  styleUrl: './votacion.component.scss',
+  styleUrls: ['./votacion.component.scss'],
 })
 export class VotacionPageComponent {
   isVotingActive = signal(false);

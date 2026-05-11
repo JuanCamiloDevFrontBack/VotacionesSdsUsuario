@@ -8,28 +8,8 @@ import { SidebarComponent } from '../../shared/components/sidebar/sidebar.compon
   selector: 'app-nombramientos-page',
   standalone: true,
   imports: [CommonModule, SidebarComponent],
-  template: `
-    <div class="page-layout">
-      <app-sidebar
-        (navigate)="onNavigate($event)"
-        (logout)="onLogout()"
-      ></app-sidebar>
-      <div class="page-content">
-        <h1>Nombramientos y Traslados</h1>
-        <p>Nombramientos works</p>
-      </div>
-    </div>
-  `,
-  styles: [`
-    .page-layout {
-      display: flex;
-      min-height: 100vh;
-    }
-    .page-content {
-      flex: 1;
-      padding: 2rem;
-    }
-  `],
+  templateUrl: './nombramientos.component.html',
+  styleUrls: ['./nombramientos.component.scss'],
 })
 export class NombramientosPageComponent {
   constructor(

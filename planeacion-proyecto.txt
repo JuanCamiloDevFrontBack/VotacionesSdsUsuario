@@ -3429,3 +3429,12 @@ Al terminar este temario podrás:
 ✔ Integrar Angular 21 con backend limpio
 ✔ Aplicar buenas prácticas de arquitectura
 ✔ Evitar errores comunes de seguridad
+
+---------------------------------------------------------------------------------------
+Notas:
+En la pantalla de votaciones tendra el siguiente funcionamiento: A la hora de finalizar
+la selección de candidatos, la pantalla se actualizará para ver los resultados de la
+terna y posterior enviarla para su aprobación a Roma, dspués de ser aprobada se tendrá
+un botón de reanudar la votación para seleccionar el provincial y con ello enviar el
+correo electroico de quien fue seleccionado y enviar también su equipo de trabajo.
+---------------------------------------------------------------------------------------

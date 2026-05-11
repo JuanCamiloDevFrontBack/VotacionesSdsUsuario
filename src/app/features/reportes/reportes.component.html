@@ -1,0 +1,149 @@
+<div class="reportes-layout">
+  <app-sidebar (navigate)="onNavigate($event)" (logout)="onLogout()"></app-sidebar>
+
+  <main class="reportes-content">
+    <header class="reportes-header">
+      <div class="header-copy">
+        <p class="eyebrow">Sistema de Elecciones Provincial SDS</p>
+        <h1>Reportes</h1>
+      </div>
+
+      <div class="header-actions">
+        <button type="button" class="secondary-button">Descargar Reporte PDF</button>
+        <button type="button" class="secondary-button">Exportar a Excel</button>
+      </div>
+    </header>
+
+    <section class="status-card">
+      <p class="status-label">Indicador superior</p>
+      <div class="status-main">
+        <strong>Participación total: 94%</strong>
+        <span>96 de 102 votantes</span>
+      </div>
+    </section>
+
+    <section class="charts-grid">
+      <article class="chart-card">
+        <h2>Resultados Fase 1 (Votación Previa)</h2>
+        <div class="chart-legend">
+          <span class="legend-dot yellow"></span>
+          <span>P. Juan Perez - Párroco</span>
+        </div>
+        <div class="chart-bars">
+          <div class="bar-row">
+            <span class="bar-label">P. Juan Perez</span>
+            <div class="bar-track">
+              <div class="bar-fill fill-102"></div>
+            </div>
+            <span class="bar-value">102</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">P. Juan Perez</span>
+            <div class="bar-track">
+              <div class="bar-fill fill-48"></div>
+            </div>
+            <span class="bar-value">48 (52.47%)</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">P. Juan Perez</span>
+            <div class="bar-track">
+              <div class="bar-fill fill-24"></div>
+            </div>
+            <span class="bar-value">24 (33.57%)</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">P. Juan Perez</span>
+            <div class="bar-track">
+              <div class="bar-fill fill-18"></div>
+            </div>
+            <span class="bar-value">18 (7.83%)</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="chart-card">
+        <h2>Resultados de la Terna (Votación Final)</h2>
+        <div class="pie-chart">
+          <div class="slice slice-34"></div>
+          <div class="slice slice-30"></div>
+          <div class="slice slice-25"></div>
+          <div class="pie-center">100%</div>
+        </div>
+        <div class="pie-legend">
+          <div><span class="legend-dot yellow"></span><span>P. Juan Perez - Párroco</span></div>
+          <div><span class="legend-dot gray"></span><span>P. Juan Perez - Quito</span></div>
+          <div><span class="legend-dot orange"></span><span>P. Juan Perez</span></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="table-card">
+      <div class="section-header">
+        <h2>Lista de Votantes</h2>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="voters-table">
+          <thead>
+            <tr>
+              <th>Foto</th>
+              <th>Nombre</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="photo-cell">
+                <img src="https://i.pravatar.cc/40?img=32" alt="Foto votante" />
+              </td>
+              <td>P. Juan Perez</td>
+              <td><span class="tag success">Votó</span></td>
+            </tr>
+            <tr>
+              <td class="photo-cell">
+                <img src="https://i.pravatar.cc/40?img=24" alt="Foto votante" />
+              </td>
+              <td>P. Luis Gómez</td>
+              <td><span class="tag warning">Pendiente</span></td>
+            </tr>
+            <tr>
+              <td class="photo-cell">
+                <img src="https://i.pravatar.cc/40?img=12" alt="Foto votante" />
+              </td>
+              <td>P. Carlos Torres</td>
+              <td><span class="tag warning">Pendiente</span></td>
+            </tr>
+            <tr>
+              <td class="photo-cell">
+                <img src="https://i.pravatar.cc/40?img=8" alt="Foto votante" />
+              </td>
+              <td>P. Andrés Ruiz</td>
+              <td><span class="tag success">Votó</span></td>
+            </tr>
+            <tr>
+              <td class="photo-cell">
+                <img src="https://i.pravatar.cc/40?img=16" alt="Foto votante" />
+              </td>
+              <td>P. Felipe Suárez</td>
+              <td><span class="tag success">Votó</span></td>
+            </tr>
+            <tr>
+              <td class="photo-cell">
+                <img src="https://i.pravatar.cc/40?img=18" alt="Foto votante" />
+              </td>
+              <td>P. Javier Medina</td>
+              <td><span class="tag warning">Pendiente</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-footer">
+        <span>←</span>
+        <span class="page-indicator">1</span>
+        <span>2</span>
+        <span>→</span>
+      </div>
+    </section>
+  </main>
+</div>
