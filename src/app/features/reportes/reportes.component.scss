@@ -102,6 +102,15 @@
   box-shadow: 0 24px 80px rgba(15, 23, 42, 0.08);
 }
 
+.table-card {
+  width: 95%;
+  margin: 24px auto 0;
+}
+
+.row-color {
+  background-color: #35353515;
+}
+
 .chart-card h2,
 .section-header h2 {
   margin: 0 0 18px;
@@ -247,7 +256,7 @@
 .voters-table td {
   padding: 16px 18px;
   text-align: left;
-  border-bottom: 1px solid #e2e8f0;
+  border: 1px solid #b7b9bb;
 }
 
 .voters-table th {
@@ -378,6 +387,10 @@
   .table-card {
     margin: 0 24px;
   }
+
+  /*.table-wrapper {
+    width: 100%;
+  }*/
 
   .charts-grid {
     grid-template-columns: 1fr;
