@@ -5,6 +5,14 @@
     <div></div>
   }
   <main class="app-main">
+    @if (showSidebar()) {
+      <div class="dashboard-view">
+        <!-- Header -->
+        <div class="header">
+          <h1>Sistema de Elecciones Provincial SDS</h1>
+        </div>
+      </div>
+    }
     <router-outlet></router-outlet>
   </main>
 </div>

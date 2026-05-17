@@ -38,8 +38,6 @@
     <ul class="menu-list">
       @for (item of menuItems; track item.route) {
         <li class="menu-item">
-          <!-- {{isCollapsed() && !isMobile()}} -->
-          <!-- {{isCollapsed() && !isMobile() ? 'puto amo' : item.label}} -->
           <button
             class="menu-button"
             (click)="onNavigate(item.route)"

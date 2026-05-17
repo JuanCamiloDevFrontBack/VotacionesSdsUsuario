@@ -1,11 +1,11 @@
 <div class="votacion-content">
   <!-- Dashboard Initial View -->
   @if (!isVotingActive()) {
-    <div class="dashboard-view">
-      <!-- Header -->
+    <!-- <div class="dashboard-view"> -->
+      <!-- Header
       <div class="header">
         <h1>Sistema de Elecciones Provincial SDS</h1>
-      </div>
+      </div> -->
 
       <!-- Dashboard Container -->
       <div class="dashboard-container">
@@ -15,16 +15,16 @@
           <button class="init-button" (click)="initializeVoting()">Iniciar nueva votación</button>
         </div>
       </div>
-    </div>
+    <!-- </div> -->
   }
 
   <!-- Voting Phase View -->
   @if (isVotingActive()) {
     <div class="voting-view">
-      <!-- Header -->
+      <!-- Header 
       <div class="header">
         <h1>Sistema de Elecciones Provincial SDS</h1>
-      </div>
+      </div> -->
 
       <!-- Content Container -->
       <div class="content-container">

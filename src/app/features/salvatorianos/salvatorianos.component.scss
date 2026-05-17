@@ -60,7 +60,7 @@ h1 {
   padding: 28px;
 }
 
-.list-card-header {
+/*.list-card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -72,7 +72,7 @@ h1 {
   font-size: 1.25rem;
   font-weight: 700;
   color: #111827;
-}
+}*/
 
 .table-scroll {
   overflow-x: auto;
@@ -89,7 +89,7 @@ h1 {
   padding: 16px 18px;
   text-align: left;
   vertical-align: middle;
-  border-bottom: 1px solid #e5e7eb;
+  border: 1px solid #b7b9bb;
 }
 
 .data-table th {
@@ -131,6 +131,10 @@ h1 {
   display: block;
   font-size: 0.9rem;
   color: #6b7280;
+}
+
+.row-color {
+  background-color: #35353515;
 }
 
 .status-badge {
