@@ -38,11 +38,11 @@ export class SidebarComponent {
       icon: 'pi pi-chart-bar',
       route: 'reportes',
     },
-    {
+    /*{
       label: 'Nombramientos y Traslados',
       icon: 'pi pi-calendar',
       route: 'nombramientos',
-    },
+    },*/
   ];
 
   constructor() {
