@@ -24,44 +24,50 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="photo-cell">
-              <img src="https://i.pravatar.cc/48?img=32" alt="Foto sacerdote" />
-            </td>
-            <td>
-              <strong>P. Juan Perez</strong>
-              <span>Parroquia San Miguel</span>
-            </td>
-            <td>Párroco</td>
-            <td>Quito</td>
-            <td>
-              <span class="status-badge success">✔</span>
-            </td>
-            <td>
-              <button type="button" class="icon-button">Editar</button>
-              <button type="button" class="icon-button danger">Eliminar</button>
-            </td>
-          </tr>
-          <tr>
-            <td class="photo-cell">
-              <img src="https://i.pravatar.cc/48?img=12" alt="Foto sacerdote" />
-            </td>
-            <td>
-              <strong>P. Luis Gómez</strong>
-              <span>Capellán San José</span>
-            </td>
-            <td>Administrador</td>
-            <td>Cuenca</td>
-            <td>
-              <span class="status-badge success">✔</span>
-            </td>
-            <td>
-              <button type="button" class="icon-button">Editar</button>
-              <button type="button" class="icon-button danger">Eliminar</button>
-            </td>
-          </tr>
+          @for (s of pagedItems; track s.id) {
+            <tr>
+              <td class="photo-cell">
+                <img [src]="s.photo" [alt]="'Foto ' + s.name" />
+              </td>
+              <td>
+                <strong>{{ s.name }}</strong>
+                <span>{{ s.parish }}</span>
+              </td>
+              <td>{{ s.role }}</td>
+              <td>{{ s.city }}</td>
+              <td>
+                @if (s.eligible) {
+                  <span class="status-badge success">✔</span>
+                }
+              </td>
+              <td>
+                <button type="button" class="icon-button">Editar</button>
+                <button type="button" class="icon-button danger">Eliminar</button>
+              </td>
+            </tr>
+          }
         </tbody>
       </table>
+    </div>
+    <div class="paginator">
+      <button (click)="setPage(1)" [disabled]="page === 1">«</button>
+      <button (click)="prev()" [disabled]="page === 1">‹</button>
+
+      @for (p of pagesArray(); track p) {
+        <button (click)="setPage(p)" [class.active]="p === page">{{ p }}</button>
+      }
+
+      <button (click)="next()" [disabled]="page === totalPages">›</button>
+      <button (click)="setPage(totalPages)" [disabled]="page === totalPages">»</button>
+
+      <div class="page-size-select">
+        <label>Mostrar</label>
+        <select #size (change)="changePageSize(+size.value)">
+          @for (s of pageSizes; track s) {
+            <option [value]="s" [selected]="s === pageSize">{{ s }}</option>
+          }
+        </select>
+      </div>
     </div>
   </section>
 

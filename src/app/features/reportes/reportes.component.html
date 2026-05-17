@@ -89,57 +89,45 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="photo-cell">
-              <img src="https://i.pravatar.cc/40?img=32" alt="Foto votante" />
-            </td>
-            <td>P. Juan Perez</td>
-            <td><span class="tag success">Votó</span></td>
-          </tr>
-          <tr>
-            <td class="photo-cell">
-              <img src="https://i.pravatar.cc/40?img=24" alt="Foto votante" />
-            </td>
-            <td>P. Luis Gómez</td>
-            <td><span class="tag warning">Pendiente</span></td>
-          </tr>
-          <tr>
-            <td class="photo-cell">
-              <img src="https://i.pravatar.cc/40?img=12" alt="Foto votante" />
-            </td>
-            <td>P. Carlos Torres</td>
-            <td><span class="tag warning">Pendiente</span></td>
-          </tr>
-          <tr>
-            <td class="photo-cell">
-              <img src="https://i.pravatar.cc/40?img=8" alt="Foto votante" />
-            </td>
-            <td>P. Andrés Ruiz</td>
-            <td><span class="tag success">Votó</span></td>
-          </tr>
-          <tr>
-            <td class="photo-cell">
-              <img src="https://i.pravatar.cc/40?img=16" alt="Foto votante" />
-            </td>
-            <td>P. Felipe Suárez</td>
-            <td><span class="tag success">Votó</span></td>
-          </tr>
-          <tr>
-            <td class="photo-cell">
-              <img src="https://i.pravatar.cc/40?img=18" alt="Foto votante" />
-            </td>
-            <td>P. Javier Medina</td>
-            <td><span class="tag warning">Pendiente</span></td>
-          </tr>
+          @for (v of pagedVoters; track v.id) {
+            <tr>
+              <td class="photo-cell">
+                <img [src]="v.photo" [alt]="'Foto ' + v.name" />
+              </td>
+              <td>{{ v.name }}</td>
+              <td>
+                @if (v.status === 'Votó') {
+                  <span class="tag success">{{ v.status }}</span>
+                }
+                @if (v.status !== 'Votó') {
+                  <span class="tag warning">{{ v.status }}</span>
+                }
+              </td>
+            </tr>
+          }
         </tbody>
       </table>
     </div>
 
-    <div class="table-footer">
-      <span>←</span>
-      <span class="page-indicator">1</span>
-      <span>2</span>
-      <span>→</span>
+    <div class="paginator">
+      <button (click)="setPage(1)" [disabled]="page === 1">«</button>
+      <button (click)="prev()" [disabled]="page === 1">‹</button>
+
+      @for (p of pagesArray(); track p) {
+        <button (click)="setPage(p)" [class.active]="p === page">{{ p }}</button>
+      }
+
+      <button (click)="next()" [disabled]="page === totalPages">›</button>
+      <button (click)="setPage(totalPages)" [disabled]="page === totalPages">»</button>
+
+      <div class="page-size-select">
+        <label>Mostrar</label>
+        <select #size (change)="changePageSize(+size.value)">
+          @for (s of pageSizes; track s) {
+            <option [value]="s" [selected]="s === pageSize">{{ s }}</option>
+          }
+        </select>
+      </div>
     </div>
   </section>
 </main>

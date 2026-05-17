@@ -152,6 +152,69 @@ h1 {
   background: #16a34a;
 }
 
+.paginator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+.paginator button {
+  border: 1px solid #e6e9ee;
+  background: #ffffff;
+  color: #374151;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  min-width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.paginator button[disabled] {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.paginator button:hover:not([disabled]) {
+  background: #f3f4f6;
+}
+
+.paginator button.active,
+.paginator button.active:hover {
+  background: #0f1724;
+  color: #ffffff;
+  box-shadow: 0 6px 18px rgba(15, 23, 36, 0.24);
+  border-radius: 999px;
+  width: 44px;
+  height: 44px;
+}
+
+.page-size-select {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.page-size-select label {
+  font-weight: 600;
+  color: #374151;
+}
+
+.page-size-select select {
+  border: 1px solid #e6e9ee;
+  padding: 6px 8px;
+  height: 36px;
+  border-radius: 8px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
 .icon-button {
   border: 1px solid transparent;
   border-radius: 999px;
