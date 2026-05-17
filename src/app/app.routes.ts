@@ -25,11 +25,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/salvatorianos/salvatorianos.component').then((m) => m.SalvatorianosPageComponent),
   },
-  {
+  /*{
     path: 'nombramientos',
     canActivate: [AuthGuard],
     loadComponent: () =>
       import('./features/nombramientos/nombramientos.component').then((m) => m.NombramientosPageComponent),
-  },
+  },*/
   { path: '**', redirectTo: 'auth' },
 ];
