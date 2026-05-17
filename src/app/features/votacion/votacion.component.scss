@@ -204,6 +204,62 @@
     }
   }
 
+    // Send Button
+  .send-button {
+    width: 100%;
+    padding: 14px 24px;
+    background-color: #115e32;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: inherit;
+
+    &:hover {
+      background-color: #1f2937;
+    }
+
+    &:active {
+      background-color: #111827;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+   // return Button
+  .return-button {
+    width: 100%;
+    padding: 14px 24px;
+    background-color: #7d9003;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: inherit;
+
+    &:hover {
+      background-color: #1f2937;
+    }
+
+    &:active {
+      background-color: #111827;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
   // Button
   .close-button {
     width: 100%;

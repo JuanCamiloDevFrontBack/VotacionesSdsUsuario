@@ -1,36 +1,24 @@
 <div class="votacion-content">
   <!-- Dashboard Initial View -->
   @if (!isVotingActive()) {
-    <!-- <div class="dashboard-view"> -->
-      <!-- Header
-      <div class="header">
-        <h1>Sistema de Elecciones Provincial SDS</h1>
-      </div> -->
-
-      <!-- Dashboard Container -->
-      <div class="dashboard-container">
-        <div class="dashboard-card">
-          <h2 class="dashboard-title">No existe una votación activa</h2>
-          <p class="dashboard-subtitle">Porfavor inicie una nueva votación</p>
-          <button class="init-button" (click)="initializeVoting()">Iniciar nueva votación</button>
-        </div>
+    <!-- Dashboard Container -->
+    <div class="dashboard-container">
+      <div class="dashboard-card">
+        <h2 class="dashboard-title">No existe una votación activa</h2>
+        <p class="dashboard-subtitle">Porfavor inicie una nueva votación</p>
+        <button class="init-button" (click)="initializeVoting()">Iniciar nueva votación</button>
       </div>
-    <!-- </div> -->
+    </div>
   }
 
   <!-- Voting Phase View -->
   @if (isVotingActive()) {
     <div class="voting-view">
-      <!-- Header 
-      <div class="header">
-        <h1>Sistema de Elecciones Provincial SDS</h1>
-      </div> -->
-
       <!-- Content Container -->
       <div class="content-container">
         <!-- Estado Card -->
         <div class="estado-card">
-          <p class="estado-label">ESTADO ACTUAL DE LA VOTACIÓN</p>
+          <p class="estado-label">ESTADO ACTUAL DE LA VOTACIÓN: {{ 'Activa' }}</p>
           <span class="estado-indicator"></span>
         </div>
 
@@ -56,6 +44,16 @@
               </div>
               <span class="progress-percentage">{{ percentageVoted }}%</span>
             </div>
+
+            <!-- Send Button -->
+            <button class="send-button" (click)="closeVotingPhase()">
+              Enviar Informe de Terna
+            </button>
+
+            <!-- return Button -->
+            <button class="return-button" (click)="closeVotingPhase()">
+              Volver a Votar
+            </button>
 
             <!-- Close Button -->
             <button class="close-button" (click)="closeVotingPhase()">
