@@ -11,8 +11,9 @@ import { CommonModule } from '@angular/common';
 export class VotacionPageComponent {
   isVotingActive = signal(false);
   totalSalvatorianos = 102;
-  salvatorianosVotados = 87;
-  percentageVoted = Math.round((87 / 102) * 100);
+  // salvatorianosVotados = 87;
+  salvatorianosVotados = 0;
+  percentageVoted = Math.round((this.salvatorianosVotados / this.totalSalvatorianos) * 100);
 
   initializeVoting() {
     this.isVotingActive.set(true);
