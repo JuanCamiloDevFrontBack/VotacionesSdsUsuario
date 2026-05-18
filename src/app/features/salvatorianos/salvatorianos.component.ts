@@ -124,6 +124,7 @@ export class SalvatorianosPageComponent {
   page = 1;
   pageSize = 5;
   pageSizes = [5, 10, 20];
+  showModal = false;
 
   get totalPages(): number {
     return Math.max(1, Math.ceil(this.items.length / this.pageSize));

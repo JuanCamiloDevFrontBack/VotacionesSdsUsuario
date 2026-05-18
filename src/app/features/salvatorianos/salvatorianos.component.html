@@ -3,7 +3,7 @@
     <div class="page-title">
       <h1>Gestión de Salvatorianos</h1>
     </div>
-    <button type="button" class="primary-button">+ Nuevo Sacerdote</button>
+    <button type="button" class="primary-button" (click)="showModal = true">+ Nuevo Sacerdote</button>
   </section>
 
   <section class="list-card">
@@ -67,5 +67,7 @@
     </div>
   </section>
 
-  <app-salvatorianos-modal class="hidden"></app-salvatorianos-modal>
+  @if(showModal) {
+    <app-salvatorianos-modal (close)="showModal = false"></app-salvatorianos-modal>
+  }
 </div>

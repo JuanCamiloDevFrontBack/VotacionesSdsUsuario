@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,4 +8,6 @@ import { CommonModule } from '@angular/common';
   templateUrl: './salvatorianos-modal.component.html',
   styleUrls: ['./salvatorianos-modal.component.scss'],
 })
-export class SalvatorianosModalComponent {}
+export class SalvatorianosModalComponent {
+  @Output() close = new EventEmitter<void>();
+}
