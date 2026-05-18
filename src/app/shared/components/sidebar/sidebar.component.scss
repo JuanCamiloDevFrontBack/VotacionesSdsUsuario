@@ -1,3 +1,7 @@
+%menu-active-state {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
 .sidebar {
   display: flex;
   flex-direction: column;
@@ -41,7 +45,7 @@
     }
 
     &:active {
-      background-color: rgba(255, 255, 255, 0.15);
+      @extend %menu-active-state;
     }
   }
 
@@ -150,7 +154,11 @@
           }
 
           &:active {
-            background-color: rgba(255, 255, 255, 0.15);
+            @extend %menu-active-state;
+          }
+
+          &.active-option {
+            @extend %menu-active-state;
           }
         }
       }
@@ -241,7 +249,7 @@
       }
 
       &:active {
-        background-color: rgba(255, 255, 255, 0.15);
+        @extend %menu-active-state;
       }
     }
   }

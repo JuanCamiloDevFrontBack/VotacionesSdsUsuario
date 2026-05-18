@@ -43,7 +43,7 @@
             (click)="onNavigate(item.route)"
             [title]="isCollapsed() && !isMobile() ? item.label : ''"
             [attr.data-label]="item.label"
-            [ngClass]="{ 'with-tooltip': isCollapsed() && !isMobile() }"
+            [ngClass]="{ 'with-tooltip': isCollapsed() && !isMobile(), 'active-option': isActiveRoute() === item.route }"
           >
             <i [class]="item.icon"></i>
             <span>{{ item.label }}</span>
@@ -60,7 +60,7 @@
       (click)="onLogout()"
       [title]="isCollapsed() && !isMobile() ? 'Cerrar Sesión' : ''"
       [attr.data-label]="'Cerrar Sesión'"
-      [ngClass]="{ 'with-tooltip': isCollapsed() && !isMobile() }"
+      [ngClass]="{ 'with-tooltip': isCollapsed() && !isMobile()}"
     >
       <i class="pi pi-sign-out"></i>
       <span>Cerrar Sesión</span>

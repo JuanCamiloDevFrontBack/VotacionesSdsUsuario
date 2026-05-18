@@ -21,6 +21,7 @@ export class SidebarComponent {
   isCollapsed = signal(false);
   isMobile = signal(false);
   isDrawerOpen = signal(false);
+  isActiveRoute = signal('');
 
   menuItems: MenuItem[] = [
     {
@@ -83,6 +84,7 @@ export class SidebarComponent {
     if (this.isMobile()) {
       this.isDrawerOpen.set(false);
     }
+    this.isActiveRoute.set(route);
     this.navigate.emit(route);
   }
 
