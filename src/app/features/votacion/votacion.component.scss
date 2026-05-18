@@ -226,7 +226,7 @@
     transition: background-color 0.3s ease;
     font-family: inherit;
 
-    &:hover {
+    &:hover:not(:disabled) {
       background-color: #15713d;
     }
 
@@ -250,7 +250,7 @@
     transition: background-color 0.3s ease;
     font-family: inherit;
 
-    &:hover {
+    &:hover:not(:disabled) {
       background-color: #d97706;
     }
 
@@ -274,7 +274,7 @@
     transition: background-color 0.3s ease;
     font-family: inherit;
 
-    &:hover {
+    &:hover:not(:disabled) {
       background-color: #1f2937;
     }
 
