@@ -45,20 +45,23 @@
               <span class="progress-percentage">{{ percentageVoted }}%</span>
             </div>
 
-            <!-- Send Button -->
-            <button class="send-button" (click)="closeVotingPhase()">
-              Enviar Informe de Terna
-            </button>
+            <section class="actions-section">
+              <!-- Send Button -->
+              <button class="send-button" (click)="closeVotingPhase()">
+                Enviar Informe de Terna
+              </button>
 
-            <!-- return Button -->
-            <button class="return-button" (click)="closeVotingPhase()">
-              Volver a Votar
-            </button>
+              <!-- return Button -->
+              <button class="return-button" (click)="closeVotingPhase()">
+                Volver a Votar
+                <!-- Abrir Votación-->
+              </button>
 
-            <!-- Close Button -->
-            <button class="close-button" (click)="closeVotingPhase()">
-              Cerrar fase de votación
-            </button>
+              <!-- Close Button -->
+              <button class="close-button" (click)="closeVotingPhase()">
+                Cerrar fase de votación
+              </button>
+            </section>
           </div>
         </div>
       </div>

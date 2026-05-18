@@ -204,11 +204,19 @@
     }
   }
 
-    // Send Button
+  .actions-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+
+    gap: 16px;
+  }
+
+  // Send Button
   .send-button {
     width: 100%;
     padding: 14px 24px;
-    background-color: #115e32;
+    background-color: #374151;
     color: white;
     font-size: 16px;
     font-weight: 600;
@@ -219,11 +227,7 @@
     font-family: inherit;
 
     &:hover {
-      background-color: #1f2937;
-    }
-
-    &:active {
-      background-color: #111827;
+      background-color: #15713d;
     }
 
     &:disabled {
@@ -232,11 +236,11 @@
     }
   }
 
-   // return Button
+  // return Button
   .return-button {
     width: 100%;
     padding: 14px 24px;
-    background-color: #7d9003;
+    background-color: #374151;
     color: white;
     font-size: 16px;
     font-weight: 600;
@@ -247,11 +251,7 @@
     font-family: inherit;
 
     &:hover {
-      background-color: #1f2937;
-    }
-
-    &:active {
-      background-color: #111827;
+      background-color: #d97706;
     }
 
     &:disabled {
@@ -260,7 +260,7 @@
     }
   }
 
-  // Button
+  // Close Button
   .close-button {
     width: 100%;
     padding: 14px 24px;
@@ -276,10 +276,6 @@
 
     &:hover {
       background-color: #1f2937;
-    }
-
-    &:active {
-      background-color: #111827;
     }
 
     &:disabled {
