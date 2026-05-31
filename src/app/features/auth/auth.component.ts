@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { PRIMENG_MODULES } from '../../shared/primeng-exports';
 import { AuthService } from '../../core/auth/auth.service';
 
@@ -14,6 +15,7 @@ import { AuthService } from '../../core/auth/auth.service';
 })
 export class AuthPageComponent implements OnInit {
   form: FormGroup = new FormGroup({});
+  private messageService = inject(MessageService);
 
   constructor(
     private fb: FormBuilder,
@@ -29,8 +31,22 @@ export class AuthPageComponent implements OnInit {
   }
 
   submit() {
-    if (this.form.invalid) return;
+    if (this.form.invalid) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Formulario inválido',
+        detail: 'Por favor, completa todos los campos correctamente.',
+        life: 3000,
+      });
+      return;
+    }
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Bienvenido',
+      detail: 'Sesión iniciada exitosamente.',
+      life: 2000,
+    });
     this.auth.setToken('demo-token');
-    this.router.navigate(['/votacion']);
+    setTimeout(() => this.router.navigate(['/votacion']), 1000);
   }
 }

@@ -20,7 +20,13 @@
 
       <div class="candidates-grid">
         @for (candidate of candidates; track candidate.id) {
-          <article class="candidate-card" [class.selected]="candidate.selected">
+          <article
+            class="candidate-card"
+            [class.selected]="candidate.selected"
+            (click)="selectCandidate(candidate.id)"
+            role="button"
+            tabindex="0"
+          >
             <img class="candidate-avatar" [src]="candidate.avatar" [alt]="candidate.name" />
             <div class="candidate-copy">
               <strong>{{ candidate.name }}</strong>
@@ -37,7 +43,9 @@
       </div>
 
       <div class="action-row">
-        <button type="button" class="confirm-button">Confirmar mi voto</button>
+        <button type="button" class="confirm-button" (click)="confirmVote()">
+          Confirmar mi voto
+        </button>
       </div>
     </div>
   </div>

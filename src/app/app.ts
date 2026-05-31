@@ -2,13 +2,14 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs';
+import { ToastModule } from 'primeng/toast';
 import { AuthService } from './core/auth/auth.service';
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, SidebarComponent],
+  imports: [RouterOutlet, CommonModule, SidebarComponent, ToastModule],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
