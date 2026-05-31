@@ -1,6 +1,6 @@
 .inicio-votacion-page {
   min-height: 100vh;
-  padding: 40px 24px;
+  /*padding: 40px 24px;*/
   background: radial-gradient(circle at top, rgba(244, 247, 250, 0.98), #f6f8fb 35%);
 }
 
@@ -55,6 +55,7 @@
   font-size: 2.1rem;
   font-weight: 700;
   color: #0f172a;
+  text-align: center;
 }
 
 .search-row {

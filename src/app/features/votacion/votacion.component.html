@@ -47,12 +47,12 @@
 
             <section class="actions-section">
               <!-- Send Button -->
-              <button class="send-button" (click)="closeVotingPhase()" [disabled]="salvatorianosVotados !== totalSalvatorianos">
+              <button class="send-button" (click)="sendVotingPhase()" [disabled]="salvatorianosVotados !== totalSalvatorianos">
                 Enviar Informe de Terna
               </button>
 
               <!-- return Button -->
-              <button class="return-button" (click)="closeVotingPhase()" [disabled]="salvatorianosVotados !== totalSalvatorianos">
+              <button class="return-button" (click)="returnVotingPhase()" [disabled]="salvatorianosVotados !== totalSalvatorianos">
                 Volver a Votar
                 <!-- Abrir Votación-->
               </button>

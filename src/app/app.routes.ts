@@ -14,6 +14,36 @@ export const routes: Routes = [
       import('./features/votacion/votacion.component').then((m) => m.VotacionPageComponent),
   },
   {
+    path: 'votacion-inicial',
+    canActivate: [AuthGuard],
+    loadComponent: () =>
+      import('./features/votacion/inicio-votacion/inicio-votacion.component').then((m) => m.InicioVotacionComponent),
+  },
+  {
+    path: 'votacion-reporte-terna',
+    canActivate: [AuthGuard],
+    loadComponent: () =>
+      import('./features/votacion/terna-seleccionada/terna-seleccionada.component').then((m) => m.TernaSeleccionadaComponent),
+  },
+  {
+    path: 'votacion-seleccion-provincial',
+    canActivate: [AuthGuard],
+    loadComponent: () =>
+      import('./features/votacion/votacion-provincial/votacion-provincial.component').then((m) => m.VotacionProvincialComponent),
+  },
+  /*{
+    path: 'votacion-seleccion',
+    canActivate: [AuthGuard],
+    loadComponent: () =>
+      import('./features/votacion/terna-seleccionada/terna-seleccionada.component').then((m) => m.TernaSeleccionadaComponent),
+  },*/
+  {
+    path: 'votacion-terna',
+    canActivate: [AuthGuard],
+    loadComponent: () =>
+      import('./features/votacion/votacion-provincial/votacion-provincial.component').then((m) => m.VotacionProvincialComponent),
+  },
+  {
     path: 'reportes',
     canActivate: [AuthGuard],
     loadComponent: () =>

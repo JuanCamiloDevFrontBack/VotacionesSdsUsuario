@@ -1,18 +1,22 @@
-<div class="app-shell">
-  @if (showSidebar()) {
-    <app-sidebar (navigate)="onNavigate($event)" (logout)="onLogout()"></app-sidebar>
-  } @else {
-    <div></div>
-  }
-  <main class="app-main">
+@if (currentUrl() !== '/votacion-inicial') {
+  <div class="app-shell">
     @if (showSidebar()) {
-      <div class="dashboard-view">
-        <!-- Header -->
-        <div class="header">
-          <h1>Sistema de Elecciones Provincial SDS</h1>
-        </div>
-      </div>
+      <app-sidebar (navigate)="onNavigate($event)" (logout)="onLogout()"></app-sidebar>
+    } @else {
+      <div></div>
     }
-    <router-outlet></router-outlet>
-  </main>
-</div>
+    <main class="app-main">
+      @if (showSidebar()) {
+        <div class="dashboard-view">
+          <!-- Header -->
+          <div class="header">
+            <h1>Sistema de Elecciones Provincial SDS</h1>
+          </div>
+        </div>
+      }
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+} @else {
+  <router-outlet></router-outlet>
+}
