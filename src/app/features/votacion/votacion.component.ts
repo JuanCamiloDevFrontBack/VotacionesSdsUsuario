@@ -29,9 +29,9 @@ export class VotacionPageComponent {
     const url = this.router.serializeUrl(urlTree);
     window.open(url, '_blank');
 
-    const phoneNumber = '+573107043763';
+    /*const phoneNumber = '+573107043763';
     const message = encodeURIComponent('¡Hola! Te invito a participar en la votación. Haz clic aquí para votar: ' + url);
-    this.authService.sendMessageWhatsappUrl(phoneNumber, message);
+    this.authService.sendMessageWhatsappUrl(phoneNumber, message);*/
   }
 
   sendVotingPhase() {

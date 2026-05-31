@@ -20,16 +20,6 @@
   box-shadow: 0 18px 48px rgba(31, 111, 61, 0.16);
 }
 
-.status-banner .icon {
-  width: 44px;
-  height: 44px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
-  font-size: 1.2rem;
-}
-
 .status-title {
   margin: 0;
   font-size: 1.05rem;
@@ -60,6 +50,22 @@
 
 .search-row {
   margin-bottom: 32px;
+}
+
+.selected-badge {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  /*background: #f59e0b;*/
+  background: #3a8544;
+  color: white;
+  font-size: 0.9rem;
 }
 
 .search-row input {
@@ -98,8 +104,10 @@
 .candidate-card:hover,
 .candidate-card.selected {
   transform: translateY(-1px);
-  border-color: #fbbf24;
-  box-shadow: 0 22px 44px rgba(251, 191, 36, 0.14);
+  /*border-color: #fbbf24;
+  box-shadow: 0 22px 44px rgba(251, 191, 36, 0.14);*/
+  border-color: #2a6731;
+  /*box-shadow: 0 22px 4px rgba(5, 178, 19, 0.14);*/
 }
 
 .candidate-avatar {
@@ -147,7 +155,7 @@
 }
 
 .confirm-button:hover {
-  background: #111827;
+  background: #3a8544;
   transform: translateY(-1px);
 }
 

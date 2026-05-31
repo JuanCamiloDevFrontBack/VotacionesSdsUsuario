@@ -2,7 +2,6 @@
   <div class="page-shell">
     <!-- Mensaje temporal 
     <div class="status-banner">
-      <span class="icon">✔</span>
       <div>
         <p class="status-title">Tu voto es completamente anónimo.</p>
         <p class="status-copy">Nadie sabrá quién votaste.</p>
@@ -20,75 +19,21 @@
       </div>
 
       <div class="candidates-grid">
-        <article class="candidate-card selected">
-          <img class="candidate-avatar" src="https://i.pravatar.cc/88?img=32" alt="P. Juan Perez" />
-          <div class="candidate-copy">
-            <strong>P. Juan Perez</strong>
-            <span>Párroco</span>
-            <span>Quito</span>
-          </div>
-        </article>
-
-        <article class="candidate-card">
-          <img class="candidate-avatar" src="https://i.pravatar.cc/88?img=12" alt="P. Luis Gómez" />
-          <div class="candidate-copy">
-            <strong>P. Luis Gómez</strong>
-            <span>Administrador</span>
-            <span>Cuenca</span>
-          </div>
-        </article>
-
-        <article class="candidate-card">
-          <img
-            class="candidate-avatar"
-            src="https://i.pravatar.cc/88?img=24"
-            alt="P. Carlos Torres"
-          />
-          <div class="candidate-copy">
-            <strong>P. Carlos Torres</strong>
-            <span>Capellán</span>
-            <span>Guayaquil</span>
-          </div>
-        </article>
-
-        <article class="candidate-card">
-          <img
-            class="candidate-avatar"
-            src="https://i.pravatar.cc/88?img=16"
-            alt="P. Andrés Ruiz"
-          />
-          <div class="candidate-copy">
-            <strong>P. Andrés Ruiz</strong>
-            <span>Vicario</span>
-            <span>Quito</span>
-          </div>
-        </article>
-
-        <article class="candidate-card">
-          <img
-            class="candidate-avatar"
-            src="https://i.pravatar.cc/88?img=18"
-            alt="P. Felipe Suárez"
-          />
-          <div class="candidate-copy">
-            <strong>P. Felipe Suárez</strong>
-            <span>Director</span>
-            <span>Ambato</span>
-          </div>
-        </article>
-
-        <article class="candidate-card">
-          <img
-            class="candidate-avatar"
-            src="https://i.pravatar.cc/88?img=8"
-            alt="P. Javier Medina"
-          />
-          <div class="candidate-copy">
-            <strong>P. Javier Medina</strong>
-            <span>Sacerdote</span>
-            <span>Quito</span>
-          </div>
-        </article>
+        @for (candidate of candidates; track candidate.id) {
+          <article class="candidate-card" [class.selected]="candidate.selected">
+            <img class="candidate-avatar" [src]="candidate.avatar" [alt]="candidate.name" />
+            <div class="candidate-copy">
+              <strong>{{ candidate.name }}</strong>
+              <span>{{ candidate.role }}</span>
+              <span>{{ candidate.location }}</span>
+            </div>
+            @if (candidate.selected) {
+              <span class="selected-badge">✔</span>
+            }
+          </article>
+        } @empty {
+          <p class="empty-message">No hay candidatos disponibles.</p>
+        }
       </div>
 
       <div class="action-row">
