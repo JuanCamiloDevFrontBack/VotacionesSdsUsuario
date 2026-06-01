@@ -1,8 +1,9 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { AuthService } from '../../core/auth/auth.service';
+import { VotingStateService } from '../../core/voting-state.service';
 
 @Component({
   selector: 'app-votacion-page',
@@ -12,23 +13,25 @@ import { AuthService } from '../../core/auth/auth.service';
   styleUrls: ['./votacion.component.scss'],
 })
 export class VotacionPageComponent {
-  isVotingActive = signal(false);
+  private readonly router = inject(Router);
+  private readonly authService = inject(AuthService);
+  private readonly messageService = inject(MessageService);
+  private readonly votingStateService = inject(VotingStateService);
+
+  isVotingActive = this.votingStateService.isVotingActive;
   totalSalvatorianos = 102;
   // salvatorianosVotados = 87;
   salvatorianosVotados = 0;
   percentageVoted = Math.round((this.salvatorianosVotados / this.totalSalvatorianos) * 100);
 
-  private readonly router = inject(Router);
-  private readonly authService = inject(AuthService);
-  private readonly messageService = inject(MessageService);
-
   initializeVoting() {
-    this.isVotingActive.set(true);
+    this.votingStateService.setVotingActive(true);
     this.messageService.add({
       severity: 'info',
       summary: 'Votación iniciada',
-      detail: 'Se abrirá una nueva pestaña para participar en la votación.',
-      life: 3000,
+      detail:
+        'Se enviará un mensaje de whatsapp a los co-hermanos salvatorianos para participar en la votación.',
+      life: 4000,
     });
     // ---------------------------
     const urlTree = this.router.createUrlTree(['/votacion-inicial']);
@@ -67,6 +70,6 @@ export class VotacionPageComponent {
       detail: 'Fase de votación cerrada.',
       life: 3000,
     });
-    this.isVotingActive.set(false);
+    this.votingStateService.setVotingActive(false);
   }
 }

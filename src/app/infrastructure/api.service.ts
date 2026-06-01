@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
-  base = '/api';
+  readonly base = '/api';
   constructor(private http: HttpClient) {}
 
   get<T>(path: string) {

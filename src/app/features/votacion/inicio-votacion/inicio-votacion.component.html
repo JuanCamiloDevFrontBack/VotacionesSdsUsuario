@@ -1,25 +1,30 @@
 <section class="inicio-votacion-page">
   <div class="page-shell">
-    <!-- Mensaje temporal 
-    <div class="status-banner">
-      <div>
-        <p class="status-title">Tu voto es completamente anónimo.</p>
-        <p class="status-copy">Nadie sabrá quién votaste.</p>
-      </div>
-    </div>
-    -->
     <div class="content-panel">
       <div class="panel-heading">
         <h1>Votación Previa - Elige un candidato</h1>
       </div>
 
+      <div class="vote-status" *ngIf="isVotingActive()">
+        <p class="status-copy">Hay una votación activa en curso.</p>
+      </div>
+
       <div class="search-row">
         <!--<label class="sr-only" for="candidate-search">Buscar candidato</label> -->
-        <input id="candidate-search" type="search" placeholder="Buscar por nombre o ciudad..." />
+        <p-select
+          [options]="candidatesOptions"
+          [(ngModel)]="selectedCandidate"
+          placeholder="Buscar por nombre..."
+          [editable]="true"
+          [showClear]="true"
+          (ngModelChange)="onCandidatesChange($event)"
+          appendTo="body"
+          styleClass="full-width-select"
+        ></p-select>
       </div>
 
       <div class="candidates-grid">
-        @for (candidate of candidates; track candidate.id) {
+        @for (candidate of filteredCandidates; track candidate.id) {
           <article
             class="candidate-card"
             [class.selected]="candidate.selected"
@@ -31,7 +36,6 @@
             <div class="candidate-copy">
               <strong>{{ candidate.name }}</strong>
               <span>{{ candidate.role }}</span>
-              <span>{{ candidate.location }}</span>
             </div>
             @if (candidate.selected) {
               <span class="selected-badge">✔</span>
