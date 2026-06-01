@@ -18,7 +18,7 @@ export class VotacionPageComponent {
   private readonly messageService = inject(MessageService);
   private readonly votingStateService = inject(VotingStateService);
 
-  isVotingActive = this.votingStateService.isVotingActive;
+  isVotingActive = this.votingStateService.getVotingActive();
   totalSalvatorianos = 102;
   // salvatorianosVotados = 87;
   salvatorianosVotados = 0;

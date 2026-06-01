@@ -1,56 +1,75 @@
 <section class="inicio-votacion-page">
   <div class="page-shell">
     <div class="content-panel">
-      <div class="panel-heading">
-        <h1>Votación Previa - Elige un candidato</h1>
-      </div>
+      {{isVotingActive()}}
+      @if (isVotingActive()) {
+        <div class="panel-heading">
+          <h1>Votación Previa - Elige un candidato</h1>
+        </div>
 
-      <div class="vote-status" *ngIf="isVotingActive()">
-        <p class="status-copy">Hay una votación activa en curso.</p>
-      </div>
+        <div class="vote-status" *ngIf="isVotingActive()">
+          <p class="status-copy">Hay una votación activa en curso.</p>
+        </div>
 
-      <div class="search-row">
-        <!--<label class="sr-only" for="candidate-search">Buscar candidato</label> -->
-        <p-select
-          [options]="candidatesOptions"
-          [(ngModel)]="selectedCandidate"
-          placeholder="Buscar por nombre..."
-          [editable]="true"
-          [showClear]="true"
-          (ngModelChange)="onCandidatesChange($event)"
-          appendTo="body"
-          styleClass="full-width-select"
-        ></p-select>
-      </div>
+        <div class="search-row">
+          <!--<label class="sr-only" for="candidate-search">Buscar candidato</label> -->
+          <p-select
+            [options]="candidatesOptions"
+            [(ngModel)]="selectedCandidate"
+            placeholder="Buscar por nombre..."
+            [editable]="true"
+            [showClear]="true"
+            (ngModelChange)="onCandidatesChange($event)"
+            appendTo="body"
+            styleClass="full-width-select"
+          ></p-select>
+        </div>
 
-      <div class="candidates-grid">
-        @for (candidate of filteredCandidates; track candidate.id) {
-          <article
-            class="candidate-card"
-            [class.selected]="candidate.selected"
-            (click)="selectCandidate(candidate.id)"
-            role="button"
-            tabindex="0"
-          >
-            <img class="candidate-avatar" [src]="candidate.avatar" [alt]="candidate.name" />
-            <div class="candidate-copy">
-              <strong>{{ candidate.name }}</strong>
-              <span>{{ candidate.role }}</span>
-            </div>
-            @if (candidate.selected) {
-              <span class="selected-badge">✔</span>
-            }
-          </article>
-        } @empty {
-          <p class="empty-message">No hay candidatos disponibles.</p>
-        }
-      </div>
+        <div class="candidates-grid">
+          @for (candidate of filteredCandidates; track candidate.id) {
+            <article
+              class="candidate-card"
+              [class.selected]="candidate.selected"
+              (click)="selectCandidate(candidate.id)"
+              role="button"
+              tabindex="0"
+            >
+              <img class="candidate-avatar" [src]="candidate.avatar" [alt]="candidate.name" />
+              <div class="candidate-copy">
+                <strong>{{ candidate.name }}</strong>
+                <span>{{ candidate.role }}</span>
+              </div>
+              @if (candidate.selected) {
+                <span class="selected-badge">✔</span>
+              }
+            </article>
+          } @empty {
+            <p class="empty-message">No hay candidatos disponibles.</p>
+          }
+        </div>
 
-      <div class="action-row">
-        <button type="button" class="confirm-button" (click)="confirmVote()">
-          Confirmar mi voto
-        </button>
-      </div>
+        <div class="action-row">
+          <button type="button" class="confirm-button" (click)="confirmVote()">
+            Confirmar mi voto
+          </button>
+        </div>
+      } @else {
+        <div class="estado-card">
+          <img
+            src="/logosdssinfondo.png"
+            alt="Logo SDS"
+            class="estado-logo"
+            style="width: 96px; height: auto; border-radius: 12px"
+          />
+          <div>
+            <p class="estado-label">No hay votaciones activas</p>
+            <p>
+              En este momento no hay ningún proceso electoral en curso. Te avisaremos cuando
+              comience la próxima votación.
+            </p>
+          </div>
+        </div>
+      }
     </div>
   </div>
 </section>

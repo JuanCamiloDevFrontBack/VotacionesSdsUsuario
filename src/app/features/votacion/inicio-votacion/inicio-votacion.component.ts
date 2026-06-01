@@ -16,7 +16,7 @@ export class InicioVotacionComponent implements OnInit {
   private messageService = inject(MessageService);
   private readonly votingStateService = inject(VotingStateService);
 
-  isVotingActive = this.votingStateService.isVotingActive;
+  isVotingActive = this.votingStateService.getVotingActive();
   selectedCandidate: string | null = null;
   filterText = '';
   candidatesOptions: object[] = [];
@@ -73,6 +73,9 @@ export class InicioVotacionComponent implements OnInit {
     // build unique city options from candidates
     const unique = Array.from(new Set(this.candidates.map((c) => c.name)));
     this.candidatesOptions = unique.map((c) => ({ label: c, value: c }));
+    setInterval(() => {
+      console.log('Simulando actualización de votos...', this.isVotingActive());
+    }, 3000);
   }
 
   selectCandidate(candidateId: number) {

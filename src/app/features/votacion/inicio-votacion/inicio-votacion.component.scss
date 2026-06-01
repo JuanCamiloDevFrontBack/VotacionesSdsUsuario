@@ -9,6 +9,32 @@
   margin: 0 auto;
 }
 
+  .estado-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+    margin-bottom: 24px;
+
+    .estado-label {
+      font-size: 16px;
+    }
+  }
+
+  .estado-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  .estado-label {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    flex: 1;
+    text-align: center;
+  }
+  }
+
 .status-banner {
   display: flex;
   align-items: center;

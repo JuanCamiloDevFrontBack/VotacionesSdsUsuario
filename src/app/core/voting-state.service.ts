@@ -8,19 +8,22 @@ export interface VotingStateResponse {
 @Injectable({ providedIn: 'root' })
 export class VotingStateService {
   private readonly _isVotingActive = signal(false);
-  readonly isVotingActive = this._isVotingActive.asReadonly();
 
   constructor() {
-    this.loadVotingStateFromBackend();
+    this.loadVotingStateFromBackend(this._isVotingActive());
   }
 
-  private loadVotingStateFromBackend() {
+  private loadVotingStateFromBackend(data: boolean) {
     // Simula una llamada al backend para consultar el estado de votación activo.
-    of<VotingStateResponse>({ active: false })
+    of<VotingStateResponse>({ active: data })
       .pipe(delay(300))
       .subscribe((response) => {
         this._isVotingActive.set(response.active);
       });
+  }
+
+  getVotingActive() {
+    return this._isVotingActive;
   }
 
   setVotingActive(value: boolean) {
