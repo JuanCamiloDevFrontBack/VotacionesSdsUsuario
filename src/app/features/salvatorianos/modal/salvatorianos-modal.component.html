@@ -4,14 +4,28 @@
       <div>
         <p class="modal-eyebrow">Editar Sacerdote</p>
       </div>
-      <button type="button" class="close-button" aria-label="Cerrar modal" (click)="close.emit()">×</button>
+      <button type="button" class="close-button" aria-label="Cerrar modal" (click)="close.emit()">
+        ×
+      </button>
     </section>
 
     <div class="modal-grid">
       <div class="modal-column">
         <div class="modal-field">
           <label>Foto</label>
-          <div class="avatar-plate">Foto</div>
+          <div class="avatar-plate">
+            <label class="avatar-upload">
+              <input type="file" accept="image/*" (change)="onPhotoSelected($event)" hidden />
+
+              <ng-container *ngIf="photoPreview; else uploadLabel">
+                <img [src]="photoPreview" alt="Foto seleccionada" />
+              </ng-container>
+
+              <ng-template #uploadLabel>
+                <span>Adjuntar foto</span>
+              </ng-template>
+            </label>
+          </div>
         </div>
         <div class="modal-field">
           <label>Nombres</label>

@@ -20,20 +20,22 @@ export class InicioVotacionComponent implements OnInit {
   selectedCandidate: string | null = null;
   filterText = '';
   candidatesOptions: object[] = [];
+  pageSize = 6;
+  currentPage = 1;
 
   candidates = [
     {
       id: 1,
       name: 'P. Juan Perez',
       role: 'Párroco',
-      avatar: 'https://i.pravatar.cc/88?img=32',
+      avatar: 'https://i.pravatar.cc/88?img=5',
       selected: false,
     },
     {
       id: 2,
       name: 'P. Luis Gómez',
       role: 'Administrador',
-      avatar: 'https://i.pravatar.cc/88?img=12',
+      avatar: 'https://i.pravatar.cc/88?img=52',
       selected: false,
     },
     {
@@ -59,6 +61,90 @@ export class InicioVotacionComponent implements OnInit {
     },
     {
       id: 6,
+      name: 'P. Javier Medina',
+      role: 'Sacerdote',
+      avatar: 'https://i.pravatar.cc/88?img=8',
+      selected: false,
+    },
+    {
+      id: 7,
+      name: 'P. Juan Perez',
+      role: 'Párroco',
+      avatar: 'https://i.pravatar.cc/88?img=32',
+      selected: false,
+    },
+    {
+      id: 8,
+      name: 'P. Luis Gómez',
+      role: 'Administrador',
+      avatar: 'https://i.pravatar.cc/88?img=12',
+      selected: false,
+    },
+    {
+      id: 9,
+      name: 'P. Carlos Torres',
+      role: 'Capellán',
+      avatar: 'https://i.pravatar.cc/88?img=24',
+      selected: false,
+    },
+    {
+      id: 10,
+      name: 'P. Andrés Ruiz',
+      role: 'Vicario',
+      avatar: 'https://i.pravatar.cc/88?img=120',
+      selected: false,
+    },
+    {
+      id: 11,
+      name: 'P. Felipe Suárez',
+      role: 'Director',
+      avatar: 'https://i.pravatar.cc/88?img=18',
+      selected: false,
+    },
+    {
+      id: 12,
+      name: 'P. Javier Medina',
+      role: 'Sacerdote',
+      avatar: 'https://i.pravatar.cc/88?img=8',
+      selected: false,
+    },
+    {
+      id: 13,
+      name: 'P. Juan Perez',
+      role: 'Párroco',
+      avatar: 'https://i.pravatar.cc/88?img=32',
+      selected: false,
+    },
+    {
+      id: 14,
+      name: 'P. Luis Gómez',
+      role: 'Administrador',
+      avatar: 'https://i.pravatar.cc/88?img=12',
+      selected: false,
+    },
+    {
+      id: 15,
+      name: 'P. Carlosssssssss',
+      role: 'Capellán',
+      avatar: 'https://i.pravatar.cc/88?img=24',
+      selected: false,
+    },
+    {
+      id: 16,
+      name: 'P. Andrés Ruiz',
+      role: 'Vicario',
+      avatar: 'https://i.pravatar.cc/88?img=16',
+      selected: false,
+    },
+    {
+      id: 17,
+      name: 'P. Felipe Suárez',
+      role: 'Director',
+      avatar: 'https://i.pravatar.cc/88?img=18',
+      selected: false,
+    },
+    {
+      id: 18,
       name: 'P. Javier Medina',
       role: 'Sacerdote',
       avatar: 'https://i.pravatar.cc/88?img=8',
@@ -106,6 +192,54 @@ export class InicioVotacionComponent implements OnInit {
 
   onCandidatesChange(value: any) {
     this.filterText = value ? String(value) : '';
+    this.currentPage = 1;
+  }
+
+  get filteredCandidates() {
+    const q = (this.filterText || '').toLowerCase().trim();
+    if (!q) return this.candidates;
+    return this.candidates.filter((c) => {
+      return c.name.toLowerCase().includes(q);
+    });
+  }
+
+  get totalPages() {
+    return Math.max(1, Math.ceil(this.filteredCandidates.length / this.pageSize));
+  }
+
+  get paginatedCandidates() {
+    const start = (this.currentPage - 1) * this.pageSize;
+    return this.filteredCandidates.slice(start, start + this.pageSize);
+  }
+
+  get pageNumbers() {
+    return Array.from({ length: this.totalPages }, (_, index) => index + 1);
+  }
+
+  get startIndex() {
+    if (this.filteredCandidates.length === 0) {
+      return 0;
+    }
+    return (this.currentPage - 1) * this.pageSize + 1;
+  }
+
+  get endIndex() {
+    return Math.min(this.currentPage * this.pageSize, this.filteredCandidates.length);
+  }
+
+  goToPage(page: number) {
+    if (page < 1 || page > this.totalPages) {
+      return;
+    }
+    this.currentPage = page;
+  }
+
+  previousPage() {
+    this.goToPage(this.currentPage - 1);
+  }
+
+  nextPage() {
+    this.goToPage(this.currentPage + 1);
   }
 
   confirmVote() {
@@ -124,14 +258,6 @@ export class InicioVotacionComponent implements OnInit {
       summary: 'Voto confirmado',
       detail: `Tu voto por ${selected.name} ha sido registrado exitosamente.`,
       life: 3000,
-    });
-  }
-
-  get filteredCandidates() {
-    const q = (this.filterText || '').toLowerCase().trim();
-    if (!q) return this.candidates;
-    return this.candidates.filter((c) => {
-      return c.name.toLowerCase().includes(q) || c.name.toLowerCase().includes(q);
     });
   }
 }

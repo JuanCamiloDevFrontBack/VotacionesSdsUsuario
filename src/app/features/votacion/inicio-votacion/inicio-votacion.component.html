@@ -13,7 +13,6 @@
         }
 
         <div class="search-row">
-          <!--<label class="sr-only" for="candidate-search">Buscar candidato</label> -->
           <p-select
             [options]="candidatesOptions"
             [(ngModel)]="selectedCandidate"
@@ -23,11 +22,12 @@
             (ngModelChange)="onCandidatesChange($event)"
             appendTo="body"
             styleClass="full-width-select"
+            [style]="{ width: '100%' }"
           ></p-select>
         </div>
 
         <div class="candidates-grid">
-          @for (candidate of filteredCandidates; track candidate.id) {
+          @for (candidate of paginatedCandidates; track candidate.id) {
             <article
               class="candidate-card"
               [class.selected]="candidate.selected"
@@ -48,6 +48,46 @@
             <p class="empty-message">No hay candidatos disponibles.</p>
           }
         </div>
+
+        <div class="pagination-summary">
+          <p>
+            Mostrando {{ startIndex }} - {{ endIndex }} de
+            {{ filteredCandidates.length }} candidatos
+          </p>
+        </div>
+
+        @if (totalPages > 1) {
+          <div class="pagination-controls">
+            <button
+              type="button"
+              class="page-button"
+              [disabled]="currentPage === 1"
+              (click)="previousPage()"
+            >
+              Anterior
+            </button>
+
+            @for (page of pageNumbers; track page) {
+              <button
+                type="button"
+                class="page-button"
+                [class.active]="page === currentPage"
+                (click)="goToPage(page)"
+              >
+                {{ page }}
+              </button>
+            }
+
+            <button
+              type="button"
+              class="page-button"
+              [disabled]="currentPage === totalPages"
+              (click)="nextPage()"
+            >
+              Siguiente
+            </button>
+          </div>
+        }
 
         <div class="action-row">
           <button type="button" class="confirm-button" (click)="confirmVote()">

@@ -9,18 +9,18 @@
   margin: 0 auto;
 }
 
-  .estado-card {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 16px;
-    margin-bottom: 24px;
+.estado-card {
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px;
+  margin-bottom: 24px;
 
-    .estado-label {
-      font-size: 16px;
-    }
+  .estado-label {
+    font-size: 16px;
   }
+}
 
-  .estado-card {
+.estado-card {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -33,7 +33,7 @@
     flex: 1;
     text-align: center;
   }
-  }
+}
 
 .status-banner {
   display: flex;
@@ -157,6 +157,55 @@
 .candidate-copy span {
   color: #4b5563;
   font-size: 0.92rem;
+}
+
+.pagination-summary {
+  margin-top: 16px;
+  text-align: center;
+  color: #4b5563;
+  font-size: 0.95rem;
+}
+
+.pagination-controls {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.page-button {
+  min-width: 44px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  background: white;
+  color: #374151;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.page-button:hover:not(:disabled) {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+}
+
+.page-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.page-button.active {
+  background: #3a8544;
+  border-color: #3a8544;
+  color: white;
 }
 
 .action-row {
