@@ -126,6 +126,20 @@ export class SalvatorianosPageComponent {
   pageSizes = [5, 10, 20];
   showModal = false;
 
+  onExcelSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (!input.files?.length) {
+      return;
+    }
+
+    const file = input.files[0];
+    console.log('Archivo Excel seleccionado:', file.name, 'Tamaño:', file.size);
+
+    // Aquí iría la lógica de procesamiento del Excel
+    // Por ahora solo mostrar en consola que fue seleccionado
+    // TODO: Implementar lectura de Excel con librería como xlsx o alasql
+  }
+
   get totalPages(): number {
     return Math.max(1, Math.ceil(this.items.length / this.pageSize));
   }

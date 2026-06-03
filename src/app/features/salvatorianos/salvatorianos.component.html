@@ -3,7 +3,19 @@
     <div class="page-title">
       <h1>Gestión de Salvatorianos</h1>
     </div>
-    <button type="button" class="primary-button" (click)="showModal = true">+ Nuevo Sacerdote</button>
+    <div class="header-actions">
+      <label class="file-upload-button">
+        <input type="file" accept=".zip" (change)="onExcelSelected($event)" hidden />
+        Cargar Zip con Fotos
+      </label>
+      <label class="file-upload-button">
+        <input type="file" accept=".xlsx,.xls,.csv" (change)="onExcelSelected($event)" hidden />
+        Cargar Excel
+      </label>
+      <button type="button" class="primary-button" (click)="showModal = true">
+        + Nuevo Sacerdote
+      </button>
+    </div>
   </section>
 
   <section class="list-card">
@@ -33,7 +45,7 @@
               <td>{{ s.city }}</td>
               <td>
                 @if (s.eligible) {
-                  <span class="status-badge success">✔</span>
+                  <span class="status-badge success"></span>
                 }
               </td>
               <td>
@@ -67,7 +79,7 @@
     </div>
   </section>
 
-  @if(showModal) {
+  @if (showModal) {
     <app-salvatorianos-modal (close)="showModal = false"></app-salvatorianos-modal>
   }
 </div>
