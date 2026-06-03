@@ -1,6 +1,6 @@
 <p-toast position="top-right" [baseZIndex]="9999"></p-toast>
 
-@if (currentUrl() !== '/votacion-inicial') {
+@if (isScreenVoting()) {
   <div class="app-shell">
     @if (showSidebar()) {
       <app-sidebar (navigate)="onNavigate($event)" (logout)="onLogout()"></app-sidebar>

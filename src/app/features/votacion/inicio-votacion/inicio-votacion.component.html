@@ -1,15 +1,16 @@
 <section class="inicio-votacion-page">
   <div class="page-shell">
     <div class="content-panel">
-      {{isVotingActive()}}
       @if (isVotingActive()) {
         <div class="panel-heading">
           <h1>Votación Previa - Elige un candidato</h1>
         </div>
 
-        <div class="vote-status" *ngIf="isVotingActive()">
-          <p class="status-copy">Hay una votación activa en curso.</p>
-        </div>
+        @if (isVotingActive()) {
+          <div class="vote-status">
+            <p class="status-copy">Hay una votación activa en curso.</p>
+          </div>
+        }
 
         <div class="search-row">
           <!--<label class="sr-only" for="candidate-search">Buscar candidato</label> -->

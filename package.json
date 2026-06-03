@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "test-backend": "json-server --watch src/app/infrastructure/dbtest.json --port 3000"
   },
   "prettier": {
     "printWidth": 100,
@@ -31,6 +32,7 @@
     "@angular/router": "^21.1.0",
     "@primeng/themes": "^21.0.4",
     "chart.js": "^4.5.1",
+    "json-server": "^1.0.0-beta.15",
     "primeicons": "^7.0.0",
     "primeng": "^21.1.1",
     "rxjs": "~7.8.0",

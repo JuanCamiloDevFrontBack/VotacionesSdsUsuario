@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, OnInit, inject, signal } from '@angular/core';
 import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs';
@@ -13,21 +13,25 @@ import { SidebarComponent } from './shared/components/sidebar/sidebar.component'
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App {
+export class App implements OnInit {
   private router = inject(Router);
   private auth = inject(AuthService);
 
+  isScreenVoting = signal(false);
   currentUrl = signal(this.router.url);
 
   showSidebar = computed(
     () => !this.currentUrl().startsWith('/auth') && this.auth.isAuthenticated(),
   );
 
-  constructor() {
+  constructor() {}
+
+  ngOnInit() {
     this.router.events
       .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
       .subscribe((event) => {
         this.currentUrl.set(event.urlAfterRedirects);
+        this.isScreenVoting.set(this.currentUrl() !== '/votacion-inicial');
       });
   }
 

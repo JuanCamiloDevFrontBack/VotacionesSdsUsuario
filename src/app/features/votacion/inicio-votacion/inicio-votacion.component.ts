@@ -1,9 +1,9 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SelectModule } from 'primeng/select';
 import { MessageService } from 'primeng/api';
-import { VotingStateService } from '../../../core/voting-state.service';
+import { VotingStateService } from '../../../infrastructure/voting-state.service';
 
 @Component({
   selector: 'app-inicio-votacion',
@@ -13,10 +13,10 @@ import { VotingStateService } from '../../../core/voting-state.service';
   styleUrls: ['./inicio-votacion.component.scss'],
 })
 export class InicioVotacionComponent implements OnInit {
-  private messageService = inject(MessageService);
+  private readonly messageService = inject(MessageService);
   private readonly votingStateService = inject(VotingStateService);
 
-  isVotingActive = this.votingStateService.getVotingActive();
+  isVotingActive = signal(false);
   selectedCandidate: string | null = null;
   filterText = '';
   candidatesOptions: object[] = [];
@@ -69,13 +69,24 @@ export class InicioVotacionComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    // Initialization logic if needed
-    // build unique city options from candidates
+    this.loadVotingState();
     const unique = Array.from(new Set(this.candidates.map((c) => c.name)));
     this.candidatesOptions = unique.map((c) => ({ label: c, value: c }));
-    setInterval(() => {
-      console.log('Simulando actualización de votos...', this.isVotingActive());
-    }, 3000);
+  }
+
+  loadVotingState() {
+    this.votingStateService.getVotingActive().subscribe({
+      next: (response: any) => {
+        console.log('Respuesta del servidor:', response);
+        this.isVotingActive.set(response.activa);
+        console.log('isVotingActive actualizado a:', this.isVotingActive());
+      },
+      error: (err) => {
+        console.error('Error al obtener estado de votación:', err);
+        console.error('Status:', err.status);
+        console.error('Mensaje:', err.message);
+      },
+    });
   }
 
   selectCandidate(candidateId: number) {

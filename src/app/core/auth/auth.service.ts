@@ -20,20 +20,4 @@ export class AuthService {
     localStorage.removeItem(this.tokenKey);
   }
 
-  // Test
-  generarEnlace(telefono: string, mensaje: string): string {
-    // Eliminamos espacios, guiones o el signo '+' por si el usuario los ingresa
-    const telefonoLimpio = telefono.replace(/[^0-9]/g, '');
-    
-    // Codificamos el texto para que sea seguro en una URL (revierte espacios a %20, etc.)
-    const mensajeCodificado = encodeURIComponent(mensaje);
-    
-    return `https://wa.me/${telefonoLimpio}?text=${mensajeCodificado}`;
-    //return `https://whatsapp.com/${telefonoLimpio}?text=${mensajeCodificado}`;
-  }
-  
-  sendMessageWhatsappUrl(phoneNumber: string, message: string) {
-    const url = this.generarEnlace(phoneNumber, message);
-    window.open(url, '_blank');
-  }
 }

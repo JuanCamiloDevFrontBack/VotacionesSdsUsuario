@@ -1,9 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { AuthService } from '../../core/auth/auth.service';
-import { VotingStateService } from '../../core/voting-state.service';
+import { VotingStateService } from '../../infrastructure/voting-state.service';
 
 @Component({
   selector: 'app-votacion-page',
@@ -12,37 +11,69 @@ import { VotingStateService } from '../../core/voting-state.service';
   templateUrl: './votacion.component.html',
   styleUrls: ['./votacion.component.scss'],
 })
-export class VotacionPageComponent {
+export class VotacionPageComponent implements OnInit {
   private readonly router = inject(Router);
-  private readonly authService = inject(AuthService);
   private readonly messageService = inject(MessageService);
   private readonly votingStateService = inject(VotingStateService);
 
-  isVotingActive = this.votingStateService.getVotingActive();
+  isVotingActive = signal(false);
   totalSalvatorianos = 102;
   // salvatorianosVotados = 87;
   salvatorianosVotados = 0;
   percentageVoted = Math.round((this.salvatorianosVotados / this.totalSalvatorianos) * 100);
 
-  initializeVoting() {
-    this.votingStateService.setVotingActive(true);
-    this.messageService.add({
-      severity: 'info',
-      summary: 'Votación iniciada',
-      detail:
-        'Se enviará un mensaje de whatsapp a los co-hermanos salvatorianos para participar en la votación.',
-      life: 4000,
+  ngOnInit() {
+    this.loadVotingState();
+  }
+
+  loadVotingState() {
+    this.votingStateService.updateVotingActive({ activa: false }).subscribe({
+      next: (response: any) => {
+        console.log('Voting active state response:', response);
+      },
     });
-    // ---------------------------
-    const urlTree = this.router.createUrlTree(['/votacion-inicial']);
+    this.votingStateService.getVotingActive().subscribe({
+      next: (response: any) => {
+        console.log('Voting active state response:', response);
+        this.isVotingActive.set(response.activa);
+      },
+      error: (err) => {
+        console.error('Error al obtener estado de votación:', err);
+      },
+    });
+  }
 
-    // 2. Convierte el árbol a un string URL y ábrelo en una nueva pestaña
-    const url = this.router.serializeUrl(urlTree);
-    window.open(url, '_blank');
+  initializeVoting() {
+    const votingData = { activa: true };
 
-    /*const phoneNumber = '+573107043763';
-    const message = encodeURIComponent('¡Hola! Te invito a participar en la votación. Haz clic aquí para votar: ' + url);
-    this.authService.sendMessageWhatsappUrl(phoneNumber, message);*/
+    this.votingStateService.updateVotingActive(votingData).subscribe({
+      next: (response: any) => {
+        console.log('Votación iniciada:', response);
+        this.isVotingActive.set(true);
+
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Votación iniciada',
+          detail:
+            'Se enviará un mensaje de whatsapp a los co-hermanos salvatorianos para participar en la votación.',
+          life: 4000,
+        });
+
+        // Abrir nueva pestaña
+        const urlTree = this.router.createUrlTree(['/votacion-inicial']);
+        const url = this.router.serializeUrl(urlTree);
+        window.open(url, '_blank');
+      },
+      error: (err) => {
+        console.error('Error al iniciar votación:', err);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Error al iniciar la votación.',
+          life: 3000,
+        });
+      },
+    });
   }
 
   sendVotingPhase() {
@@ -70,6 +101,6 @@ export class VotacionPageComponent {
       detail: 'Fase de votación cerrada.',
       life: 3000,
     });
-    this.votingStateService.setVotingActive(false);
+    //this.votingStateService.setVotingActive(false);
   }
 }
