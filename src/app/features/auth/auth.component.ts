@@ -4,7 +4,7 @@ import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angula
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { PRIMENG_MODULES } from '../../shared/primeng-exports';
-import { AuthService } from '../../core/auth/auth.service';
+import { AuthService, LoginCredentials } from '../../core/auth/auth.service';
 
 @Component({
   selector: 'app-auth-page',
@@ -40,13 +40,27 @@ export class AuthPageComponent implements OnInit {
       });
       return;
     }
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Bienvenido',
-      detail: 'Sesión iniciada exitosamente.',
-      life: 2000,
+
+    const credentials: LoginCredentials = this.form.value;
+
+    this.auth.login(credentials).subscribe({
+      next: () => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Bienvenido',
+          detail: 'Sesión iniciada exitosamente.',
+          life: 2000,
+        });
+        this.router.navigate(['/votacion']);
+      },
+      error: () => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error de autenticación',
+          detail: 'Usuario o contraseña incorrectos, o el servidor no está disponible.',
+          life: 4000,
+        });
+      },
     });
-    this.auth.setToken('demo-token');
-    setTimeout(() => this.router.navigate(['/votacion']), 1000);
   }
 }

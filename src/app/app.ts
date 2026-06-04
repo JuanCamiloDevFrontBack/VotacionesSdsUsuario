@@ -40,7 +40,7 @@ export class App implements OnInit {
   }
 
   onLogout() {
-    this.auth.clear();
+    this.auth.logout();
     this.router.navigate(['/auth']);
   }
 }

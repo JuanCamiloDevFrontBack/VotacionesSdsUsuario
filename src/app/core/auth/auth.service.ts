@@ -1,23 +1,66 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Inject, Injectable } from '@angular/core';
+import { Observable, tap, map, of } from 'rxjs';
+import { AUTH_API_URL } from './auth.config';
+
+export interface LoginCredentials {
+  email: string;
+  password: string;
+}
+
+interface UsersResponse {
+  users: AuthUser[];
+}
+
+interface AuthUser {
+  id: number;
+  email: string;
+  password: string;
+  accessToken: string;
+  refreshToken?: string;
+}
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private tokenKey = 'auth_token';
+  private readonly tokenKey = 'auth_token';
 
-  isAuthenticated(): boolean {
-    return !!localStorage.getItem(this.tokenKey);
+  constructor(
+    private readonly http: HttpClient,
+    @Inject(AUTH_API_URL) private readonly authApiUrl: string,
+  ) {}
+
+  login(credentials: LoginCredentials): Observable<any> {
+    return this.http.get<UsersResponse>(`${this.authApiUrl}/auth`).pipe(
+      map((arrayUsers: UsersResponse) => {
+        const user = arrayUsers.users.find(
+          (u: AuthUser) => u.email === credentials.email && u.password === credentials.password
+        );
+        if (!user) {
+          throw new Error('Usuario o contraseña incorrectos');
+        }
+        return user;
+      }),
+      tap((user) => this.setToken(user.accessToken))
+    );
   }
 
-  setToken(token: string) {
-    localStorage.setItem(this.tokenKey, token);
+  logout(): void {
+    this.clear();
+  }
+
+  isAuthenticated(): boolean {
+    return !!this.getToken();
   }
 
   getToken(): string | null {
     return localStorage.getItem(this.tokenKey);
   }
 
-  clear() {
-    localStorage.removeItem(this.tokenKey);
+  private setToken(token: string): void {
+    localStorage.setItem(this.tokenKey, token);
   }
 
+  private clear(): void {
+    localStorage.removeItem(this.tokenKey);
+  }
 }
