@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -13,6 +13,7 @@ export class SalvatorianosModalComponent {
 
   photoPreview: string | null = null;
   selectedPhoto: File | null = null;
+  constructor(private cdr: ChangeDetectorRef) {}
 
   onPhotoSelected(event: Event) {
     const input = event.target as HTMLInputElement;
@@ -26,6 +27,8 @@ export class SalvatorianosModalComponent {
     const reader = new FileReader();
     reader.onload = () => {
       this.photoPreview = typeof reader.result === 'string' ? reader.result : null;
+      // force change detection in case FileReader runs outside Angular zone
+      this.cdr.detectChanges();
     };
     reader.readAsDataURL(file);
   }
