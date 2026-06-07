@@ -164,16 +164,18 @@ h1 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
+  width: 100%;
   border-radius: 50%;
-  font-size: 0.95rem;
-  color: #ffffff;
+  font-size: 1.50rem;
   margin: auto;
 }
 
-.status-badge.success {
-  background: #16a34a;
+.success {
+  color: #16a34a;
+}
+
+.notapply {
+  color: #d22506;
 }
 
 .paginator {

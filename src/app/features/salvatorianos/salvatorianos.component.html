@@ -45,7 +45,9 @@
               <td>{{ s.city }}</td>
               <td>
                 @if (s.eligible) {
-                  <span class="status-badge success"></span>
+                  <i class="pi pi-thumbs-up status-badge success"></i>
+                } @else {
+                  <i class="pi pi-thumbs-down status-badge notapply"></i>
                 }
               </td>
               <td>

@@ -4,6 +4,7 @@ import { TableModule } from 'primeng/table';
 import { PasswordModule } from 'primeng/password';
 import { CardModule } from 'primeng/card';
 import { ToastModule } from 'primeng/toast';
+import { DatePickerModule } from 'primeng/datepicker';
 
 export const PRIMENG_MODULES = [
   ButtonModule,
@@ -12,4 +13,5 @@ export const PRIMENG_MODULES = [
   PasswordModule,
   CardModule,
   ToastModule,
+  DatePickerModule,
 ];
