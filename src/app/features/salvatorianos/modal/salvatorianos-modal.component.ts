@@ -27,7 +27,6 @@ export class SalvatorianosModalComponent {
     const reader = new FileReader();
     reader.onload = () => {
       this.photoPreview = typeof reader.result === 'string' ? reader.result : null;
-      // force change detection in case FileReader runs outside Angular zone
       this.cdr.detectChanges();
     };
     reader.readAsDataURL(file);
