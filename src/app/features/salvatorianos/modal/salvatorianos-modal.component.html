@@ -17,13 +17,11 @@
             <label class="avatar-upload">
               <input type="file" accept="image/*" (change)="onPhotoSelected($event)" hidden />
 
-              <ng-container *ngIf="photoPreview; else uploadLabel">
+              @if(photoPreview) {
                 <img [src]="photoPreview" alt="Foto seleccionada" />
-              </ng-container>
-
-              <ng-template #uploadLabel>
-                <span>Adjuntar foto</span>
-              </ng-template>
+              } @else {
+                <span class="upload-placeholder">Adjuntar foto</span>
+              }
             </label>
           </div>
         </div>

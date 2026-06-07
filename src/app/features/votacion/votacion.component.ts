@@ -2,7 +2,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { VotingStateService } from '../../infrastructure/voting-state.service';
+import { VotingStateResponse, VotingStateService } from '../../infrastructure/voting-state.service';
 
 @Component({
   selector: 'app-votacion-page',
@@ -27,15 +27,9 @@ export class VotacionPageComponent implements OnInit {
   }
 
   loadVotingState() {
-    this.votingStateService.updateVotingActive({ activa: false }).subscribe({
-      next: (response: any) => {
-        console.log('Voting active state response:', response);
-      },
-    });
     this.votingStateService.getVotingActive().subscribe({
-      next: (response: any) => {
-        console.log('Voting active state response:', response);
-        this.isVotingActive.set(response.activa);
+      next: (activa: boolean) => {
+        this.isVotingActive.set(activa);
       },
       error: (err) => {
         console.error('Error al obtener estado de votación:', err);
@@ -47,7 +41,7 @@ export class VotacionPageComponent implements OnInit {
     const votingData = { activa: true };
 
     this.votingStateService.updateVotingActive(votingData).subscribe({
-      next: (response: any) => {
+      next: (response: VotingStateResponse) => {
         console.log('Votación iniciada:', response);
         this.isVotingActive.set(true);
 
@@ -95,12 +89,19 @@ export class VotacionPageComponent implements OnInit {
   }
 
   closeVotingPhase() {
-    this.messageService.add({
-      severity: 'info',
-      summary: 'Información',
-      detail: 'Fase de votación cerrada.',
-      life: 3000,
+    this.votingStateService.updateVotingActive({ activa: false }).subscribe({
+      next: (response: VotingStateResponse) => {
+        this.isVotingActive.set(response.activa);
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Información',
+          detail: 'Fase de votación cerrada.',
+          life: 3000,
+        });
+      },
+      error: (err) => {
+        console.error('Error al cerrar votación:', err);
+      },
     });
-    //this.votingStateService.setVotingActive(false);
   }
 }

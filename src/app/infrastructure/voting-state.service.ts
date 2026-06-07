@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, signal } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { map, Observable } from 'rxjs';
 
 export interface VotingStateResponse {
-  active: boolean;
+  activa: boolean;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -12,11 +13,14 @@ export class VotingStateService {
 
   constructor(private http: HttpClient) {}
 
-  getVotingActive() {
-    return this.http.get<any>(`${this.base}/votacion`);
+  getVotingActive(): Observable<boolean> {
+    return this.http.get<VotingStateResponse>(`${this.base}/votacion`)
+    .pipe(
+      map((response: VotingStateResponse) => response.activa)
+    );
   }
 
-  updateVotingActive(data: any) {
+  updateVotingActive(data: VotingStateResponse) {
     return this.http.put<any>(`${this.base}/votacion`, data);
   }
 

@@ -162,10 +162,9 @@ export class InicioVotacionComponent implements OnInit {
 
   loadVotingState() {
     this.votingStateService.getVotingActive().subscribe({
-      next: (response: any) => {
-        console.log('Respuesta del servidor:', response);
-        this.isVotingActive.set(response.activa);
-        console.log('isVotingActive actualizado a:', this.isVotingActive());
+      next: (activa: boolean) => {
+        console.log('Estado de votación:', activa);
+        this.isVotingActive.set(activa);
       },
       error: (err) => {
         console.error('Error al obtener estado de votación:', err);
