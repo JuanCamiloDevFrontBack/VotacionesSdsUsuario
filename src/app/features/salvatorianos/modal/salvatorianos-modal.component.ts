@@ -2,11 +2,13 @@ import { Component, EventEmitter, Output, ChangeDetectorRef } from '@angular/cor
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DatePickerModule } from 'primeng/datepicker';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 @Component({
   selector: 'app-salvatorianos-modal',
   standalone: true,
-  imports: [CommonModule, FormsModule, DatePickerModule],
+  imports: [CommonModule, FormsModule, DatePickerModule, InputTextModule, InputNumberModule],
   templateUrl: './salvatorianos-modal.component.html',
   styleUrls: ['./salvatorianos-modal.component.scss'],
 })
@@ -17,6 +19,13 @@ export class SalvatorianosModalComponent {
   selectedPhoto: File | null = null;
   orderDate: Date | null = new Date(2010, 5, 12);
   perpetualVowsDate: Date | null = new Date(2018, 2, 24);
+  // form models for inputs
+  name: string = '';
+  surname: string = '';
+  age: number | null = null;
+  email: string = '';
+  phone: string = '';
+  city: string = '';
   constructor(private cdr: ChangeDetectorRef) {}
 
   onPhotoSelected(event: Event) {

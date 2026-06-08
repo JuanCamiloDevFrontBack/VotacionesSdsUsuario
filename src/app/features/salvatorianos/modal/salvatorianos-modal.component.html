@@ -27,23 +27,23 @@
         </div>
         <div class="modal-field">
           <label>Nombres</label>
-          <input type="text" value="" readonly />
+          <input pInputText type="text" [(ngModel)]="name" readonly />
         </div>
         <div class="modal-field">
           <label>Apellidos</label>
-          <input type="text" value="" readonly />
+          <input pInputText type="text" [(ngModel)]="surname" readonly />
         </div>
         <div class="modal-field">
           <label>Edad</label>
-          <input type="text" value="" readonly />
+          <p-inputNumber [(ngModel)]="age" [min]="0" [mode]="'decimal'"></p-inputNumber>
         </div>
         <div class="modal-field">
           <label>Correo</label>
-          <input type="email" value="" readonly />
+          <input pInputText type="email" [(ngModel)]="email" readonly />
         </div>
         <div class="modal-field">
           <label>Celular</label>
-          <input type="tel" value="" readonly />
+          <input pInputText type="tel" [(ngModel)]="phone" readonly />
         </div>
       </div>
 
@@ -74,7 +74,7 @@
         </div>
         <div class="modal-field">
           <label>Ciudad de misión</label>
-          <input type="text" value="" readonly />
+          <input pInputText type="text" [(ngModel)]="city" readonly />
         </div>
         <div class="modal-field">
           <label>Habilitado para votar</label>

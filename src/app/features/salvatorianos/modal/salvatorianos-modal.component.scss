@@ -86,6 +86,22 @@
   font-size: 0.95rem;
 }
 
+/* PrimeNG inputs focus color: azul en vez de verde */
+::ng-deep .p-inputtext:focus,
+::ng-deep .p-inputtext:focus-visible,
+::ng-deep .p-inputnumber input:focus,
+::ng-deep .p-inputnumber input:focus-visible {
+  border-color: #1d4ed8 !important;
+  box-shadow: 0 0 0 0.2rem rgba(29, 78, 216, 0.18) !important;
+  outline: none !important;
+}
+
+/* also target p-inputwrapper filled focus states */
+::ng-deep .p-inputwrapper.p-focus,
+::ng-deep .p-inputwrapper.p-inputwrapper-focus {
+  box-shadow: 0 0 0 0.2rem rgba(29, 78, 216, 0.18) !important;
+}
+
 .avatar-plate {
   min-height: 120px;
   border-radius: 20px;
