@@ -2,7 +2,7 @@
   <div class="modal-card">
     <section class="modal-header">
       <div>
-        <p class="modal-eyebrow">Editar Sacerdote</p>
+        <p class="modal-eyebrow">{{ true ? 'Crear' : 'Editar' }} co-hermano</p>
       </div>
       <button type="button" class="close-button" aria-label="Cerrar modal" (click)="close.emit()">
         ×
@@ -94,11 +94,11 @@
 
     <footer class="modal-actions">
       @if (true) {
-        <button type="button" class="secondary-button">Guardar</button>
+        <button type="button" class="save-button">Guardar</button>
       } @else {
-        <button type="button" class="primary-button">Editar</button>
+        <button type="button" class="edit-button">Editar</button>
       }
-      <button type="button" class="text-button">Cancelar</button>
+      <button type="button" class="cancel-button">Cancelar</button>
     </footer>
   </div>
 </div>
