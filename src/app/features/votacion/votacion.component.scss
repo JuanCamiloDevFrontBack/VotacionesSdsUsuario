@@ -96,12 +96,6 @@
 
 // Estado Card
 .estado-card {
-  /*
-    background: linear-gradient(135deg, #15713d 0%, #1e4b31 100%); /Activa/
-    background: linear-gradient(135deg, #f2860a 0%, #c17c04 100%); /Inactiva/
-    background: linear-gradient(135deg, #515d6f 0%, #1d2f48 100%); /Finalizada/
-    */
-  background: linear-gradient(135deg, #15713d 0%, #1e4b31 100%);
   border-radius: 12px;
   padding: 24px 32px;
   margin-bottom: 32px;
@@ -137,6 +131,18 @@
       opacity: 0.7;
     }
   }
+}
+
+.active {
+  background: linear-gradient(135deg, #15713d 0%, #1e4b31 100%);
+}
+
+.inactive {
+  background: linear-gradient(135deg, #f2860a 0%, #c17c04 100%);
+}
+
+.close {
+  background: linear-gradient(135deg, #515d6f 0%, #1d2f48 100%);
 }
 
 // Widget Container

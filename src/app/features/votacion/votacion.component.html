@@ -17,8 +17,20 @@
       <!-- Content Container -->
       <div class="content-container">
         <!-- Estado Card -->
-        <div class="estado-card">
-          <p class="estado-label">ESTADO ACTUAL DE LA VOTACIÓN: {{ ' Activa' }}</p>
+        <div class="estado-card"
+        [ngClass]="{
+            'active': false,
+            'inactive': false,
+            'close': true
+          }">
+          <p class="estado-label">ESTADO ACTUAL DE LA VOTACIÓN:</p>
+          <i class="pi"
+          [ngClass]="{
+            'pi-thumbs-up': false,
+            'pi-minus': false,
+            'pi-thumbs-down': true,
+          }"
+          style="font-size: 1.5rem;"></i>
           <span class="estado-indicator"></span>
         </div>
 
