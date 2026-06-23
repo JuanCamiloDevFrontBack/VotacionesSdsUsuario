@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable, tap, map, of } from 'rxjs';
-import { AUTH_API_URL } from './auth.config';
+import { environment } from '../../../environments/environment';
 
 export interface LoginCredentials {
   email: string;
@@ -25,12 +25,11 @@ export class AuthService {
   private readonly tokenKey = 'auth_token';
 
   constructor(
-    private readonly http: HttpClient,
-    @Inject(AUTH_API_URL) private readonly authApiUrl: string,
+    private readonly http: HttpClient
   ) {}
 
   login(credentials: LoginCredentials): Observable<any> {
-    return this.http.get<UsersResponse>(`${this.authApiUrl}/auth`).pipe(
+    return this.http.get<UsersResponse>(`${environment.apiRestAuth}login`).pipe(
       map((arrayUsers: UsersResponse) => {
         const user = arrayUsers.users.find(
           (u: AuthUser) => u.email === credentials.email && u.password === credentials.password

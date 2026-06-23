@@ -5,7 +5,6 @@ import { MessageService } from 'primeng/api';
 
 import { routes } from './app.routes';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
-import { AUTH_API_URL } from './core/auth/auth.config';
 import { providePrimeNG } from 'primeng/config';
 import Lara from '@primeng/themes/lara';
 
@@ -20,7 +19,6 @@ export const appConfig: ApplicationConfig = {
       },
     }),
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    { provide: AUTH_API_URL, useValue: 'http://localhost:3000' },
     MessageService,
   ],
 };

@@ -1,6 +1,6 @@
 {
   "votacion": {
-    "activa": true
+    "activa": false
   },
   "auth": {
     "users": [
