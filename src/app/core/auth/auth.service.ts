@@ -4,7 +4,7 @@ import { Observable, tap, map, of } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 export interface LoginCredentials {
-  email: string;
+  username: string;
   password: string;
 }
 
@@ -32,12 +32,29 @@ export class AuthService {
     return this.http.get<UsersResponse>(`${environment.apiRestAuth}login`).pipe(
       map((arrayUsers: UsersResponse) => {
         const user = arrayUsers.users.find(
-          (u: AuthUser) => u.email === credentials.email && u.password === credentials.password
+          (u: AuthUser) => u.email === credentials.username && u.password === credentials.password
         );
         if (!user) {
           throw new Error('Usuario o contraseña incorrectos');
         }
         return user;
+      }),
+      tap((user) => this.setToken(user.accessToken))
+    );
+  }
+
+  loginBackend(credentials: LoginCredentials): Observable<any> {
+    return this.http.post<any>(`${environment.apiRestAuth}login`, credentials).pipe(
+      map((arrayUsers: any) => {
+        console.log('arrayUsers:', arrayUsers);
+        /*const user = arrayUsers.users.find(
+          (u: AuthUser) => u.email === credentials.email && u.password === credentials.password
+        );
+        if (!user) {
+          throw new Error('Usuario o contraseña incorrectos');
+        }
+        return user;*/
+        return arrayUsers;
       }),
       tap((user) => this.setToken(user.accessToken))
     );
