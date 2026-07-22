@@ -41,8 +41,12 @@ export class App implements OnInit {
 
   onLogout() {
     this.auth.logout().subscribe({
-      next: () => this.router.navigate(['/auth']),
-      error: () => this.router.navigate(['/auth']),
+      next: () => this.onLogoutRoute(),
+      error: () => this.onLogoutRoute(),
     });
+  }
+
+  onLogoutRoute() {
+    return this.router.navigate(['/auth']);
   }
 }
