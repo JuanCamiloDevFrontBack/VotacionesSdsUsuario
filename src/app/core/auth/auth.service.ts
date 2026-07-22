@@ -30,7 +30,9 @@ export class AuthService {
 
   login(credentials: LoginCredentials): Observable<AuthLoginResponse> {
     return this.http
-      .post<AuthLoginResponse>(`${environment.apiRestAuth}login`, credentials, this.authHttpOptions)
+      .post<AuthLoginResponse>(`${environment.apiRestAuth}login`,
+        credentials,
+        this.authHttpOptions)
       .pipe(tap((response) => this.setAccessToken(response.accessToken)));
   }
 
