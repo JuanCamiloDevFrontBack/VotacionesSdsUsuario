@@ -40,7 +40,7 @@ export class AuthService {
     return this.http
       .post<AuthRefreshResponse>(
         `${environment.apiRestAuth}refresh-token`,
-        {},
+        null,
         this.authHttpOptions,
       )
       .pipe(
