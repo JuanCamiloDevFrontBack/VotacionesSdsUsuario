@@ -24,13 +24,13 @@ interface AuthRefreshResponse {
 export class AuthService {
   private readonly accessTokenKey = 'sds_access_token';
 
+  private readonly authHttpOptions = { withCredentials: true };
+
   constructor(private readonly http: HttpClient) {}
 
   login(credentials: LoginCredentials): Observable<AuthLoginResponse> {
     return this.http
-      .post<AuthLoginResponse>(`${environment.apiRestAuth}login`, credentials, {
-        withCredentials: true,
-      })
+      .post<AuthLoginResponse>(`${environment.apiRestAuth}login`, credentials, this.authHttpOptions)
       .pipe(tap((response) => this.setAccessToken(response.accessToken)));
   }
 
@@ -39,9 +39,7 @@ export class AuthService {
       .post<AuthRefreshResponse>(
         `${environment.apiRestAuth}refresh-token`,
         {},
-        {
-          withCredentials: true,
-        },
+        this.authHttpOptions,
       )
       .pipe(
         tap((response) => this.setAccessToken(response.accessToken)),
@@ -70,7 +68,7 @@ export class AuthService {
 
   logout(): Observable<void> {
     return this.http
-      .post<void>(`${environment.apiRestAuth}logout`, null, { withCredentials: true })
+      .post<void>(`${environment.apiRestAuth}logout`, null, this.authHttpOptions)
       .pipe(
         catchError((error) => {
           this.clearAccessToken();
