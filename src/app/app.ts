@@ -40,7 +40,9 @@ export class App implements OnInit {
   }
 
   onLogout() {
-    this.auth.logout();
-    this.router.navigate(['/auth']);
+    this.auth.logout().subscribe({
+      next: () => this.router.navigate(['/auth']),
+      error: () => this.router.navigate(['/auth']),
+    });
   }
 }

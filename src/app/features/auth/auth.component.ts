@@ -25,7 +25,7 @@ export class AuthPageComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      username: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
   }
@@ -43,7 +43,7 @@ export class AuthPageComponent implements OnInit {
 
     const credentials: LoginCredentials = this.form.value;
 
-    this.auth.loginBackend(credentials).subscribe({
+    this.auth.login(credentials).subscribe({
       next: () => {
         this.messageService.add({
           severity: 'success',

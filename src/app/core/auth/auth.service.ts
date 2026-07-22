@@ -1,82 +1,112 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap, map, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 
 export interface LoginCredentials {
-  username: string;
-  password: string;
-}
-
-interface UsersResponse {
-  users: AuthUser[];
-}
-
-interface AuthUser {
-  id: number;
   email: string;
   password: string;
+}
+
+interface AuthLoginResponse {
   accessToken: string;
-  refreshToken?: string;
+  tokenType: 'Bearer';
+  sessionId?: string;
+}
+
+interface AuthRefreshResponse {
+  accessToken: string;
+  tokenType: 'Bearer';
 }
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private readonly tokenKey = 'auth_token';
+  private readonly accessTokenKey = 'sds_access_token';
 
-  constructor(
-    private readonly http: HttpClient
-  ) {}
+  constructor(private readonly http: HttpClient) {}
 
-  login(credentials: LoginCredentials): Observable<any> {
-    return this.http.get<UsersResponse>(`${environment.apiRestAuth}login`).pipe(
-      map((arrayUsers: UsersResponse) => {
-        const user = arrayUsers.users.find(
-          (u: AuthUser) => u.email === credentials.username && u.password === credentials.password
-        );
-        if (!user) {
-          throw new Error('Usuario o contraseña incorrectos');
-        }
-        return user;
-      }),
-      tap((user) => this.setToken(user.accessToken))
+  login(credentials: LoginCredentials): Observable<AuthLoginResponse> {
+    return this.http
+      .post<AuthLoginResponse>(`${environment.apiRestAuth}login`, credentials, {
+        withCredentials: true,
+      })
+      .pipe(tap((response) => this.setAccessToken(response.accessToken)));
+  }
+
+  refreshAccessToken(): Observable<AuthRefreshResponse> {
+    return this.http
+      .post<AuthRefreshResponse>(
+        `${environment.apiRestAuth}refresh-token`,
+        {},
+        {
+          withCredentials: true,
+        },
+      )
+      .pipe(
+        tap((response) => this.setAccessToken(response.accessToken)),
+        catchError((error) => {
+          this.clearAccessToken();
+          return throwError(() => error);
+        }),
+      );
+  }
+
+  ensureAuthenticated(): Observable<boolean> {
+    const token = this.getAccessToken();
+    if (!token) {
+      return of(false);
+    }
+
+    if (!this.isTokenExpired(token)) {
+      return of(true);
+    }
+
+    return this.refreshAccessToken().pipe(
+      map(() => true),
+      catchError(() => of(false)),
     );
   }
 
-  loginBackend(credentials: LoginCredentials): Observable<any> {
-    return this.http.post<any>(`${environment.apiRestAuth}login`, credentials).pipe(
-      map((arrayUsers: any) => {
-        console.log('arrayUsers:', arrayUsers);
-        /*const user = arrayUsers.users.find(
-          (u: AuthUser) => u.email === credentials.email && u.password === credentials.password
-        );
-        if (!user) {
-          throw new Error('Usuario o contraseña incorrectos');
-        }
-        return user;*/
-        return arrayUsers;
-      }),
-      tap((user) => this.setToken(user.accessToken))
-    );
-  }
-
-  logout(): void {
-    this.clear();
+  logout(): Observable<void> {
+    return this.http
+      .post<void>(`${environment.apiRestAuth}logout`, null, { withCredentials: true })
+      .pipe(
+        catchError((error) => {
+          this.clearAccessToken();
+          return throwError(() => error);
+        }),
+        tap(() => this.clearAccessToken()),
+      );
   }
 
   isAuthenticated(): boolean {
-    return !!this.getToken();
+    const token = this.getAccessToken();
+    return !!token && !this.isTokenExpired(token);
   }
 
-  getToken(): string | null {
-    return localStorage.getItem(this.tokenKey);
+  getAccessToken(): string | null {
+    return sessionStorage.getItem(this.accessTokenKey);
   }
 
-  private setToken(token: string): void {
-    localStorage.setItem(this.tokenKey, token);
+  private setAccessToken(token: string): void {
+    sessionStorage.setItem(this.accessTokenKey, token);
   }
 
-  private clear(): void {
-    localStorage.removeItem(this.tokenKey);
+  private clearAccessToken(): void {
+    sessionStorage.removeItem(this.accessTokenKey);
+  }
+
+  private isTokenExpired(token: string): boolean {
+    try {
+      const payload = token.split('.')[1];
+      const decoded = JSON.parse(atob(payload.replace(/-/g, '+').replace(/_/g, '/')));
+      if (!decoded.exp) {
+        return true;
+      }
+      return Date.now() >= decoded.exp * 1000;
+    } catch {
+      return true;
+    }
   }
 }
