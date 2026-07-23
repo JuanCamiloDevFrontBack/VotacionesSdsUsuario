@@ -12,11 +12,15 @@
         <input type="file" accept=".xlsx,.xls,.csv" (change)="onExcelSelected($event)" hidden />
         Cargar Excel
       </label>
-      <button type="button" class="primary-button" (click)="showModal = true">
+      <button type="button" class="primary-button" (click)="openCreateModal()">
         + Nuevo Sacerdote
       </button>
     </div>
   </section>
+
+  @if (errorMessage) {
+    <div class="error-banner">{{ errorMessage }}</div>
+  }
 
   <section class="list-card">
     <div class="table-scroll">
@@ -32,43 +36,49 @@
           </tr>
         </thead>
         <tbody>
-          @for (s of pagedItems; track s.id) {
-            <tr>
-              <td class="photo-cell">
-                <img [src]="s.photo" [alt]="'Foto ' + s.name" />
-              </td>
-              <td>
-                <strong>{{ s.name }}</strong>
-                <span>{{ s.parish }}</span>
-              </td>
-              <td>{{ s.role }}</td>
-              <td>{{ s.city }}</td>
-              <td>
-                @if (s.eligible) {
-                  <i class="pi pi-thumbs-up status-badge success"></i>
-                } @else {
-                  <i class="pi pi-thumbs-down status-badge notapply"></i>
-                }
-              </td>
-              <td>
-                <button type="button" class="icon-button">Editar</button>
-                <button type="button" class="icon-button danger">Eliminar</button>
-              </td>
-            </tr>
+          @if (loading) {
+            <tr><td colspan="6">Cargando...</td></tr>
+          } @else if (items.length === 0) {
+            <tr><td colspan="6">No hay salvatorianos registrados.</td></tr>
+          } @else {
+            @for (s of items; track s.id) {
+              <tr>
+                <td class="photo-cell">
+                  <img [src]="s.photoUrl || 'https://i.pravatar.cc/48'" [alt]="'Foto ' + s.fullName" />
+                </td>
+                <td>
+                  <strong>{{ s.fullName }}</strong>
+                  <span>{{ s.parishName }}</span>
+                </td>
+                <td>{{ s.cargoName }}</td>
+                <td>{{ s.missionCity }}</td>
+                <td>
+                  @if (s.eligibleForProvincial) {
+                    <i class="pi pi-thumbs-up status-badge success"></i>
+                  } @else {
+                    <i class="pi pi-thumbs-down status-badge notapply"></i>
+                  }
+                </td>
+                <td>
+                  <button type="button" class="icon-button" (click)="openEditModal(s)">Editar</button>
+                  <button type="button" class="icon-button danger" (click)="onDelete(s)">Eliminar</button>
+                </td>
+              </tr>
+            }
           }
         </tbody>
       </table>
     </div>
     <div class="paginator">
-      <button (click)="setPage(1)" [disabled]="page === 1">«</button>
-      <button (click)="prev()" [disabled]="page === 1">‹</button>
+      <button (click)="setPage(1)" [disabled]="currentPageDisplay === 1">«</button>
+      <button (click)="prev()" [disabled]="currentPageDisplay === 1">‹</button>
 
       @for (p of pagesArray(); track p) {
-        <button (click)="setPage(p)" [class.active]="p === page">{{ p }}</button>
+        <button (click)="setPage(p)" [class.active]="p === currentPageDisplay">{{ p }}</button>
       }
 
-      <button (click)="next()" [disabled]="page === totalPages">›</button>
-      <button (click)="setPage(totalPages)" [disabled]="page === totalPages">»</button>
+      <button (click)="next()" [disabled]="currentPageDisplay === totalPages">›</button>
+      <button (click)="setPage(totalPages)" [disabled]="currentPageDisplay === totalPages">»</button>
 
       <div class="page-size-select">
         <label>Mostrar</label>
@@ -82,6 +92,10 @@
   </section>
 
   @if (showModal) {
-    <app-salvatorianos-modal (close)="showModal = false"></app-salvatorianos-modal>
+    <app-salvatorianos-modal
+      [editing]="editingItem"
+      (close)="closeModal()"
+      (save)="onSave($event)"
+    ></app-salvatorianos-modal>
   }
 </div>

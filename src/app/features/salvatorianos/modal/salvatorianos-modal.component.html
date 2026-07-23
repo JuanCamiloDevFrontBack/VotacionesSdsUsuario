@@ -2,7 +2,7 @@
   <div class="modal-card">
     <section class="modal-header">
       <div>
-        <p class="modal-eyebrow">{{ true ? 'Crear' : 'Editar' }} co-hermano</p>
+        <p class="modal-eyebrow">{{ isEditing ? 'Editar' : 'Crear' }} co-hermano</p>
       </div>
       <button type="button" class="close-button" aria-label="Cerrar modal" (click)="close.emit()">
         ×
@@ -27,23 +27,19 @@
         </div>
         <div class="modal-field">
           <label>Nombres</label>
-          <input pInputText type="text" [(ngModel)]="name" readonly />
+          <input pInputText type="text" [(ngModel)]="firstName" />
         </div>
         <div class="modal-field">
           <label>Apellidos</label>
-          <input pInputText type="text" [(ngModel)]="surname" readonly />
-        </div>
-        <div class="modal-field">
-          <label>Edad</label>
-          <p-inputNumber [(ngModel)]="age" [min]="0" [mode]="'decimal'"></p-inputNumber>
+          <input pInputText type="text" [(ngModel)]="lastName" />
         </div>
         <div class="modal-field">
           <label>Correo</label>
-          <input pInputText type="email" [(ngModel)]="email" readonly />
+          <input pInputText type="email" [(ngModel)]="email" />
         </div>
         <div class="modal-field">
           <label>Celular</label>
-          <input pInputText type="tel" [(ngModel)]="phone" readonly />
+          <input pInputText type="tel" [(ngModel)]="phone" />
         </div>
       </div>
 
@@ -51,7 +47,7 @@
         <div class="modal-field">
           <label>Fecha de ordenación</label>
           <p-datepicker
-            [(ngModel)]="orderDate"
+            [(ngModel)]="ordinationDate"
             dateFormat="dd/mm/yy"
             mask="99/99/9999"
             placeholder="dd/mm/yyyy"
@@ -73,19 +69,32 @@
           ></p-datepicker>
         </div>
         <div class="modal-field">
-          <label>Ciudad de misión</label>
-          <input pInputText type="text" [(ngModel)]="city" readonly />
+          <label>Fecha de nacimiento</label>
+          <p-datepicker
+            [(ngModel)]="birthDate"
+            dateFormat="dd/mm/yy"
+            mask="99/99/9999"
+            placeholder="dd/mm/yyyy"
+            showIcon="true"
+            inputId="birthDate"
+            appendTo="body"
+            [baseZIndex]="10000"
+          ></p-datepicker>
         </div>
         <div class="modal-field">
+          <label>Ciudad de misión</label>
+          <input pInputText type="text" [(ngModel)]="missionCity" />
+        </div>
+        <div class="modal-field toggle-field-wrapper">
           <label>Habilitado para votar</label>
           <div class="toggle-field">
-            <span class="toggle-icon">🔒</span>
-            <span>Activo</span>
+            <input type="checkbox" [(ngModel)]="enabledToVote" />
+            <span>{{ enabledToVote ? 'Activo' : 'Inactivo' }}</span>
           </div>
         </div>
         <div class="modal-field checkbox-field">
           <label>
-            <input type="checkbox" checked disabled />
+            <input type="checkbox" [(ngModel)]="eligibleForProvincial" />
             Elegible para Provincial
           </label>
         </div>
@@ -93,12 +102,10 @@
     </div>
 
     <footer class="modal-actions">
-      @if (true) {
-        <button type="button" class="save-button">Guardar</button>
-      } @else {
-        <button type="button" class="edit-button">Editar</button>
-      }
-      <button type="button" class="cancel-button">Cancelar</button>
+      <button type="button" class="save-button" (click)="onSubmit()">
+        {{ isEditing ? 'Guardar cambios' : 'Guardar' }}
+      </button>
+      <button type="button" class="cancel-button" (click)="close.emit()">Cancelar</button>
     </footer>
   </div>
 </div>
