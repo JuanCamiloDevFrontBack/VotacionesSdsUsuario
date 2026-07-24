@@ -1,18 +1,49 @@
-import { Component, EventEmitter, Input, OnChanges, Output, ChangeDetectorRef, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  ChangeDetectorRef,
+  SimpleChanges,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { DatePickerModule } from 'primeng/datepicker';
 import { InputTextModule } from 'primeng/inputtext';
-import { SalvatorianoRequest, SalvatorianoResponse } from '../../../core/interfaces/salvatoriano.models';
+import {
+  SalvatorianoRequest,
+  SalvatorianoResponse,
+} from '../../../core/interfaces/salvatoriano.models';
+
+interface SalvatorianoForm {
+  firstName: FormControl<string>;
+  lastName: FormControl<string>;
+  email: FormControl<string | null>;
+  phone: FormControl<string | null>;
+  missionCity: FormControl<string | null>;
+  birthDate: FormControl<Date | null>;
+  ordinationDate: FormControl<Date | null>;
+  perpetualVowsDate: FormControl<Date | null>;
+  eligibleForProvincial: FormControl<boolean>;
+  enabledToVote: FormControl<boolean>;
+}
 
 @Component({
   selector: 'app-salvatorianos-modal',
   standalone: true,
-  imports: [CommonModule, FormsModule, DatePickerModule, InputTextModule],
+  imports: [CommonModule, ReactiveFormsModule, DatePickerModule, InputTextModule],
   templateUrl: './salvatorianos-modal.component.html',
   styleUrls: ['./salvatorianos-modal.component.scss'],
 })
-export class SalvatorianosModalComponent implements OnChanges {
+export class SalvatorianosModalComponent implements OnInit, OnChanges {
   /** Si viene con valor, el modal edita ese registro; si es null, crea uno nuevo. */
   @Input() editing: SalvatorianoResponse | null = null;
 
@@ -21,66 +52,84 @@ export class SalvatorianosModalComponent implements OnChanges {
 
   photoPreview: string | null = null;
   selectedPhoto: File | null = null;
+  form!: FormGroup<SalvatorianoForm>;
 
-  // Modelo del formulario — nombres alineados a SalvatorianoRequest.
-  firstName = '';
-  lastName = '';
-  email = '';
-  phone = '';
-  missionCity = '';
-  birthDate: Date | null = null;
-  ordinationDate: Date | null = null;
-  perpetualVowsDate: Date | null = null;
-  eligibleForProvincial = false;
-  enabledToVote = true;
-
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(
+    private readonly cdr: ChangeDetectorRef,
+    private readonly fb: FormBuilder,
+  ) {}
 
   get isEditing(): boolean {
     return this.editing !== null;
   }
 
+  ngOnInit(): void {
+    this.initForm();
+    this.syncFormFromEditing();
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['editing']) {
-      this.loadFromEditing();
+      this.syncFormFromEditing();
     }
   }
 
-  private loadFromEditing(): void {
-    if (!this.editing) {
-      this.resetForm();
+  private initForm(): void {
+    this.form = this.fb.group<SalvatorianoForm>({
+      firstName: this.fb.nonNullable.control('', [Validators.required, Validators.maxLength(100)]),
+      lastName: this.fb.nonNullable.control('', [Validators.required, Validators.maxLength(100)]),
+      email: this.fb.control<string | null>(null, [Validators.email]),
+      phone: this.fb.control<string | null>(null),
+      missionCity: this.fb.control<string | null>(null),
+      birthDate: this.fb.control<Date | null>(null),
+      ordinationDate: this.fb.control<Date | null>(null),
+      perpetualVowsDate: this.fb.control<Date | null>(null),
+      eligibleForProvincial: this.fb.nonNullable.control(false),
+      enabledToVote: this.fb.nonNullable.control(true),
+    });
+  }
+
+  private syncFormFromEditing(): void {
+    if (!this.form) {
       return;
     }
-    const e = this.editing;
-    this.firstName = e.firstName;
-    this.lastName = e.lastName;
-    this.email = e.email ?? '';
-    this.phone = e.phone ?? '';
-    this.missionCity = e.missionCity ?? '';
-    this.birthDate = e.birthDate ? new Date(e.birthDate) : null;
-    this.ordinationDate = e.ordinationDate ? new Date(e.ordinationDate) : null;
-    this.perpetualVowsDate = e.perpetualVowsDate ? new Date(e.perpetualVowsDate) : null;
-    this.eligibleForProvincial = e.eligibleForProvincial;
-    this.enabledToVote = e.enabledToVote;
-    this.photoPreview = e.photoUrl;
-  }
 
-  private resetForm(): void {
-    this.firstName = '';
-    this.lastName = '';
-    this.email = '';
-    this.phone = '';
-    this.missionCity = '';
-    this.birthDate = null;
-    this.ordinationDate = null;
-    this.perpetualVowsDate = null;
-    this.eligibleForProvincial = false;
-    this.enabledToVote = true;
-    this.photoPreview = null;
+    const value = this.editing
+      ? {
+          firstName: this.editing.firstName ?? '',
+          lastName: this.editing.lastName ?? '',
+          email: this.editing.email ?? null,
+          phone: this.editing.phone ?? null,
+          missionCity: this.editing.missionCity ?? null,
+          birthDate: this.editing.birthDate ? new Date(this.editing.birthDate) : null,
+          ordinationDate: this.editing.ordinationDate
+            ? new Date(this.editing.ordinationDate)
+            : null,
+          perpetualVowsDate: this.editing.perpetualVowsDate
+            ? new Date(this.editing.perpetualVowsDate)
+            : null,
+          eligibleForProvincial: this.editing.eligibleForProvincial ?? false,
+          enabledToVote: this.editing.enabledToVote ?? true,
+        }
+      : {
+          firstName: '',
+          lastName: '',
+          email: null,
+          phone: null,
+          missionCity: null,
+          birthDate: null,
+          ordinationDate: null,
+          perpetualVowsDate: null,
+          eligibleForProvincial: false,
+          enabledToVote: true,
+        };
+
+    this.form.reset(value, { emitEvent: false });
+    this.photoPreview = this.editing?.photoUrl ?? null;
     this.selectedPhoto = null;
   }
 
-  onPhotoSelected(event: Event) {
+  onPhotoSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (!input.files?.length) {
       return;
@@ -100,24 +149,28 @@ export class SalvatorianosModalComponent implements OnChanges {
   }
 
   onSubmit(): void {
-    if (!this.firstName.trim() || !this.lastName.trim()) {
+    this.form.markAllAsTouched();
+
+    if (this.form.invalid) {
       return;
     }
 
+    const formValue = this.form.getRawValue();
+
     const request: SalvatorianoRequest = {
-      firstName: this.firstName.trim(),
-      lastName: this.lastName.trim(),
-      email: this.email.trim() || null,
-      phone: this.phone.trim() || null,
+      firstName: formValue.firstName.trim(),
+      lastName: formValue.lastName.trim(),
+      email: formValue.email?.trim() || null,
+      phone: formValue.phone?.trim() || null,
       photoUrl: this.photoPreview,
       parishId: null, // TODO: selector de parroquia cuando exista el endpoint de catálogo
       cargoId: null, // TODO: selector de cargo cuando exista el endpoint de catálogo
-      missionCity: this.missionCity.trim() || null,
-      birthDate: this.toIsoDate(this.birthDate),
-      ordinationDate: this.toIsoDate(this.ordinationDate),
-      perpetualVowsDate: this.toIsoDate(this.perpetualVowsDate),
-      eligibleForProvincial: this.eligibleForProvincial,
-      enabledToVote: this.enabledToVote,
+      missionCity: formValue.missionCity?.trim() || null,
+      birthDate: this.toIsoDate(formValue.birthDate),
+      ordinationDate: this.toIsoDate(formValue.ordinationDate),
+      perpetualVowsDate: this.toIsoDate(formValue.perpetualVowsDate),
+      eligibleForProvincial: formValue.eligibleForProvincial,
+      enabledToVote: formValue.enabledToVote,
     };
 
     this.save.emit(request);
