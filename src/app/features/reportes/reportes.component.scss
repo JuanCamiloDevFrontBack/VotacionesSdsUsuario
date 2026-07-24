@@ -1,34 +1,27 @@
 .reportes-content {
-  min-width: 0;
   width: 100%;
   background: #f9fafb;
   overflow-y: auto;
-  padding-bottom: 40px;
+  padding-bottom: 24px;
 }
 
 .reportes-header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 24px;
-  padding: 32px 32px 16px;
-}
-
-.header-copy {
-  max-width: 680px;
+  gap: 16px;
+  padding: 24px 24px 12px;
 }
 
 .reportes-header h1 {
   margin: 0;
-  font-size: 2.4rem;
-  line-height: 1.05;
+  font-size: 2rem;
   color: #111827;
 }
 
 .header-actions {
   display: flex;
-  align-items: center;
-  gap: 12px;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
@@ -37,137 +30,69 @@
   border-radius: 999px;
   background: #f8fafc;
   color: #1f2937;
-  padding: 12px 18px;
+  padding: 10px 14px;
   font-weight: 700;
   cursor: pointer;
-  transition:
-    background-color 0.2s ease,
-    transform 0.2s ease;
 }
 
-.secondary-button:hover {
-  background: #eef2ff;
-  transform: translateY(-1px);
+.status-card,
+.chart-card,
+.table-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
 }
 
 .status-card {
-  margin: 0 32px 24px;
-  padding: 24px 28px;
-  background: white;
-  border-radius: 24px;
-  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.08);
-}
-
-.status-label {
-  margin: 0 0 10px;
-  font-size: 0.9rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: #475569;
-  text-transform: uppercase;
+  margin: 0 24px 16px;
+  padding: 18px 20px;
 }
 
 .status-main {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  padding: 22px 24px;
+  gap: 12px;
+  padding: 16px 18px;
   background: #f8fafc;
-  border-radius: 18px;
-}
-
-.status-main strong {
-  font-size: 1.6rem;
-  color: #0f172a;
-}
-
-.status-main span {
-  font-size: 1rem;
-  color: #475569;
+  border-radius: 14px;
 }
 
 .charts-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
-  margin: 0 32px;
+  gap: 16px;
+  margin: 0 24px;
 }
 
 .chart-card,
 .table-card {
-  background: white;
-  border-radius: 28px;
-  padding: 28px;
-  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.08);
+  padding: 20px;
 }
 
 .table-card {
-  width: 95%;
-  margin: 24px auto 0;
+  margin: 16px 24px 0;
 }
 
 .row-color {
   background-color: #35353515;
 }
 
-.chart-card h2,
-.section-header h2 {
-  margin: 0 0 18px;
-  font-size: 1.1rem;
-  color: #111827;
-}
-
-.chart-legend,
-.pie-legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin-bottom: 20px;
-  color: #475569;
-  font-size: 0.95rem;
-}
-
-.legend-dot {
-  display: inline-flex;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  margin-right: 8px;
-}
-
-.legend-dot.yellow {
-  background: #f59e0b;
-}
-
-.legend-dot.gray {
-  background: #334155;
-}
-
-.legend-dot.orange {
-  background: #f97316;
-}
-
 .chart-bars {
   display: grid;
-  gap: 18px;
+  gap: 12px;
 }
 
 .bar-row {
   display: grid;
-  grid-template-columns: 1fr minmax(120px, 1.5fr) auto;
+  grid-template-columns: 1fr minmax(100px, 1.2fr) auto;
   align-items: center;
-  gap: 16px;
-}
-
-.bar-label {
-  font-size: 0.95rem;
-  color: #334155;
+  gap: 12px;
 }
 
 .bar-track {
   width: 100%;
-  height: 14px;
+  height: 12px;
   background: #e2e8f0;
   border-radius: 999px;
   overflow: hidden;
@@ -195,21 +120,13 @@
   background: #334155;
 }
 
-.bar-value {
-  font-size: 0.9rem;
-  color: #475569;
-  text-align: right;
-  white-space: nowrap;
-}
-
 .pie-chart {
   position: relative;
-  width: min(100%, 260px);
+  width: min(100%, 220px);
   aspect-ratio: 1;
-  margin: 0 auto 22px;
+  margin: 0 auto 16px;
   border-radius: 50%;
   background: conic-gradient(#f59e0b 0 34%, #0f172a 34% 59%, #f97316 59% 100%);
-  box-shadow: inset 0 0 0 12px #f8fafc;
 }
 
 .pie-center {
@@ -218,43 +135,22 @@
   transform: translate(-50%, -50%);
   display: grid;
   place-items: center;
-  width: 110px;
-  height: 110px;
+  width: 92px;
+  height: 92px;
   border-radius: 50%;
-  background: white;
+  background: #fff;
   font-weight: 700;
-  color: #111827;
-}
-
-.pie-legend {
-  flex-direction: column;
-  gap: 12px;
-}
-
-.table-card {
-  margin-top: 24px;
-}
-
-.section-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 22px;
-}
-
-.table-wrapper {
-  overflow-x: auto;
 }
 
 .voters-table {
   width: 100%;
-  min-width: 520px;
+  min-width: 480px;
   border-collapse: collapse;
 }
 
 .voters-table th,
 .voters-table td {
-  padding: 16px 18px;
+  padding: 12px 14px;
   text-align: left;
   border: 1px solid #b7b9bb;
 }
