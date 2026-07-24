@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "start-test-backend": "json-server --watch src/app/infrastructure/dbtest.json --port 3000"
+    "start-dev": "ng serve --configuration development",
+    "start-prod": "ng serve -c production"
   },
   "prettier": {
     "printWidth": 100,
