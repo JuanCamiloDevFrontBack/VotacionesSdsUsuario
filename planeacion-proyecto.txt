@@ -1,8 +1,8 @@
 Generame el código en html, css, javascript de la siguiente pantalla:
 
-Ten encuenta que el desarrollo de esta pantalla se hará utilizando angular v17 como framework de trabajo.
+Ten encuenta que el desarrollo de esta pantalla se hará utilizando angular v21.1.0 como framework de trabajo.
 
-Y porfa que sea responsive, par toso los navegadores web
+Y porfa que sea responsive, par todo los navegadores web
 
 Perfecto 👍
 Te voy a generar una pantalla de login fiel a la imagen, pensada específicamente para Angular v17, responsive, y compatible con todos los navegadores modernos.
